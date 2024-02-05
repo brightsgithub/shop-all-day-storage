@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "product_type")
-public class ProductType {
+public class ProductTypeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_type_seq_generator")
@@ -20,7 +20,7 @@ public class ProductType {
 
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
-    private Category category;
+    private CategoryEntity categoryEntity;
 
     @Column(name = "product_type_name", nullable = false)
     private String productTypeName;

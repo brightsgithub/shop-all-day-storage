@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "category", uniqueConstraints = {
         @UniqueConstraint(name = "CAT_NAME_UNIQUE", columnNames = "category_name")
 })
-public class Category {
+public class CategoryEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "category_seq_generator")

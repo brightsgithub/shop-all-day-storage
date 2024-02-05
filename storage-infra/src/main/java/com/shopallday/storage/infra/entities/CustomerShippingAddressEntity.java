@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "CUSTOMER_SHIPPING_ADDRESS", uniqueConstraints = {
         @UniqueConstraint(name = "CUST_SHIP_ADD_UNIQUE", columnNames = "customer_id")
 })
-public class CustomerShippingAddress {
+public class CustomerShippingAddressEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_shipping_add_seq_generator")
@@ -22,7 +22,7 @@ public class CustomerShippingAddress {
 
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
-    private Customer customer;
+    private CustomerEntity customerEntity;
 
     @Column(name = "address1", nullable = false)
     private String address1;

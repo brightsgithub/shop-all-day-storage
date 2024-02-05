@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
 @Data
 @AllArgsConstructor
@@ -14,7 +13,7 @@ import lombok.NonNull;
         @UniqueConstraint(name = "username_unique", columnNames = "username"),
         @UniqueConstraint(name = "email_unique", columnNames = "email")
 })
-public class Customer {
+public class CustomerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_seq_generator")
     @SequenceGenerator(name = "customer_seq_generator", sequenceName = "customer_seq", allocationSize = 1, initialValue = 10)

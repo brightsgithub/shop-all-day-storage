@@ -1,8 +1,10 @@
 package com.shopallday.storage.infra.repository;
 
+import com.shopallday.storage.domain.repository.CustomerRepository;
 import com.shopallday.storage.domain.repository.SampleRepo;
 
 public class SampleRepoImpl implements SampleRepo {
+    CustomerRepository customerRepository;
 
     public SampleRepoImpl() {
         System.out.println("SampleRepoImpl CREATED ");

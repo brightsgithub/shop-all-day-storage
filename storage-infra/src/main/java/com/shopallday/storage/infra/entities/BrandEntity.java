@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "brands", uniqueConstraints = {
         @UniqueConstraint(name = "brands_name_unique", columnNames = "brand_name")
 })
-public class Brand {
+public class BrandEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "brand_seq_generator")

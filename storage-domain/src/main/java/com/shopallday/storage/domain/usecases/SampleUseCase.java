@@ -1,5 +1,6 @@
 package com.shopallday.storage.domain.usecases;
 
+import com.shopallday.storage.domain.models.Customer;
 import com.shopallday.storage.domain.repository.SampleRepo;
 
 public class SampleUseCase {

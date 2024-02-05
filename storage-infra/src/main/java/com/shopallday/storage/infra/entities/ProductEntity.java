@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "products", uniqueConstraints = {
         @UniqueConstraint(name = "PRODUCTS_SHORT_TITLE_UNIQUE", columnNames = "short_title")
 })
-public class Product {
+public class ProductEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_seq_generator")
@@ -22,11 +22,11 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "product_type_id", nullable = false)
-    private ProductType productType;
+    private ProductTypeEntity productTypeEntity;
 
     @ManyToOne
     @JoinColumn(name = "brand_id", nullable = false)
-    private Brand brand;
+    private BrandEntity brandEntity;
 
     @Column(name = "short_title", nullable = false, unique = true)
     private String shortTitle;
