@@ -1,8 +1,9 @@
 package com.shopallday.storage.app.config;
 
-import com.shopallday.storage.app.initializers.AppInitializer;
 import com.shopallday.storage.domain.initializers.StorageInitializer;
 import com.shopallday.storage.domain.repository.SampleRepo;
+import com.shopallday.storage.domain.usecases.CreateCustomersUseCase;
+import com.shopallday.storage.domain.usecases.GetAllCustomersUseCase;
 import com.shopallday.storage.infra.initializers.cache.CacheInitializer;
 import com.shopallday.storage.infra.initializers.data.DataInitializer;
 import com.shopallday.storage.infra.repository.SampleRepoImpl;
@@ -18,8 +19,9 @@ public class InfraConfig {
     }
 
     @Bean(name = "getDataInitializer")
-    public StorageInitializer getDataInitializer() {
-        return new DataInitializer();
+    public StorageInitializer getDataInitializer(
+            CreateCustomersUseCase createCustomersUseCase, GetAllCustomersUseCase getAllCustomersUseCase) {
+        return new DataInitializer(createCustomersUseCase, getAllCustomersUseCase);
     }
     @Bean(name = "getCacheInitializer")
     public StorageInitializer getCacheInitializer() {
