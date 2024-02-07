@@ -12,11 +12,18 @@ public class DataInitializer implements StorageInitializer {
     private final ProductData productData;
     private final CustomerData customerData;
     private final CategoryData categoryData;
+    private final ProductTypeData productTypeData;
 
-    public DataInitializer(ProductData productData, CustomerData customerData, CategoryData categoryData) {
+    public DataInitializer(
+            ProductData productData,
+            CustomerData customerData,
+            CategoryData categoryData,
+            ProductTypeData productTypeData
+    ) {
         this.productData = productData;
         this.customerData = customerData;
         this.categoryData = categoryData;
+        this.productTypeData = productTypeData;
     }
 
 
@@ -34,10 +41,13 @@ public class DataInitializer implements StorageInitializer {
     public void initialize() throws CreateCustomerException, ReadCustomerException {
         System.out.println("DataInitializer called");
         customerData.createCustomers();
-        customerData.printCustomers();
+        customerData.print();
 
         categoryData.createCategories();
-        categoryData.printCategories();
+        categoryData.print();
+
+        productTypeData.createProductTypes();
+        productTypeData.print();
         System.out.println("DataInitializer finished");
     }
 }

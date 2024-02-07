@@ -2,15 +2,9 @@ package com.shopallday.storage.app.config;
 
 import com.shopallday.storage.domain.initializers.StorageInitializer;
 import com.shopallday.storage.domain.repository.SampleRepo;
-import com.shopallday.storage.domain.usecases.CreateCategoryUseCase;
-import com.shopallday.storage.domain.usecases.CreateCustomersUseCase;
-import com.shopallday.storage.domain.usecases.GetAllCustomersUseCase;
-import com.shopallday.storage.domain.usecases.GetCategoryUseCase;
+import com.shopallday.storage.domain.usecases.*;
 import com.shopallday.storage.infra.initializers.cache.CacheInitializer;
-import com.shopallday.storage.infra.initializers.data.CategoryData;
-import com.shopallday.storage.infra.initializers.data.CustomerData;
-import com.shopallday.storage.infra.initializers.data.DataInitializer;
-import com.shopallday.storage.infra.initializers.data.ProductData;
+import com.shopallday.storage.infra.initializers.data.*;
 import com.shopallday.storage.infra.repository.SampleRepoImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,9 +21,10 @@ public class InfraConfig {
     public StorageInitializer getDataInitializer(
             ProductData productData,
             CustomerData customerData,
-            CategoryData categoryData
+            CategoryData categoryData,
+            ProductTypeData productTypeData
     ) {
-        return new DataInitializer(productData, customerData, categoryData);
+        return new DataInitializer(productData, customerData, categoryData, productTypeData);
     }
     @Bean(name = "getCacheInitializer")
     public StorageInitializer getCacheInitializer() {
@@ -54,5 +49,18 @@ public class InfraConfig {
             GetCategoryUseCase getCategoryUseCase
     ) {
         return new CategoryData(createCategoryUseCase, getCategoryUseCase);
+    }
+
+    @Bean
+    public ProductTypeData getProductTypeData(
+            GetCategoryUseCase getCategoryUseCase,
+            CreateProductTypeUseCase createProductTypeUseCase,
+            GetAllProductTypesUseCase getAllProductTypesUseCase
+    ) {
+        return new ProductTypeData(
+                getCategoryUseCase,
+                createProductTypeUseCase,
+                getAllProductTypesUseCase
+        );
     }
 }

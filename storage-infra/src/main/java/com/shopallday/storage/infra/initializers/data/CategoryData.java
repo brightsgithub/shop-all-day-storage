@@ -31,7 +31,7 @@ public class CategoryData {
         System.out.println("print createCategories finished");
     }
 
-    void printCategories() {
+    void print() {
         System.out.println("printCategories called...");
         for(Category category: getCategoryUseCase.execute()) {
             System.out.println(category);

@@ -35,7 +35,7 @@ public class CustomerData {
         System.out.println("createCustomers finished");
     }
 
-    void printCustomers() throws ReadCustomerException {
+    void print() throws ReadCustomerException {
         System.out.println("printCustomers called...");
         for(Customer customer: getAllCustomersUseCase.execute()) {
             System.out.println("Customer is: "+ customer);

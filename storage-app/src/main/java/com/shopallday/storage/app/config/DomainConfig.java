@@ -2,6 +2,7 @@ package com.shopallday.storage.app.config;
 
 import com.shopallday.storage.domain.repository.CategoryRepository;
 import com.shopallday.storage.domain.repository.CustomerRepository;
+import com.shopallday.storage.domain.repository.ProductTypeRepository;
 import com.shopallday.storage.domain.repository.SampleRepo;
 import com.shopallday.storage.domain.usecases.*;
 import com.shopallday.storage.infra.repository.SampleRepoImpl;
@@ -32,5 +33,15 @@ public class DomainConfig {
     @Bean
     public GetCategoryUseCase getGetCategoryUseCase(CategoryRepository categoryRepository) {
         return new GetCategoryUseCase(categoryRepository);
+    }
+
+    @Bean
+    public CreateProductTypeUseCase getCreateProductTypeUseCase(ProductTypeRepository productTypeRepository) {
+        return new CreateProductTypeUseCase(productTypeRepository);
+    }
+
+    @Bean
+    public GetAllProductTypesUseCase getGetAllProductTypesUseCase(ProductTypeRepository productTypeRepository) {
+        return new GetAllProductTypesUseCase(productTypeRepository);
     }
 }
