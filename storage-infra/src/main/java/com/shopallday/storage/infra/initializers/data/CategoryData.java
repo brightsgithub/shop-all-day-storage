@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class CategoryData {
+public class CategoryData implements DataHelper {
 
     private final CreateCategoryUseCase createCategoryUseCase;
     private final GetCategoryUseCase getCategoryUseCase;
@@ -20,7 +20,7 @@ public class CategoryData {
         this.getCategoryUseCase = getCategoryUseCase;
     }
 
-    void createCategories() {
+    public void create() {
         System.out.println("print createCategories called...");
         List<Category> categories = new ArrayList<>();
         categories.add(new Category(1L, "Electronics"));
@@ -31,7 +31,7 @@ public class CategoryData {
         System.out.println("print createCategories finished");
     }
 
-    void print() {
+    public void print() {
         System.out.println("printCategories called...");
         for(Category category: getCategoryUseCase.execute()) {
             System.out.println(category);

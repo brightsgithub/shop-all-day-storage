@@ -11,6 +11,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class ProductData {
+public class ProductData implements DataHelper {
 
+    @Override
+    public void create() {
+
+    }
+
+    @Override
+    public void print() {
+
+    }
 }

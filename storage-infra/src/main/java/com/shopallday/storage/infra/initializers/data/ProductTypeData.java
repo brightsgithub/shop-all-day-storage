@@ -5,11 +5,13 @@ import com.shopallday.storage.domain.models.ProductType;
 import com.shopallday.storage.domain.usecases.CreateProductTypeUseCase;
 import com.shopallday.storage.domain.usecases.GetAllProductTypesUseCase;
 import com.shopallday.storage.domain.usecases.GetCategoryUseCase;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductTypeData {
+@Component
+public class ProductTypeData implements DataHelper {
 
     private final GetCategoryUseCase getCategoryUseCase;
     private final CreateProductTypeUseCase createProductTypeUseCase;
@@ -25,7 +27,7 @@ public class ProductTypeData {
         this.getAllProductTypesUseCase = getAllProductTypesUseCase;
     }
 
-    void createProductTypes() {
+    public void create() {
         List<Category> categories = getCategoryUseCase.execute();
         List<ProductType> productTypes = new ArrayList<>();
 

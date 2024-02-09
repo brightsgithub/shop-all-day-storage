@@ -6,24 +6,29 @@ import com.shopallday.storage.domain.initializers.StorageInitializer;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class DataInitializer implements StorageInitializer {
 
-    private final ProductData productData;
-    private final CustomerData customerData;
-    private final CategoryData categoryData;
-    private final ProductTypeData productTypeData;
+    private final DataHelper productData;
+    private final DataHelper customerData;
+    private final DataHelper categoryData;
+    private final DataHelper productTypeData;
+    private final DataHelper brandData;
 
     public DataInitializer(
-            ProductData productData,
-            CustomerData customerData,
-            CategoryData categoryData,
-            ProductTypeData productTypeData
-    ) {
+            DataHelper productData,
+            DataHelper customerData,
+            DataHelper categoryData,
+            DataHelper productTypeData,
+            DataHelper brandData) {
         this.productData = productData;
         this.customerData = customerData;
         this.categoryData = categoryData;
         this.productTypeData = productTypeData;
+        this.brandData = brandData;
     }
 
 
@@ -38,16 +43,19 @@ public class DataInitializer implements StorageInitializer {
      */
     @Transactional(rollbackOn = { CreateCustomerException.class })
     @Override
-    public void initialize() throws CreateCustomerException, ReadCustomerException {
+    public void initialize() throws Exception {
         System.out.println("DataInitializer called");
-        customerData.createCustomers();
-        customerData.print();
+        List<DataHelper> dataHelpers = new ArrayList<>();
+        dataHelpers.add(customerData);
+        dataHelpers.add(categoryData);
+        dataHelpers.add(productTypeData);
+        dataHelpers.add(brandData);
 
-        categoryData.createCategories();
-        categoryData.print();
+        for (DataHelper dataHelper: dataHelpers) {
+            dataHelper.create();
+            dataHelper.print();
+        }
 
-        productTypeData.createProductTypes();
-        productTypeData.print();
         System.out.println("DataInitializer finished");
     }
 }

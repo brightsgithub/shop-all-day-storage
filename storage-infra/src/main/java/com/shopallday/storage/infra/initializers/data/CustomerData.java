@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Random;
 
 @Component
-public class CustomerData {
+public class CustomerData implements DataHelper {
 
     private static final String[] FIRST_NAMES = {"John", "Jane", "Bob", "Alice", "David", "Emily", "Michael", "Sarah", "William", "Mary"};
     private static final String[] LAST_NAMES = {"Smith", "Johnson", "Williams", "Brown", "Jones", "Miller", "Davis", "Garcia", "Rodriguez", "Wilson"};
@@ -28,14 +28,14 @@ public class CustomerData {
         this.getAllCustomersUseCase = getAllCustomersUseCase;
     }
 
-    void createCustomers() throws CreateCustomerException {
+    public void create() throws CreateCustomerException {
         System.out.println("createCustomers called...");
         List<Customer> randomCustomers = generateRandomCustomers(10);
         createCustomersUseCase.execute(randomCustomers);
         System.out.println("createCustomers finished");
     }
 
-    void print() throws ReadCustomerException {
+    public void print() throws ReadCustomerException {
         System.out.println("printCustomers called...");
         for(Customer customer: getAllCustomersUseCase.execute()) {
             System.out.println("Customer is: "+ customer);

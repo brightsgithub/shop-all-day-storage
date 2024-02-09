@@ -1,9 +1,6 @@
 package com.shopallday.storage.app.config;
 
-import com.shopallday.storage.domain.repository.CategoryRepository;
-import com.shopallday.storage.domain.repository.CustomerRepository;
-import com.shopallday.storage.domain.repository.ProductTypeRepository;
-import com.shopallday.storage.domain.repository.SampleRepo;
+import com.shopallday.storage.domain.repository.*;
 import com.shopallday.storage.domain.usecases.*;
 import com.shopallday.storage.infra.repository.SampleRepoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +40,15 @@ public class DomainConfig {
     @Bean
     public GetAllProductTypesUseCase getGetAllProductTypesUseCase(ProductTypeRepository productTypeRepository) {
         return new GetAllProductTypesUseCase(productTypeRepository);
+    }
+
+    @Bean
+    public GetAllBrandsUseCase getGetAllBrandsUseCase(BrandRepository brandRepository) {
+        return new GetAllBrandsUseCase(brandRepository);
+    }
+
+    @Bean
+    public CreateBrandsUseCase getCreateBrandsUseCase(BrandRepository brandRepository) {
+        return new CreateBrandsUseCase(brandRepository);
     }
 }
