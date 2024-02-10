@@ -4,6 +4,8 @@ import com.shopallday.storage.domain.exceptions.customer.CreateCustomerException
 import com.shopallday.storage.domain.exceptions.customer.ReadCustomerException;
 import com.shopallday.storage.domain.initializers.StorageInitializer;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -17,6 +19,9 @@ public class DataInitializer implements StorageInitializer {
     private final DataHelper categoryData;
     private final DataHelper productTypeData;
     private final DataHelper brandData;
+
+    @Autowired
+    private Environment environment;
 
     public DataInitializer(
             DataHelper productData,
@@ -44,19 +49,30 @@ public class DataInitializer implements StorageInitializer {
     @Transactional(rollbackOn = { CreateCustomerException.class })
     @Override
     public void initialize() throws Exception {
-        System.out.println("DataInitializer called");
-        List<DataHelper> dataHelpers = new ArrayList<>();
-        dataHelpers.add(customerData);
-        dataHelpers.add(categoryData);
-        dataHelpers.add(productTypeData);
-        dataHelpers.add(brandData);
-        dataHelpers.add(productData);
+        if (isDdlAutoCreate()) {
+            System.out.println("DataInitializer called");
+            List<DataHelper> dataHelpers = new ArrayList<>();
+            dataHelpers.add(customerData);
+            dataHelpers.add(categoryData);
+            dataHelpers.add(productTypeData);
+            dataHelpers.add(brandData);
+            dataHelpers.add(productData);
 
-        for (DataHelper dataHelper: dataHelpers) {
-            dataHelper.create();
-            dataHelper.print();
+            for (DataHelper dataHelper: dataHelpers) {
+                dataHelper.create();
+                dataHelper.print();
+            }
+
+            System.out.println("DataInitializer finished");
         }
+    }
 
-        System.out.println("DataInitializer finished");
+    /**
+     * Only add data via jpa hibernate if we have the environment variable has been set to create tables
+     * @return
+     */
+    public boolean isDdlAutoCreate() {
+        String ddlAuto = environment.getProperty("spring.jpa.hibernate.ddl-auto");
+        return ddlAuto != null && ddlAuto.equalsIgnoreCase("create");
     }
 }

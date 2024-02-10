@@ -83,7 +83,7 @@ commit;
 -- repeated rows if brand name was kept in products table, which would not be normalised. Also prevents someone updating a
 -- brand (if it existed in the products table) by mistake and corrupting the data. it should be unique and in one place
 
-drop table if exists brands cascade;
+drop table if exists brands CASCADE;
 drop sequence if exists brand_seq;
 
 create sequence brand_seq increment by 1 start with 600;

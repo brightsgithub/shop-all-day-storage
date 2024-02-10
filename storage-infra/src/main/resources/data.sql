@@ -513,3 +513,405 @@ values(
           'Ceramic is a heat-resistant and durable material that has been used by humans to make practical objects for thousands of years.',
           'Ceramic is a heat-resistant and durable material that has been used by humans to make practical objects for thousands of years. The base material is different types of clay that are oven-burned and become things like terracotta, stoneware, pottery and porcelain. At IKEA we mainly use ceramic for plant pots, porcelain, washbasins and kitchen sinks. Since it can be shaped and even glazed to the desired colour and shine, the possibilities of styles and looks are endless.'
       );
+
+-- product_stock Q60C QLED 4K HDR
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 17, 10, 'Small','Black', 1000);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 17, 10, 'Large','Black', 1100);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 17, 10, 'Large','White', 1100);
+
+-- product_stock N85C Neo QLED 4K HDR
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 18, 10, 'Small','Black', 1200);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 18, 10, 'Large','Black', 1300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 18, 10, 'XLarge','White', 1400);
+
+-- product_stock 2023 QN90C Neo QLED 4K HDR Smart TV
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 19, 10, 'Small','Black', 1200);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 19, 10, 'Large','Black', 1300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 19, 10, 'XLarge','White', 1400);
+
+-- product_stock HP Slim S01-pF2012na Desktop PC
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 20, 10, 'Small','Black', 1200);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 20, 10, 'Large','Black', 1300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 20, 10, 'XLarge','White', 2300);
+
+-- product_stock HP Slim S01-pF2011na Desktop PC - Intel® Core™ i5
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 21, 10, 'Small','Black', 1400);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 21, 3, 'Large','Black', 1500);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 21, 3, 'XLarge','White', 2400);
+
+-- product_stock ACER Revo Box RN96 Desktop PC
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 22, 10, 'Small','Black', 800);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 22, 3, 'Large','Black', 950);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 22, 3, 'XLarge','White', 981);
+
+-- product_stock LENOVO IdeaPad 3i 15.6" Laptop - Intel® Core™ i3
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 23, 50, 'Small','Black', 700);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 23, 30, 'Large','Black', 800);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 23, 22, 'XLarge','White', 1000);
+
+-- product_stock APPLE MacBook Air 13.3" (2020) - M1
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 24, 50, 'Small','Black', 700);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 24, 30, 'Large','Black', 800);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 24, 22, 'XLarge','White', 1000);
+
+-- product_stock HP 15a-nb0502sa 15.6" Chromebook Plus - Intel® Core™ i3
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 25, 50, 'Small','Black', 300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 25, 30, 'Large','Black', 400);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 25, 22, 'XLarge','White', 550);
+
+-- product_stock SAMSUNG Galaxy S24 Ultra - 512 GB
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 26, 50, 'Small','Black', 300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 26, 30, 'Large','Green', 600);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 26, 22, 'Large','White', 600);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 26, 22, 'Large','Blue', 600);
+
+-- product_stock APPLE iPhone 15
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 27, 50, 'Small','Black', 300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 27, 30, 'Large','Green', 600);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 27, 22, 'Large','White', 600);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 27, 22, 'Large','Blue', 600);
+
+-- product_stock GOOGLE Pixel 7a
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 28, 50, 'Small','Black', 300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 28, 50, 'Small','Red', 300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 28, 50, 'purple','Red', 300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 28, 30, 'Large','Green', 600);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 28, 22, 'Large','White', 600);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 28, 22, 'Large','Blue', 600);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 28, 22, 'XLarge','Blue', 900);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 28, 22, 'XLarge','White', 900);
+
+-- product_stock BOSCH Series 4 WGG04409GB
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 29, 50, 'Small','Black', 300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 29, 50, 'Small','Red', 300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 29, 50, 'purple','Red', 300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 29, 30, 'Large','Green', 600);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 29, 22, 'Large','White', 600);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 29, 22, 'Large','Blue', 600);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 29, 22, 'XLarge','Blue', 900);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 29, 22, 'XLarge','White', 900);
+
+-- product_stock PANASONIC NN-CT56JBBPQ
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 30, 50, 'Small','Black', 300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 30, 50, 'Small','Red', 300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 30, 50, 'purple','Red', 300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 30, 30, 'Large','Green', 600);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 30, 22, 'Large','White', 600);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 30, 22, 'Large','Blue', 600);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 30, 22, 'XLarge','Blue', 900);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 30, 22, 'XLarge','White', 900);
+
+-- product_stock BOSCH Series 2 HHF113BR0B
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 31, 50, 'Small','Black', 300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 31, 50, 'Small','Red', 300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 31, 50, 'purple','Red', 300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 31, 30, 'Large','Green', 600);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 31, 22, 'Large','White', 600);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 31, 22, 'Large','Blue', 600);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 31, 22, 'XLarge','Blue', 900);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 31, 22, 'XLarge','White', 900);
+
+-- product_stock BOSCH Series 2 SMV2ITX18G
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 32, 50, 'Small','Black', 300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 32, 50, 'Small','Red', 300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 32, 50, 'purple','Red', 300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 32, 30, 'Large','Green', 600);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 32, 22, 'Large','White', 600);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 32, 22, 'Large','Blue', 600);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 32, 22, 'XLarge','Blue', 900);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 32, 22, 'XLarge','White', 900);
+
+-- product_stock BOASTAD TV bench, black/oak veneer
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 33, 50, 'Small','Black', 300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 33, 50, 'Small','Red', 300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 33, 50, 'purple','Red', 300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 33, 30, 'Large','Green', 600);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 33, 22, 'Large','White', 600);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 33, 22, 'Large','Blue', 600);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 33, 22, 'XLarge','Blue', 900);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 33, 22, 'XLarge','White', 900);
+
+-- product_stock HEMNES TV bench, black-brown/light brown
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 34, 50, 'Small','Black', 300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 34, 50, 'Small','Red', 300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 34, 50, 'purple','Red', 300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 34, 30, 'Large','Green', 600);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 34, 22, 'Large','White', 600);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 34, 22, 'Large','Blue', 600);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 34, 22, 'XLarge','Blue', 900);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 34, 22, 'XLarge','White', 900);
+
+-- product_stock LANEBERG Extendable table
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 35, 50, 'Small','Black', 300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 35, 50, 'Small','Red', 300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 35, 50, 'purple','Red', 300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 35, 30, 'Large','Green', 600);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 35, 22, 'Large','White', 600);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 35, 22, 'Large','Blue', 600);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 35, 22, 'XLarge','Blue', 900);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 35, 22, 'XLarge','White', 900);
+
+-- product_stock LANEBERG Extendable table new
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 36, 50, 'Small','Black', 300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 36, 50, 'Small','Red', 300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 36, 50, 'purple','Red', 300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 36, 30, 'Large','Green', 600);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 36, 22, 'Large','White', 600);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 36, 22, 'Large','Blue', 600);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 36, 22, 'XLarge','Blue', 900);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 36, 22, 'XLarge','White', 900);
+
+-- product_stock LANEBERG Ceramic bath
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 37, 50, 'Small','Black', 300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 37, 50, 'Small','Red', 300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 37, 50, 'purple','Red', 300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 37, 30, 'Large','Green', 600);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 37, 22, 'Large','White', 600);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 37, 22, 'Large','Blue', 600);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 37, 22, 'XLarge','Blue', 900);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 37, 22, 'XLarge','White', 900);
+
+-- product_stock LANEBERG Ceramic bath NEW
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 38, 50, 'Small','Black', 300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 38, 50, 'Small','Red', 300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 38, 50, 'purple','Red', 300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 38, 30, 'Large','Green', 600);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 38, 22, 'Large','White', 600);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 38, 22, 'Large','Blue', 600);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 38, 22, 'XLarge','Blue', 900);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 38, 22, 'XLarge','White', 900);
+
+-- product_stock LANEBERG Inset sink, 1 bowl
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 39, 50, 'Small','Black', 300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 39, 50, 'Small','Red', 300);
+
+insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
+values(nextval('product_type_seq'), 39, 50, 'purple','Red', 300);
+
