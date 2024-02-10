@@ -1,9 +1,5 @@
 package com.shopallday.storage.app;
 
-//import com.shopallday.storage.domain.usecases.SampleUseCase;
-import com.shopallday.storage.domain.repository.SampleRepo;
-import com.shopallday.storage.domain.usecases.SampleUseCase;
-import com.shopallday.storage.infra.repository.SampleRepoImpl;
 import lombok.extern.java.Log;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -26,13 +22,9 @@ import javax.sql.DataSource;
 public class StorageAppApplication implements CommandLineRunner {
 
     private final DataSource dataSource;
-    private final SampleUseCase sampleUseCase;
-    private final SampleRepo sampleRepo;
 
-    StorageAppApplication(DataSource dataSource, SampleUseCase sampleUseCase, SampleRepo sampleRepo) {
-        this.sampleUseCase = sampleUseCase;
+    StorageAppApplication(DataSource dataSource) {
         this.dataSource = dataSource;
-        this.sampleRepo = sampleRepo;
     }
 
     public static void main(String[] args) {
@@ -41,8 +33,6 @@ public class StorageAppApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println(sampleUseCase.execute());
-        System.out.println(sampleRepo.execute());
         log.info("Datasource " + dataSource.toString());
         final JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         jdbcTemplate.execute("select 1");
