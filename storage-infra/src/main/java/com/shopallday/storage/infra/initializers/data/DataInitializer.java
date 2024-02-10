@@ -50,6 +50,7 @@ public class DataInitializer implements StorageInitializer {
         dataHelpers.add(categoryData);
         dataHelpers.add(productTypeData);
         dataHelpers.add(brandData);
+        dataHelpers.add(productData);
 
         for (DataHelper dataHelper: dataHelpers) {
             dataHelper.create();

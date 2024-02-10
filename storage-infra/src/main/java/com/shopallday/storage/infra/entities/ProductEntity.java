@@ -35,8 +35,10 @@ public class ProductEntity {
     private String longTitle;
 
     @Column(name = "short_description", nullable = false)
+    @Lob
     private String shortDescription;
 
     @Column(name = "long_description")
+    @Lob
     private String longDescription;
 }

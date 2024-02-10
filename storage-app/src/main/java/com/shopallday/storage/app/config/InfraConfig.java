@@ -41,8 +41,13 @@ public class InfraConfig {
     }
 
     @Bean(name = "getProductData")
-    public DataHelper getProductData() {
-        return new ProductData();
+    public DataHelper getProductData(
+            CreateProductsUseCase createProductsUseCase,
+            GetAllProductsUseCase getAllProductsUseCase,
+            GetAllProductTypesUseCase getAllProductTypesUseCase,
+            GetAllBrandsUseCase getAllBrandsUseCase
+    ) {
+        return new ProductData(createProductsUseCase, getAllProductsUseCase, getAllProductTypesUseCase, getAllBrandsUseCase);
     }
 
     @Bean(name = "getCategoryData")
