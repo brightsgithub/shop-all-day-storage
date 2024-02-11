@@ -1,5 +1,5 @@
 package com.shopallday.storage.domain.usecases;
 
 public interface UseCase<R,P> {
-    R execute(P params);
+    R execute(P param) throws Exception;
 }

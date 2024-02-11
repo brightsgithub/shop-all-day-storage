@@ -1,18 +1,13 @@
 package com.shopallday.storage.infra.repository;
 
-import com.shopallday.storage.domain.exceptions.customer.DeleteCustomerException;
 import com.shopallday.storage.domain.exceptions.customer.ReadCustomerException;
-import com.shopallday.storage.domain.exceptions.customer.UpdateCustomerException;
 import com.shopallday.storage.domain.models.Customer;
 import com.shopallday.storage.domain.repository.CustomerRepository;
 import com.shopallday.storage.infra.entities.CustomerEntity;
 import com.shopallday.storage.infra.mappers.CustomerMapper;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 /**
  * Usually CustomerRepository extending CrudRepository would mean CustomerRepository interface has no implementation
@@ -22,7 +17,7 @@ import java.util.stream.StreamSupport;
  * be aware of these details. It relies on the CustomerRepository interface, and the Spring Data JPA infrastructure
  * handles the underlying implementation.
  */
-public interface JpaCustomerRepository extends CrudRepository<CustomerEntity, Long>, CustomerRepository {
+public interface JpaCustomerRepository extends JpaRepository<CustomerEntity, Long>, CustomerRepository {
 
 
     // Implementing the createCustomer method using the save method provided by JpaRepository
@@ -39,14 +34,12 @@ public interface JpaCustomerRepository extends CrudRepository<CustomerEntity, Lo
 
     @Override
     default List<Customer> findCustomersById(final List<Long> ids) {
-        return CustomerMapper.INSTANCE.entitiesToCustomers(StreamSupport.stream(findAllById(ids).spliterator(), false)
-                .collect(Collectors.toList()));
+        return CustomerMapper.INSTANCE.entitiesToCustomers(findAllById(ids));
     }
 
     @Override
     default List<Customer> getCustomers() {
-        return CustomerMapper.INSTANCE.entitiesToCustomers(StreamSupport.stream(findAll().spliterator(), false)
-                .collect(Collectors.toList()));
+        return CustomerMapper.INSTANCE.entitiesToCustomers(findAll());
     }
 
     @Override

@@ -5,7 +5,7 @@ import com.shopallday.storage.domain.repository.ProductTypeRepository;
 
 import java.util.List;
 
-public class GetAllProductTypesUseCase {
+public class GetAllProductTypesUseCase implements UseCaseNoParam<List<ProductType>>{
 
     private final ProductTypeRepository productTypeRepository;
 

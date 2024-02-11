@@ -5,7 +5,7 @@ import com.shopallday.storage.domain.repository.ProductStockRepository;
 
 import java.util.List;
 
-public class CreateProductStockUseCase implements UseCase<Void, List<ProductStock>>{
+public class CreateProductStockUseCase implements UseCaseNoReturnVal<List<ProductStock>>{
 
     private final ProductStockRepository productStockRepository;
 
@@ -15,8 +15,7 @@ public class CreateProductStockUseCase implements UseCase<Void, List<ProductStoc
 
 
     @Override
-    public Void execute(List<ProductStock> params) {
+    public void execute(List<ProductStock> params) {
         productStockRepository.createProductStock(params);
-        return null;
     }
 }

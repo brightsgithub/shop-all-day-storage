@@ -5,7 +5,7 @@ import com.shopallday.storage.domain.repository.BrandRepository;
 
 import java.util.List;
 
-public class GetAllBrandsUseCase {
+public class GetAllBrandsUseCase implements UseCaseNoParam<List<Brand>> {
 
     private final BrandRepository brandRepository;
 

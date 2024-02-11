@@ -5,7 +5,7 @@ import com.shopallday.storage.domain.repository.CategoryRepository;
 
 import java.util.List;
 
-public class CreateCategoryUseCase {
+public class CreateCategoryUseCase implements UseCaseNoReturnVal<List<Category>>{
 
     private final CategoryRepository categoryRepository;
 

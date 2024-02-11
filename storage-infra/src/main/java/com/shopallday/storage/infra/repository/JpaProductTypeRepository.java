@@ -5,13 +5,11 @@ import com.shopallday.storage.domain.models.ProductType;
 import com.shopallday.storage.domain.repository.ProductTypeRepository;
 import com.shopallday.storage.infra.entities.ProductTypeEntity;
 import com.shopallday.storage.infra.mappers.ProductTypeMapper;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
-public interface JpaProductTypeRepository extends CrudRepository<ProductTypeEntity, Long>, ProductTypeRepository {
+public interface JpaProductTypeRepository extends JpaRepository<ProductTypeEntity, Long>, ProductTypeRepository {
 
     ProductTypeMapper productTypeMapper = ProductTypeMapper.INSTANCE;
 
@@ -36,8 +34,7 @@ public interface JpaProductTypeRepository extends CrudRepository<ProductTypeEnti
 
     @Override
     default List<ProductType> findAllProductTypes() {
-        return productTypeMapper.productTypeEntitiesToProductTypes(StreamSupport.stream(findAll().spliterator(), false)
-                .collect(Collectors.toList()));
+        return productTypeMapper.productTypeEntitiesToProductTypes(findAll());
     }
 
     @Override

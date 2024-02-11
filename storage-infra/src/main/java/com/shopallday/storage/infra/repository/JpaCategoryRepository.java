@@ -4,14 +4,12 @@ import com.shopallday.storage.domain.models.Category;
 import com.shopallday.storage.domain.repository.CategoryRepository;
 import com.shopallday.storage.infra.entities.CategoryEntity;
 import com.shopallday.storage.infra.mappers.CategoryMapper;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
-public interface JpaCategoryRepository extends CrudRepository<CategoryEntity, Long>, CategoryRepository {
+public interface JpaCategoryRepository extends JpaRepository<CategoryEntity, Long>, CategoryRepository {
 
     CategoryMapper categoryMapper = CategoryMapper.INSTANCE;
 
@@ -27,8 +25,7 @@ public interface JpaCategoryRepository extends CrudRepository<CategoryEntity, Lo
 
     @Override
     default List<Category> getCategories() {
-        return categoryMapper.entitiesToCategories(StreamSupport.stream(findAll().spliterator(), false)
-                        .collect(Collectors.toList()));
+        return categoryMapper.entitiesToCategories(findAll());
     }
 
     @Override

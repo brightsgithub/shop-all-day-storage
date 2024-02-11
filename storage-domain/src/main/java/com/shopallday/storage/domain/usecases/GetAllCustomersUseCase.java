@@ -6,7 +6,7 @@ import com.shopallday.storage.domain.repository.CustomerRepository;
 
 import java.util.List;
 
-public class GetAllCustomersUseCase {
+public class GetAllCustomersUseCase implements UseCaseNoParam<List<Customer>> {
 
     private final CustomerRepository customerRepository;
 

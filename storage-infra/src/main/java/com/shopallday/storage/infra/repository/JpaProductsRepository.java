@@ -4,13 +4,11 @@ import com.shopallday.storage.domain.models.Product;
 import com.shopallday.storage.domain.repository.ProductsRepository;
 import com.shopallday.storage.infra.entities.ProductEntity;
 import com.shopallday.storage.infra.mappers.ProductMapper;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
-public interface JpaProductsRepository extends CrudRepository<ProductEntity, Long>, ProductsRepository {
+public interface JpaProductsRepository extends JpaRepository<ProductEntity, Long>, ProductsRepository {
 
     ProductMapper mapper = ProductMapper.INSTANCE;
 
@@ -25,14 +23,12 @@ public interface JpaProductsRepository extends CrudRepository<ProductEntity, Lon
 
     default List<Product> findProductsByIds(List<Long> ids) {
         return mapper
-                .productEntitiesToProducts(StreamSupport.stream(findAllById(ids).spliterator(), false)
-                        .collect(Collectors.toList()));
+                .productEntitiesToProducts(findAllById(ids));
     }
 
     default List<Product> findAllProducts() {
         return mapper
-                .productEntitiesToProducts(StreamSupport.stream(findAll().spliterator(), false)
-                        .collect(Collectors.toList()));
+                .productEntitiesToProducts(findAll());
     }
 
     default void updateProduct(Product product) {
