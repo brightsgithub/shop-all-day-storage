@@ -1,0 +1,51 @@
+package com.shopallday.storage.domain.usecases;
+
+import com.shopallday.storage.domain.models.Category;
+import com.shopallday.storage.domain.models.ProductType;
+import com.shopallday.storage.domain.repository.ProductTypeRepository;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
+
+@ExtendWith(MockitoExtension.class)
+public class GetAllProductTypesUseCaseTest {
+
+    @Mock
+    private ProductTypeRepository productTypeRepository;
+
+    @InjectMocks
+    private GetAllProductTypesUseCase getAllProductTypesUseCase;
+
+    @Test
+    public void testExecute() {
+        // Arrange
+        List<ProductType> expectedProductTypes = new ArrayList<>();
+        expectedProductTypes.add(new ProductType(1L, new Category(1L, "Category1"), "Type1"));
+        expectedProductTypes.add(new ProductType(2L, new Category(2L, "Category2"), "Type2"));
+
+        // Mocking behavior of the productTypeRepository
+        when(productTypeRepository.findAllProductTypes()).thenReturn(expectedProductTypes);
+
+        // Act
+        List<ProductType> actualProductTypes = getAllProductTypesUseCase.execute();
+
+        // Assert
+        assertEquals(expectedProductTypes.size(), actualProductTypes.size());
+        for (int i = 0; i < expectedProductTypes.size(); i++) {
+            ProductType expectedProductType = expectedProductTypes.get(i);
+            ProductType actualProductType = actualProductTypes.get(i);
+            assertEquals(expectedProductType.getProductTypeId(), actualProductType.getProductTypeId());
+            assertEquals(expectedProductType.getCategory().getCategoryId(), actualProductType.getCategory().getCategoryId());
+            assertEquals(expectedProductType.getCategory().getCategoryName(), actualProductType.getCategory().getCategoryName());
+            assertEquals(expectedProductType.getProductTypeName(), actualProductType.getProductTypeName());
+        }
+    }
+}
