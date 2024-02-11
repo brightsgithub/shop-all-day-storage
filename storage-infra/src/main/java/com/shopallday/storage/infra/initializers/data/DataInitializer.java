@@ -19,6 +19,7 @@ public class DataInitializer implements StorageInitializer {
     private final DataHelper categoryData;
     private final DataHelper productTypeData;
     private final DataHelper brandData;
+    private final DataHelper productStockData;
 
     @Autowired
     private Environment environment;
@@ -28,12 +29,15 @@ public class DataInitializer implements StorageInitializer {
             DataHelper customerData,
             DataHelper categoryData,
             DataHelper productTypeData,
-            DataHelper brandData) {
+            DataHelper brandData,
+            DataHelper productStockData
+    ) {
         this.productData = productData;
         this.customerData = customerData;
         this.categoryData = categoryData;
         this.productTypeData = productTypeData;
         this.brandData = brandData;
+        this.productStockData = productStockData;
     }
 
 
@@ -57,6 +61,7 @@ public class DataInitializer implements StorageInitializer {
             dataHelpers.add(productTypeData);
             dataHelpers.add(brandData);
             dataHelpers.add(productData);
+            dataHelpers.add(productStockData);
 
             for (DataHelper dataHelper: dataHelpers) {
                 dataHelper.create();

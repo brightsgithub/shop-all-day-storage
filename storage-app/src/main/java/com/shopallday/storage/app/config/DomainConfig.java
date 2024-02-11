@@ -56,4 +56,13 @@ public class DomainConfig {
     public GetAllProductsUseCase getGetAllProductsUseCase(ProductsRepository productsRepository) {
         return new GetAllProductsUseCase(productsRepository);
     }
+    @Bean
+    public CreateProductStockUseCase getCreateProductStockUseCase(ProductStockRepository productStockRepository) {
+        return new CreateProductStockUseCase(productStockRepository);
+    }
+
+    @Bean
+    public GetAllProductStockUseCase getGetAllProductStockUseCase(ProductStockRepository productStockRepository) {
+        return new GetAllProductStockUseCase(productStockRepository);
+    }
 }

@@ -353,6 +353,8 @@ public class ProductData implements DataHelper {
                 "Take the guesswork out of cleaning your dishes with the Bosch Series 2 SMV2ITX18G Full-size Fully Integrated WiFi-enabled Dishwasher. Its Auto Programs automatically adjust the temperature and rinse time based on the type of load. You'll get sparkling results without wasting money on excess water or electricity. Home Connect With the Home Connect app, you can control the Bosch SMV2ITX18G with your smartphone or tablet. Adjust the settings from anywhere in your home, or add favourite programs to the quick selection. There's even a tab counter that will remind you when it's time to buy more tablets. Silence on demand When you need some quiet time, reduce the dishwasher noise with the Silence function on the app. It lowers noise levels for up to 30 minutes, so you can finish your conversation without the sound of the dishwasher in the background. ExtraDry function With the ExtraDry function you can say goodbye to finishing the job with a tea towel. Even difficult-to-dry items like plastic cups and boxes will come out dry and ready to use. InfoLight You'll always know when your dishes are done, thanks to the handy InfoLight feature. It projects a red light onto the floor when the dishwasher is running, so you won't accidentally open the door halfway through the cycle."
         );
 
+        products.add(product13);
+
     }
 
     private void addLaptops(ProductType productTypeLaptop, Brand lenovoBrand, Brand appleBrand, Brand brandHP, List<Product> products) {

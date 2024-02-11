@@ -5,7 +5,7 @@ import com.shopallday.storage.domain.repository.BrandRepository;
 
 import java.util.List;
 
-public class CreateBrandsUseCase {
+public class CreateBrandsUseCase implements UseCase<Void, List<Brand>>{
 
     private final BrandRepository brandRepository;
 
@@ -13,7 +13,8 @@ public class CreateBrandsUseCase {
         this.brandRepository = brandRepository;
     }
 
-    public void execute(List<Brand> brandList) {
+    public Void execute(List<Brand> brandList) {
         brandRepository.createBrands(brandList);
+        return null;
     }
 }

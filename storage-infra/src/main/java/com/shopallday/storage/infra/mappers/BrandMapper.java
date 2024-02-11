@@ -12,10 +12,10 @@ public interface BrandMapper {
 
     BrandMapper INSTANCE = Mappers.getMapper(BrandMapper.class);
 
-    BrandEntity brandToBrandEntity(Brand brand);
-    Brand brandEntityToBrand(BrandEntity brandEntity);
+    BrandEntity mapToEntity(Brand brand);
+    Brand mapToDomain(BrandEntity brandEntity);
 
-    List<BrandEntity> brandsToBrandEntities(List<Brand> brands);
-    List<Brand> brandEntitiesToBrands(List<BrandEntity> brandEntities);
+    List<BrandEntity> mapToEntity(List<Brand> brands);
+    List<Brand> mapToDomain(List<BrandEntity> brandEntities);
 
 }

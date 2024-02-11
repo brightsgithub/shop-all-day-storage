@@ -18,9 +18,11 @@ public class InfraConfig {
             @Qualifier("getCustomerData") DataHelper customerData,
             @Qualifier("getCategoryData") DataHelper categoryData,
             @Qualifier("getProductTypeData") DataHelper productTypeData,
-            @Qualifier("getBrandData") DataHelper brandData
+            @Qualifier("getBrandData") DataHelper brandData,
+            @Qualifier("getProductStockData") DataHelper productStockData
+
     ) {
-        return new DataInitializer(productData, customerData, categoryData, productTypeData, brandData);
+        return new DataInitializer(productData, customerData, categoryData, productTypeData, brandData, productStockData);
     }
     @Bean(name = "getCacheInitializer")
     public StorageInitializer getCacheInitializer() {
@@ -70,5 +72,18 @@ public class InfraConfig {
             CreateBrandsUseCase createBrandsUseCase
     ) {
         return new BrandData(getAllBrandsUseCase, createBrandsUseCase);
+    }
+    @Bean(name = "getProductStockData")
+    public DataHelper getProductStockData(
+            GetAllProductsUseCase getAllBrandsUseCase,
+            CreateProductStockUseCase createProductStockUseCase,
+            GetAllProductStockUseCase getAllProductStockUseCase
+
+    ) {
+        return new ProductStockData(
+                getAllBrandsUseCase,
+                createProductStockUseCase,
+                getAllProductStockUseCase
+        );
     }
 }

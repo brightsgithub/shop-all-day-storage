@@ -4,40 +4,36 @@ import com.shopallday.storage.domain.models.Brand;
 import com.shopallday.storage.domain.repository.BrandRepository;
 import com.shopallday.storage.infra.entities.BrandEntity;
 import com.shopallday.storage.infra.mappers.BrandMapper;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
-public interface JpaBrandsRepository extends CrudRepository<BrandEntity, Long>, BrandRepository {
+public interface JpaBrandsRepository extends JpaRepository<BrandEntity, Long>, BrandRepository {
 
     BrandMapper mapper = BrandMapper.INSTANCE;
 
     @Override
     default void createBrands(List<Brand> brandList) {
-        final List<BrandEntity> brandEntities = mapper.brandsToBrandEntities(brandList);
+        final List<BrandEntity> brandEntities = mapper.mapToEntity(brandList);
         saveAll(brandEntities);
     }
 
     @Override
     default void createBrand(Brand brand) {
-        final BrandEntity brandEntity = mapper.brandToBrandEntity(brand);
+        final BrandEntity brandEntity = mapper.mapToEntity(brand);
         save(brandEntity);
     }
 
     @Override
     default List<Brand> findAllBrands() {
         return mapper
-                .brandEntitiesToBrands(StreamSupport.stream(findAll().spliterator(), false)
-                        .collect(Collectors.toList()));
+                .mapToDomain(findAll());
     }
 
     @Override
     default List<Brand> findBrandById(final List<Long> ids) {
         return mapper
-                .brandEntitiesToBrands(StreamSupport.stream(findAllById(ids).spliterator(), false)
-                        .collect(Collectors.toList()));
+                .mapToDomain(findAllById(ids));
     }
 
     @Override
@@ -47,7 +43,7 @@ public interface JpaBrandsRepository extends CrudRepository<BrandEntity, Long>, 
 
     @Override
     default void deleteBrand(Brand brand) {
-        final BrandEntity brandEntity = mapper.brandToBrandEntity(brand);
+        final BrandEntity brandEntity = mapper.mapToEntity(brand);
         delete(brandEntity);
     }
 }
