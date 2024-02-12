@@ -3,7 +3,9 @@ package com.shopallday.storage.infra.initializers.data;
 import com.shopallday.storage.domain.models.Brand;
 import com.shopallday.storage.domain.models.Product;
 import com.shopallday.storage.domain.models.ProductType;
-import com.shopallday.storage.domain.usecases.*;
+import com.shopallday.storage.domain.repository.BrandRepository;
+import com.shopallday.storage.domain.repository.ProductTypeRepository;
+import com.shopallday.storage.domain.repository.ProductsRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -12,10 +14,15 @@ import java.util.List;
 @Component
 public class ProductData implements DataHelper {
 
-    private final CreateProductsUseCase createProductsUseCase;
-    private final GetAllProductsUseCase getAllProductsUseCase;
-    private final GetAllProductTypesUseCase getAllProductTypesUseCase;
-    private final GetAllBrandsUseCase getAllBrandsUseCase;
+    private final ProductsRepository productsRepository;
+    private final ProductTypeRepository productTypeRepository;
+    private final BrandRepository brandRepository;
+
+    public ProductData(ProductsRepository productsRepository, ProductTypeRepository productTypeRepository, BrandRepository brandRepository) {
+        this.productsRepository = productsRepository;
+        this.productTypeRepository = productTypeRepository;
+        this.brandRepository = brandRepository;
+    }
 
     private interface ProductTypeNames {
         String TV = "TV";
@@ -47,25 +54,15 @@ public class ProductData implements DataHelper {
         String LANEBERG = "LANEBERG";
     }
 
-    public ProductData(
-            CreateProductsUseCase createProductsUseCase,
-            GetAllProductsUseCase getAllProductsUseCase,
-            GetAllProductTypesUseCase getAllProductTypesUseCase,
-            GetAllBrandsUseCase getAllBrandsUseCase
-    ) {
-        this.createProductsUseCase = createProductsUseCase;
-        this.getAllProductsUseCase = getAllProductsUseCase;
-        this.getAllProductTypesUseCase = getAllProductTypesUseCase;
-        this.getAllBrandsUseCase = getAllBrandsUseCase;
-    }
+
 
 
     @Override
     public void create() {
         List<Product> products = new ArrayList<>();
 
-        List<ProductType> productTypes = getAllProductTypesUseCase.execute();
-        List<Brand> brands = getAllBrandsUseCase.execute();
+        List<ProductType> productTypes = productTypeRepository.findAllProductTypes();
+        List<Brand> brands = brandRepository.findAllBrands();
 
         ProductType productTypeLaptop = filterProductsByTypeName(productTypes, ProductTypeNames.LAPTOP);
         ProductType productTypeTv = filterProductsByTypeName(productTypes, ProductTypeNames.TV);
@@ -101,13 +98,13 @@ public class ProductData implements DataHelper {
         addFurniture(productTypeTVStand, productTypeDiningTable, brandBOASTAD, brandHEMNES, brandLANEBERG, products);
         addBathroom(productTypeBath, productTypeSink, brandLANEBERG, products);
 
-        createProductsUseCase.execute(products);
+        productsRepository.createProducts(products);
     }
 
     @Override
     public void print() {
         System.out.println("print getAllProductsUseCase called...");
-        for(Product product: getAllProductsUseCase.execute()) {
+        for(Product product: productsRepository.findAllProducts()) {
             System.out.println(product);
         }
         System.out.println("print getAllProductsUseCase finished");

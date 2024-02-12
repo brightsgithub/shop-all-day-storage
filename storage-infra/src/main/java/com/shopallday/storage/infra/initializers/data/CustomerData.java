@@ -3,8 +3,7 @@ package com.shopallday.storage.infra.initializers.data;
 import com.shopallday.storage.domain.exceptions.customer.CreateCustomerException;
 import com.shopallday.storage.domain.exceptions.customer.ReadCustomerException;
 import com.shopallday.storage.domain.models.Customer;
-import com.shopallday.storage.domain.usecases.CreateCustomersUseCase;
-import com.shopallday.storage.domain.usecases.GetAllCustomersUseCase;
+import com.shopallday.storage.domain.repository.CustomerRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -18,26 +17,24 @@ public class CustomerData implements DataHelper {
     private static final String[] LAST_NAMES = {"Smith", "Johnson", "Williams", "Brown", "Jones", "Miller", "Davis", "Garcia", "Rodriguez", "Wilson"};
     private static final String[] CITIES = {"London", "New York", "Paris", "Berlin", "Tokyo", "Rome", "Madrid", "Barcelona", "Sydney", "Los Angeles"};
 
-    private final CreateCustomersUseCase createCustomersUseCase;
-    private final GetAllCustomersUseCase getAllCustomersUseCase;
+    private final CustomerRepository customerRepository;
 
     private static final Random random = new Random();
 
-    public CustomerData(CreateCustomersUseCase createCustomersUseCase, GetAllCustomersUseCase getAllCustomersUseCase) {
-        this.createCustomersUseCase = createCustomersUseCase;
-        this.getAllCustomersUseCase = getAllCustomersUseCase;
+    public CustomerData(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
     }
 
     public void create() throws CreateCustomerException {
         System.out.println("createCustomers called...");
         List<Customer> randomCustomers = generateRandomCustomers(10);
-        createCustomersUseCase.execute(randomCustomers);
+        customerRepository.createCustomers(randomCustomers);
         System.out.println("createCustomers finished");
     }
 
     public void print() throws ReadCustomerException {
         System.out.println("printCustomers called...");
-        for(Customer customer: getAllCustomersUseCase.execute()) {
+        for(Customer customer: customerRepository.getCustomers()) {
             System.out.println("Customer is: "+ customer);
         }
         System.out.println("printCustomers finished");

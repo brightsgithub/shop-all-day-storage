@@ -1,8 +1,7 @@
 package com.shopallday.storage.infra.initializers.data;
 
 import com.shopallday.storage.domain.models.Brand;
-import com.shopallday.storage.domain.usecases.CreateBrandsUseCase;
-import com.shopallday.storage.domain.usecases.GetAllBrandsUseCase;
+import com.shopallday.storage.domain.repository.BrandRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -11,13 +10,10 @@ import java.util.List;
 @Component
 public class BrandData implements DataHelper {
 
-    private final GetAllBrandsUseCase getAllBrandsUseCase;
+    private final BrandRepository brandRepository;
 
-    private final CreateBrandsUseCase createBrandsUseCase;
-
-    public BrandData(GetAllBrandsUseCase getAllBrandsUseCase, CreateBrandsUseCase createBrandsUseCase) {
-        this.getAllBrandsUseCase = getAllBrandsUseCase;
-        this.createBrandsUseCase = createBrandsUseCase;
+    public BrandData(BrandRepository brandRepository) {
+        this.brandRepository = brandRepository;
     }
 
 
@@ -35,13 +31,13 @@ public class BrandData implements DataHelper {
         brands.add(new Brand(null, "BOASTAD"));
         brands.add(new Brand(null, "HEMNES"));
         brands.add(new Brand(null, "LANEBERG"));
-        createBrandsUseCase.execute(brands);
+        brandRepository.createBrands(brands);
     }
 
     @Override
     public void print() {
         System.out.println("print getAllBrandsUseCase called...");
-        for(Brand brand: getAllBrandsUseCase.execute()) {
+        for(Brand brand: brandRepository.findAllBrands()) {
             System.out.println(brand);
         }
         System.out.println("getAllBrandsUseCase finished");

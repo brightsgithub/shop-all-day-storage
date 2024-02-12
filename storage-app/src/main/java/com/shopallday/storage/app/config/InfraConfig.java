@@ -1,16 +1,16 @@
 package com.shopallday.storage.app.config;
 
 import com.shopallday.storage.domain.initializers.StorageInitializer;
-import com.shopallday.storage.domain.usecases.*;
+import com.shopallday.storage.domain.repository.*;
 import com.shopallday.storage.infra.initializers.cache.CacheInitializer;
 import com.shopallday.storage.infra.initializers.data.*;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 
 @Configuration
 public class InfraConfig {
-
 
     @Bean(name = "getDataInitializer")
     public StorageInitializer getDataInitializer(
@@ -30,60 +30,39 @@ public class InfraConfig {
     }
 
     @Bean(name = "getCustomerData")
-    public DataHelper getCustomerData(
-            CreateCustomersUseCase createCustomersUseCase,
-            GetAllCustomersUseCase getAllCustomersUseCase) {
-        return new CustomerData(createCustomersUseCase, getAllCustomersUseCase);
+    public DataHelper getCustomerData(CustomerRepository customerRepository) {
+        return new CustomerData(customerRepository);
     }
 
     @Bean(name = "getProductData")
     public DataHelper getProductData(
-            CreateProductsUseCase createProductsUseCase,
-            GetAllProductsUseCase getAllProductsUseCase,
-            GetAllProductTypesUseCase getAllProductTypesUseCase,
-            GetAllBrandsUseCase getAllBrandsUseCase
-    ) {
-        return new ProductData(createProductsUseCase, getAllProductsUseCase, getAllProductTypesUseCase, getAllBrandsUseCase);
+            ProductsRepository productsRepository,
+            ProductTypeRepository productTypeRepository,
+            BrandRepository brandRepository
+                                     ) {
+        return new ProductData(productsRepository, productTypeRepository, brandRepository);
     }
 
     @Bean(name = "getCategoryData")
-    public DataHelper getCategoryData(
-            CreateCategoryUseCase createCategoryUseCase,
-            GetCategoryUseCase getCategoryUseCase
-    ) {
-        return new CategoryData(createCategoryUseCase, getCategoryUseCase);
+    public DataHelper getCategoryData(CategoryRepository categoryRepository) {
+        return new CategoryData(categoryRepository);
     }
 
     @Bean(name = "getProductTypeData")
-    public DataHelper getProductTypeData(
-            GetCategoryUseCase getCategoryUseCase,
-            CreateProductTypeUseCase createProductTypeUseCase,
-            GetAllProductTypesUseCase getAllProductTypesUseCase
+    public DataHelper getProductTypeData(CategoryRepository categoryRepository, ProductTypeRepository productTypeRepository
     ) {
-        return new ProductTypeData(
-                getCategoryUseCase,
-                createProductTypeUseCase,
-                getAllProductTypesUseCase
-        );
+        return new ProductTypeData(categoryRepository, productTypeRepository);
     }
+    @Lazy
     @Bean(name = "getBrandData")
-    public DataHelper getBrandData(
-            GetAllBrandsUseCase getAllBrandsUseCase,
-            CreateBrandsUseCase createBrandsUseCase
-    ) {
-        return new BrandData(getAllBrandsUseCase, createBrandsUseCase);
+    public DataHelper getBrandData(BrandRepository brandRepository) {
+        return new BrandData(brandRepository);
     }
     @Bean(name = "getProductStockData")
     public DataHelper getProductStockData(
-            GetAllProductsUseCase getAllBrandsUseCase,
-            CreateProductStockUseCase createProductStockUseCase,
-            GetAllProductStockUseCase getAllProductStockUseCase
-
+        ProductsRepository productsRepository,
+        ProductStockRepository productStockRepository
     ) {
-        return new ProductStockData(
-                getAllBrandsUseCase,
-                createProductStockUseCase,
-                getAllProductStockUseCase
-        );
+        return new ProductStockData(productsRepository, productStockRepository);
     }
 }

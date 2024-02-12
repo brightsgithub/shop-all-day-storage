@@ -2,9 +2,8 @@ package com.shopallday.storage.infra.initializers.data;
 
 import com.shopallday.storage.domain.models.Product;
 import com.shopallday.storage.domain.models.ProductStock;
-import com.shopallday.storage.domain.usecases.CreateProductStockUseCase;
-import com.shopallday.storage.domain.usecases.GetAllProductStockUseCase;
-import com.shopallday.storage.domain.usecases.GetAllProductsUseCase;
+import com.shopallday.storage.domain.repository.ProductStockRepository;
+import com.shopallday.storage.domain.repository.ProductsRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -13,25 +12,19 @@ import java.util.List;
 @Component
 public class ProductStockData implements DataHelper {
 
-    private final GetAllProductsUseCase getAllProductsUseCase;
-    private final CreateProductStockUseCase createProductStockUseCase;
-    private final GetAllProductStockUseCase getAllProductStockUseCase;
+    private final ProductsRepository productsRepository;
+    private final ProductStockRepository productStockRepository;
 
-    public ProductStockData(
-            GetAllProductsUseCase getAllProductsUseCase,
-            CreateProductStockUseCase createProductStockUseCase,
-            GetAllProductStockUseCase getAllProductStockUseCase
-    ) {
-        this.getAllProductsUseCase = getAllProductsUseCase;
-        this.createProductStockUseCase = createProductStockUseCase;
-        this.getAllProductStockUseCase = getAllProductStockUseCase;
+    public ProductStockData(ProductsRepository productsRepository, ProductStockRepository productStockRepository) {
+        this.productsRepository = productsRepository;
+        this.productStockRepository = productStockRepository;
     }
 
 
     @Override
     public void create() throws Exception {
 
-        List<Product> products = getAllProductsUseCase.execute();
+        List<Product> products = productsRepository.findAllProducts();
 
         List<ProductStock> productStocks = new ArrayList<>();
 
@@ -1192,13 +1185,13 @@ public class ProductStockData implements DataHelper {
                 "Red",
                 300f
         ));
-        createProductStockUseCase.execute(productStocks);
+        productStockRepository.createProductStock(productStocks);
     }
 
     @Override
     public void print() throws Exception {
         System.out.println("print GetAllProductStockUseCase called...");
-        for(ProductStock productStock: getAllProductStockUseCase.execute()) {
+        for(ProductStock productStock: productStockRepository.findAllProductStocks()) {
             System.out.println(productStock);
         }
         System.out.println("print GetAllProductStockUseCase finished");
