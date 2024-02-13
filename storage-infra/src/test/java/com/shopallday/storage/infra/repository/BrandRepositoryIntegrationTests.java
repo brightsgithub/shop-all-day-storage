@@ -3,33 +3,26 @@ package com.shopallday.storage.infra.repository;
 import com.shopallday.storage.domain.models.Brand;
 import com.shopallday.storage.domain.repository.BrandRepository;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-//@SpringBootTest(classes = TestInfraConfig.class)
-//@ExtendWith(SpringExtension.class)
-public class BrandRepositoryIntegrationTests {
+public class BrandRepositoryIntegrationTests extends BaseIntegrationTests {
+    private BrandRepository brandRepository;
 
-    private BrandRepository underTest;
-
-    //@Autowired
+    @Autowired
     public BrandRepositoryIntegrationTests(BrandRepository brandRepository) {
-        this.underTest = brandRepository;
+        this.brandRepository = brandRepository;
     }
 
-    //@Test
+    @Test
     public void testThatBrandCanBeCreatedAndObtained() {
-        underTest.createBrands(getBrands(3));
+        brandRepository.createBrands(getBrands(3));
 
-        List<Brand> brands = underTest.findAllBrands();
+        List<Brand> brands = brandRepository.findAllBrands();
 
         assertEquals(brands.size() ,3);
     }

@@ -1,4 +1,4 @@
-package com.shopallday.storage.app.config;
+package com.shopallday.storage.infra;
 
 import com.shopallday.storage.domain.initializers.StorageInitializer;
 import com.shopallday.storage.domain.repository.*;
@@ -6,10 +6,15 @@ import com.shopallday.storage.infra.initializers.cache.CacheInitializer;
 import com.shopallday.storage.infra.initializers.data.*;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
 
+/**
+ * The @Configuration annotation in Spring is used to indicate that a class declares one or more @Bean methods and can
+ * be processed by the Spring IoC container to generate bean definitions and manage bean instances.
+ */
 @Configuration
+//@ComponentScan(basePackages = {"com.shopallday.*"})
 public class InfraConfig {
 
     @Bean(name = "getDataInitializer")
@@ -53,16 +58,27 @@ public class InfraConfig {
     ) {
         return new ProductTypeData(categoryRepository, productTypeRepository);
     }
-    @Lazy
+
     @Bean(name = "getBrandData")
     public DataHelper getBrandData(BrandRepository brandRepository) {
         return new BrandData(brandRepository);
     }
+
+
+
     @Bean(name = "getProductStockData")
     public DataHelper getProductStockData(
         ProductsRepository productsRepository,
         ProductStockRepository productStockRepository
     ) {
         return new ProductStockData(productsRepository, productStockRepository);
+    }
+
+
+
+
+    @Bean(name = "getDummyClass")
+    public DummyClass getDummyClass() {
+        return new DummyClass();
     }
 }

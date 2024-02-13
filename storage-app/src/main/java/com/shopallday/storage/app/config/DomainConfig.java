@@ -4,9 +4,12 @@ import com.shopallday.storage.domain.repository.*;
 import com.shopallday.storage.domain.usecases.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+//@ComponentScan(basePackages = {"com.shopallday.storage.infra"})
+//@ComponentScan(basePackages = {"com.shopallday.*"})
 public class DomainConfig {
 
     @Bean
