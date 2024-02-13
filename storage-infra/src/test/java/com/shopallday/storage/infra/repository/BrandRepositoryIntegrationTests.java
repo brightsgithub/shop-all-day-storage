@@ -5,9 +5,9 @@ import com.shopallday.storage.domain.repository.BrandRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import static com.shopallday.storage.infra.repository.TestFactoryData.createMockBrands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BrandRepositoryIntegrationTests extends BaseIntegrationTests {
@@ -20,19 +20,17 @@ public class BrandRepositoryIntegrationTests extends BaseIntegrationTests {
 
     @Test
     public void testThatBrandCanBeCreatedAndObtained() {
-        brandRepository.createBrands(getBrands(3));
+        List<Brand> expectedBrands = createMockBrands(3);
+        brandRepository.createBrands(expectedBrands);
 
-        List<Brand> brands = brandRepository.findAllBrands();
+        List<Brand> actualBrands = brandRepository.findAllBrands();
 
-        assertEquals(brands.size() ,3);
-    }
+        assertEquals(actualBrands.size() ,expectedBrands.size());
 
-    private List<Brand> getBrands(int count) {
-        List<Brand> brands = new ArrayList<>();
-
-        for(int i=0; i<count; i++) {
-            brands.add(new Brand(null, "Test Brand_"+i));
+        for (int i = 0; i < expectedBrands.size(); i++) {
+            Brand expectedBrand = expectedBrands.get(i);
+            Brand actualBrand = actualBrands.get(i);
+            assertEquals(expectedBrand.getBrandName(), actualBrand.getBrandName());
         }
-        return brands;
     }
 }
