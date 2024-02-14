@@ -2,6 +2,7 @@ package com.shopallday.storage.infra.repository;
 
 import com.shopallday.storage.domain.models.Brand;
 import com.shopallday.storage.domain.repository.BrandRepository;
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,6 +20,7 @@ public class BrandRepositoryIntegrationTests extends BaseIntegrationTests {
     }
 
     @Test
+    @Transactional
     public void testThatBrandCanBeCreatedAndObtained() {
         List<Brand> expectedBrands = createMockBrands(3);
         brandRepository.createBrands(expectedBrands);

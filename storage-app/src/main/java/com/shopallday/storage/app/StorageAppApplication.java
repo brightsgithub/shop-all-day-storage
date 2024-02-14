@@ -20,9 +20,9 @@ import org.springframework.orm.jpa.LocalEntityManagerFactoryBean;
 import javax.sql.DataSource;
 
 @SpringBootApplication
-@EnableJpaRepositories(basePackages = {"com.shopallday.*"})
-//@EnableJpaRepositories(basePackageClasses = {JpaConfig.class})
-//@PropertySource("classpath:storage-infra-application.properties")
+//@EnableJpaRepositories(basePackages = {"com.shopallday.*"})
+@EnableJpaRepositories(basePackageClasses = {JpaConfig.class, InfraConfig.class})
+@PropertySource("classpath:storage-infra-application.properties")
 @PropertySource("classpath:storage-infra-application.properties")
 @ComponentScan(basePackages = {"com.shopallday.*"})
 @EntityScan(basePackages = {"com.shopallday.storage.infra.entities"})

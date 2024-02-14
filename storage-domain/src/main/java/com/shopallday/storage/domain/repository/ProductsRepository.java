@@ -7,7 +7,8 @@ import java.util.List;
 public interface ProductsRepository {
 
     void createProduct(Product product);
-    void createProducts(List<Product> products);
+
+    void createProducts(List<Product> products, RepositoryManager manager);
 
     List<Product> findProductsByIds(List<Long> ids);
 

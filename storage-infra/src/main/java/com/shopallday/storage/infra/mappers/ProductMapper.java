@@ -13,9 +13,11 @@ public interface ProductMapper {
 
     ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);
 
+    @Mapping(source = "productType.category", target = "productTypeEntity.categoryEntity")
     @Mapping(source = "productType", target = "productTypeEntity")
     @Mapping(source = "brand", target = "brandEntity")
     ProductEntity productToProductEntity(Product product);
+    @Mapping(source = "productTypeEntity.categoryEntity", target = "productType.category")
     @Mapping(source = "productTypeEntity", target = "productType")
     @Mapping(source = "brandEntity", target = "brand")
     Product productEntityToProduct(ProductEntity productEntity);

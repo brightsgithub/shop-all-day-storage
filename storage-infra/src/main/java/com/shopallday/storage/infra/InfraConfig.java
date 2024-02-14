@@ -4,6 +4,7 @@ import com.shopallday.storage.domain.initializers.StorageInitializer;
 import com.shopallday.storage.domain.repository.*;
 import com.shopallday.storage.infra.initializers.cache.CacheInitializer;
 import com.shopallday.storage.infra.initializers.data.*;
+import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -14,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
  * be processed by the Spring IoC container to generate bean definitions and manage bean instances.
  */
 @Configuration
-//@ComponentScan(basePackages = {"com.shopallday.*"})
+//@ComponentScan(basePackages = {"com.shopallday.storage.infra"})
 public class InfraConfig {
 
     @Bean(name = "getDataInitializer")
@@ -43,9 +44,10 @@ public class InfraConfig {
     public DataHelper getProductData(
             ProductsRepository productsRepository,
             ProductTypeRepository productTypeRepository,
-            BrandRepository brandRepository
+            BrandRepository brandRepository,
+            RepositoryManager repositoryManager
                                      ) {
-        return new ProductData(productsRepository, productTypeRepository, brandRepository);
+        return new ProductData(productsRepository, productTypeRepository, brandRepository, repositoryManager);
     }
 
     @Bean(name = "getCategoryData")
@@ -54,9 +56,13 @@ public class InfraConfig {
     }
 
     @Bean(name = "getProductTypeData")
-    public DataHelper getProductTypeData(CategoryRepository categoryRepository, ProductTypeRepository productTypeRepository
+    public DataHelper getProductTypeData(
+            CategoryRepository categoryRepository,
+            ProductTypeRepository productTypeRepository,
+            RepositoryManager repositoryManager
+
     ) {
-        return new ProductTypeData(categoryRepository, productTypeRepository);
+        return new ProductTypeData(categoryRepository, productTypeRepository, repositoryManager);
     }
 
     @Bean(name = "getBrandData")
@@ -74,11 +80,9 @@ public class InfraConfig {
         return new ProductStockData(productsRepository, productStockRepository);
     }
 
-
-
-
     @Bean(name = "getDummyClass")
     public DummyClass getDummyClass() {
         return new DummyClass();
     }
+
 }

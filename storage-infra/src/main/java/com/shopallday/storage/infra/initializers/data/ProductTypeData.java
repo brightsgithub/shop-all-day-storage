@@ -4,6 +4,7 @@ import com.shopallday.storage.domain.models.Category;
 import com.shopallday.storage.domain.models.ProductType;
 import com.shopallday.storage.domain.repository.CategoryRepository;
 import com.shopallday.storage.domain.repository.ProductTypeRepository;
+import com.shopallday.storage.domain.repository.RepositoryManager;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -14,10 +15,15 @@ public class ProductTypeData implements DataHelper {
 
     private final CategoryRepository categoryRepository;
     private final ProductTypeRepository productTypeRepository;
+    private final RepositoryManager repositoryManager;
 
-    public ProductTypeData(CategoryRepository categoryRepository, ProductTypeRepository productTypeRepository) {
+    public ProductTypeData(
+            CategoryRepository categoryRepository,
+            ProductTypeRepository productTypeRepository,
+            RepositoryManager repositoryManager) {
         this.categoryRepository = categoryRepository;
         this.productTypeRepository = productTypeRepository;
+        this.repositoryManager = repositoryManager;
     }
 
 
@@ -46,7 +52,8 @@ public class ProductTypeData implements DataHelper {
         productTypes.add(new ProductType(null, categories.get(3), "Sink"));
         productTypes.add(new ProductType(null, categories.get(3), "Bath"));
 
-        productTypeRepository.createProductTypes(productTypes);
+        //productTypeRepository.createProductTypes(productTypes, categoryRepository);
+        productTypeRepository.createProductTypes(productTypes, repositoryManager);
     }
 
     public void print() {

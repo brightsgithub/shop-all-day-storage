@@ -8,8 +8,7 @@ import java.util.List;
 public interface ProductTypeRepository {
 
     void createProductType(ProductType productType);
-
-    void createProductTypes(List<ProductType> productTypes);
+    void createProductTypes(List<ProductType> productTypes, RepositoryManager repositoryManager);
 
     ProductType findProductTypeById(Long id) throws ReadProductTypeException;
 

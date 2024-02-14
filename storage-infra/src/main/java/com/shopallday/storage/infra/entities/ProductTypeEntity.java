@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
 
 @Data
 @AllArgsConstructor
@@ -18,7 +19,7 @@ public class ProductTypeEntity {
     @Column(name = "product_type_id", nullable = false, updatable = false)
     private Long productTypeId;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "category_id", nullable = false)
     private CategoryEntity categoryEntity;
 

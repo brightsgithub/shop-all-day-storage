@@ -2,6 +2,7 @@ package com.shopallday.storage.domain.usecases;
 
 import com.shopallday.storage.domain.models.Product;
 import com.shopallday.storage.domain.repository.ProductsRepository;
+import com.shopallday.storage.domain.repository.RepositoryManager;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -17,6 +18,8 @@ public class CreateProductsUseCaseTest {
 
     @Mock
     private ProductsRepository productsRepository;
+    @Mock
+    private RepositoryManager repositoryManager;
 
     @Mock
     private List<Product> productList;
@@ -28,6 +31,6 @@ public class CreateProductsUseCaseTest {
     public void testThatCreateProductsIsCalledOnRepo() {
         underTest.execute(productList);
 
-        verify(productsRepository).createProducts(productList);
+        verify(productsRepository).createProducts(productList, repositoryManager);
     }
 }

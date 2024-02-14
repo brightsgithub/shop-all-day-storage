@@ -6,6 +6,7 @@ import com.shopallday.storage.domain.models.ProductType;
 import com.shopallday.storage.domain.repository.BrandRepository;
 import com.shopallday.storage.domain.repository.ProductTypeRepository;
 import com.shopallday.storage.domain.repository.ProductsRepository;
+import com.shopallday.storage.domain.repository.RepositoryManager;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -17,11 +18,18 @@ public class ProductData implements DataHelper {
     private final ProductsRepository productsRepository;
     private final ProductTypeRepository productTypeRepository;
     private final BrandRepository brandRepository;
+    private final RepositoryManager repositoryManager;
 
-    public ProductData(ProductsRepository productsRepository, ProductTypeRepository productTypeRepository, BrandRepository brandRepository) {
+    public ProductData(
+            ProductsRepository productsRepository,
+            ProductTypeRepository productTypeRepository,
+            BrandRepository brandRepository,
+            RepositoryManager repositoryManager
+    ) {
         this.productsRepository = productsRepository;
         this.productTypeRepository = productTypeRepository;
         this.brandRepository = brandRepository;
+        this.repositoryManager = repositoryManager;
     }
 
     private interface ProductTypeNames {
@@ -98,7 +106,7 @@ public class ProductData implements DataHelper {
         addFurniture(productTypeTVStand, productTypeDiningTable, brandBOASTAD, brandHEMNES, brandLANEBERG, products);
         addBathroom(productTypeBath, productTypeSink, brandLANEBERG, products);
 
-        productsRepository.createProducts(products);
+        productsRepository.createProducts(products, repositoryManager);
     }
 
     @Override

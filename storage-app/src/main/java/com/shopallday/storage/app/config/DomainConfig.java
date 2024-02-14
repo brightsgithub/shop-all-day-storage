@@ -2,9 +2,7 @@ package com.shopallday.storage.app.config;
 
 import com.shopallday.storage.domain.repository.*;
 import com.shopallday.storage.domain.usecases.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
@@ -31,8 +29,9 @@ public class DomainConfig {
     }
 
     @Bean
-    public CreateProductTypeUseCase getCreateProductTypeUseCase(ProductTypeRepository productTypeRepository) {
-        return new CreateProductTypeUseCase(productTypeRepository);
+    public CreateProductTypeUseCase getCreateProductTypeUseCase(
+            ProductTypeRepository productTypeRepository, RepositoryManager repositoryManager) {
+        return new CreateProductTypeUseCase(productTypeRepository, repositoryManager);
     }
 
     @Bean
@@ -51,8 +50,11 @@ public class DomainConfig {
     }
 
     @Bean
-    public CreateProductsUseCase getCreateProductsUseCase(ProductsRepository productsRepository) {
-        return new CreateProductsUseCase(productsRepository);
+    public CreateProductsUseCase getCreateProductsUseCase(
+            ProductsRepository productsRepository,
+            RepositoryManager repositoryManager
+    ) {
+        return new CreateProductsUseCase(productsRepository, repositoryManager);
     }
 
     @Bean

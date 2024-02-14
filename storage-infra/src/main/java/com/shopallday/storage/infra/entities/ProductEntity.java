@@ -20,11 +20,11 @@ public class ProductEntity {
     @Column(name = "product_id", nullable = false, updatable = false)
     private Long productId;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST) // Cascade. If this is a new Product with a new ProductTypeEntity, save both.
     @JoinColumn(name = "product_type_id", nullable = false)
     private ProductTypeEntity productTypeEntity;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST) // Cascade persist operations
     @JoinColumn(name = "brand_id", nullable = false)
     private BrandEntity brandEntity;
 

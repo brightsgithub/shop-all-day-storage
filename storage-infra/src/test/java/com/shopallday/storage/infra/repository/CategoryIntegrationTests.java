@@ -2,6 +2,7 @@ package com.shopallday.storage.infra.repository;
 
 import com.shopallday.storage.domain.models.Category;
 import com.shopallday.storage.domain.repository.CategoryRepository;
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,6 +20,7 @@ public class CategoryIntegrationTests extends BaseIntegrationTests {
     }
 
     @Test
+    @Transactional
     public void testThatCategoriesCanBeCreatedAndObtained() {
         List<Category> expectedCategories = TestFactoryData.createMockCategories(3);
 
