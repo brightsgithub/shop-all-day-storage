@@ -54,7 +54,7 @@ public class CustomerData implements DataHelper {
                 getRandomElement(FIRST_NAMES),
                 getRandomElement(LAST_NAMES),
                 "Street " + random.nextInt(100),
-                random.nextBoolean() ? "Apt " + random.nextInt(20) : null,
+                random.nextBoolean() ? "Apartment " + random.nextInt(20) : null,
                 getRandomElement(CITIES),
                 "12345",
                 "username" + count,

@@ -9,9 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "CUSTOMER_SHIPPING_ADDRESS", uniqueConstraints = {
-        @UniqueConstraint(name = "CUST_SHIP_ADD_UNIQUE", columnNames = "customer_id")
-})
+@Table(name = "CUSTOMER_SHIPPING_ADDRESS")
 public class CustomerShippingAddressEntity {
 
     @Id
@@ -20,7 +18,7 @@ public class CustomerShippingAddressEntity {
     @Column(name = "shipping_address_id", nullable = false, updatable = false)
     private Long shippingAddressId;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "customer_id", nullable = false)
     private CustomerEntity customerEntity;
 

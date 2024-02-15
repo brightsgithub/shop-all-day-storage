@@ -915,3 +915,10 @@ values(nextval('product_type_seq'), 39, 50, 'Small','Red', 300);
 insert into product_stock(product_stock_id, product_id, quantity, size, color, price)
 values(nextval('product_type_seq'), 39, 50, 'purple','Red', 300);
 
+-- customer shipping
+insert into customer_shipping_address(shipping_address_id, customer_id, address1, address2, city, post_code)
+values (nextval('customer_shipping_add_seq'), 10, '21 London road', 'Devonshire', 'London','DE1 1XQ');
+
+insert into customer_shipping_address(shipping_address_id, customer_id, address1, address2, city, post_code)
+values (nextval('customer_shipping_add_seq'), 10, '42 Homesdale road', 'Preston park', 'Brighton','BP2 4MP');
+

@@ -32,12 +32,11 @@ create sequence customer_shipping_add_seq increment by 1 start with 123;
 create table CUSTOMER_SHIPPING_ADDRESS
 (
     shipping_address_id integer default nextval('customer_shipping_add_seq') PRIMARY KEY,
-    customer_id         integer references CUSTOMER (customer_id),
+    customer_id         integer references CUSTOMER (customer_id) NOT NULL,
     address1            text NOT NULL,
     address2            text,
     city                text,
-    post_code           text NOT NULL,
-    CONSTRAINT CUST_SHIP_ADD_UNIQUE UNIQUE (customer_id)
+    post_code           text NOT NULL
 );
 
 commit;
@@ -73,7 +72,7 @@ create sequence product_type_seq increment by 1 start with 99;
 create table product_type
 (
     product_type_id   integer default nextval('product_type_seq') PRIMARY KEY,
-    category_id       integer references category (category_id),
+    category_id       integer references category (category_id) NOT NULL,
     product_type_name text NOT NULL
 );
 

@@ -36,6 +36,23 @@ public class TestFactoryData {
         return expected;
     }
 
+    static List<CustomerShippingAddress> createMockCustomerShippingAddresses(int count) {
+        List<Customer> customers = createMockCustomers(count);
+        List<CustomerShippingAddress> expected = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            expected.add(
+                    new CustomerShippingAddress(
+                            null,
+                            customers.get(i),
+                            "Address_"+i,
+                            "Address_2_"+i,
+                            "City_"+i,
+                            "PostCode_"+i
+                    ));
+        }
+        return expected;
+    }
+
     static List<ProductType> createMockProductTypes(int count) {
         List<ProductType> expectedProductTypes = new ArrayList<>();
         List<Category> expectedCategories = createMockCategories(count);

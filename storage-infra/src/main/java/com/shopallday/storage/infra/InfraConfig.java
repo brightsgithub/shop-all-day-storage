@@ -23,10 +23,19 @@ public class InfraConfig {
             @Qualifier("getCategoryData") DataHelper categoryData,
             @Qualifier("getProductTypeData") DataHelper productTypeData,
             @Qualifier("getBrandData") DataHelper brandData,
-            @Qualifier("getProductStockData") DataHelper productStockData
+            @Qualifier("getProductStockData") DataHelper productStockData,
+            @Qualifier("getCustomerShippingAddressData") DataHelper customerShippingAddressData
 
     ) {
-        return new DataInitializer(productData, customerData, categoryData, productTypeData, brandData, productStockData);
+        return new DataInitializer(
+                productData,
+                customerData,
+                categoryData,
+                productTypeData,
+                brandData,
+                productStockData,
+                customerShippingAddressData
+        );
     }
     @Bean(name = "getCacheInitializer")
     public StorageInitializer getCacheInitializer() {
@@ -77,6 +86,17 @@ public class InfraConfig {
         RepositoryManager repositoryManager
     ) {
         return new ProductStockData(productsRepository, productStockRepository, repositoryManager);
+    }
+    @Bean(name = "getCustomerShippingAddressData")
+    public DataHelper getCustomerShippingAddressData(
+        CustomerRepository customerRepository,
+        CustomerShippingAddRepository customerShippingAddRepository,
+        RepositoryManager repositoryManager
+    ) {
+        return new CustomerShippingAddressData(
+                customerRepository,
+                customerShippingAddRepository,
+                repositoryManager);
     }
 
     @Bean(name = "getDummyClass")

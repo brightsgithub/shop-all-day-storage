@@ -18,8 +18,6 @@ public class Merge {
 
     static void mergeProductStockEntity(EntityManager entityManager, ProductStockEntity productStockEntity) {
 
-
-
         mergeProductEntity(entityManager, productStockEntity.getProductEntity());
         ProductEntity mergedProductEntity = entityManager.merge(productStockEntity.getProductEntity());
 
@@ -34,5 +32,14 @@ public class Merge {
         CategoryEntity categoryEntity = entityManager.merge(productTypeEntity.getCategoryEntity());
         // Set productTypeEntity with merged categoryEntity
         productTypeEntity.setCategoryEntity(categoryEntity);
+    }
+
+    static void mergeCustomerEntity(
+            EntityManager entityManager,
+            CustomerShippingAddressEntity shippingAddressEntity
+    ) {
+        CustomerEntity customerEntity = shippingAddressEntity.getCustomerEntity();
+        CustomerEntity mergedCustomerEntity = entityManager.merge(customerEntity);
+        shippingAddressEntity.setCustomerEntity(mergedCustomerEntity);
     }
 }
