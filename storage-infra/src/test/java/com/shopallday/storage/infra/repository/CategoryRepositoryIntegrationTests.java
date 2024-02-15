@@ -10,12 +10,12 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CategoryIntegrationTests extends BaseIntegrationTests {
+public class CategoryRepositoryIntegrationTests extends BaseIntegrationTests {
 
     private CategoryRepository categoryRepository;
 
     @Autowired
-    public CategoryIntegrationTests(CategoryRepository categoryRepository) {
+    public CategoryRepositoryIntegrationTests(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
 

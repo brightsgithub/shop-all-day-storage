@@ -7,7 +7,7 @@ import java.util.List;
 public interface ProductStockRepository {
 
     void createProductStock(ProductStock productStocks);
-    void createProductStock(List<ProductStock> productStocks);
+    void createProductStock(List<ProductStock> productStocks, RepositoryManager repositoryManager);
 
     List<ProductStock> findAllProductStocks();
 

@@ -28,12 +28,7 @@ public interface JpaProductsRepository extends JpaRepository<ProductEntity, Long
 
         final List<ProductEntity> productEntities = mapper.productsToProductEntities(products);
         for (ProductEntity productEntity : productEntities) {
-            BrandEntity brandEntity = entityManager.merge(productEntity.getBrandEntity());
-            CategoryEntity categoryEntity = entityManager.merge(productEntity.getProductTypeEntity().getCategoryEntity());
-            ProductTypeEntity productTypeEntity = entityManager.merge(productEntity.getProductTypeEntity());
-            productTypeEntity.setCategoryEntity(categoryEntity);
-            productEntity.setBrandEntity(brandEntity);
-            productEntity.setProductTypeEntity(productTypeEntity);
+            Merge.mergeProductEntity(entityManager,productEntity);
         }
 
         saveAll(productEntities);

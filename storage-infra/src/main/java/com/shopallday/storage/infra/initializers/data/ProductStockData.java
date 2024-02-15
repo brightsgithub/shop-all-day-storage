@@ -4,6 +4,7 @@ import com.shopallday.storage.domain.models.Product;
 import com.shopallday.storage.domain.models.ProductStock;
 import com.shopallday.storage.domain.repository.ProductStockRepository;
 import com.shopallday.storage.domain.repository.ProductsRepository;
+import com.shopallday.storage.domain.repository.RepositoryManager;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -14,10 +15,12 @@ public class ProductStockData implements DataHelper {
 
     private final ProductsRepository productsRepository;
     private final ProductStockRepository productStockRepository;
+    private final RepositoryManager repositoryManager;
 
-    public ProductStockData(ProductsRepository productsRepository, ProductStockRepository productStockRepository) {
+    public ProductStockData(ProductsRepository productsRepository, ProductStockRepository productStockRepository, RepositoryManager repositoryManager) {
         this.productsRepository = productsRepository;
         this.productStockRepository = productStockRepository;
+        this.repositoryManager = repositoryManager;
     }
 
 
@@ -27,7 +30,6 @@ public class ProductStockData implements DataHelper {
         List<Product> products = productsRepository.findAllProducts();
 
         List<ProductStock> productStocks = new ArrayList<>();
-
         // -- product_stock Q60C QLED 4K HDR
         productStocks.add(new ProductStock(
                 null,
@@ -1185,7 +1187,7 @@ public class ProductStockData implements DataHelper {
                 "Red",
                 300f
         ));
-        productStockRepository.createProductStock(productStocks);
+        productStockRepository.createProductStock(productStocks, repositoryManager);
     }
 
     @Override

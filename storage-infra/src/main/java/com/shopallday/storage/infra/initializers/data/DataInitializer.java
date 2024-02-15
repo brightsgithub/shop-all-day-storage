@@ -50,7 +50,7 @@ public class DataInitializer implements StorageInitializer {
      * @throws CreateCustomerException
      * @throws ReadCustomerException
      */
-    @Transactional(rollbackOn = { CreateCustomerException.class })
+    @Transactional(rollbackOn = { Exception.class })
     @Override
     public void initialize() throws Exception {
         if (isDdlAutoCreate()) {

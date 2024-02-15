@@ -37,16 +37,17 @@ public interface JpaProductTypeRepository extends JpaRepository<ProductTypeEntit
         Solution: use merge to reattach them to the context
 
          */
-    default void createProductTypes(List<ProductType> productTypes, RepositoryManager manager) {
-        final EntityManager entityManager = (EntityManager) manager.getManager();
+
+    default void createProductTypes(List<ProductType> productTypes, RepositoryManager repositoryManager) {
+        final EntityManager entityManager = (EntityManager) repositoryManager.getManager();
 
         final List<ProductTypeEntity> productTypeEntities = productTypeMapper.productTypesToProductTypeEntities(productTypes);
         for (ProductTypeEntity productTypeEntity : productTypeEntities) {
-            CategoryEntity category = entityManager.merge(productTypeEntity.getCategoryEntity()); // Merge if existing
-            productTypeEntity.setCategoryEntity(category);
+            Merge.mergeProductTypeEntity(entityManager, productTypeEntity);
         }
 
         saveAll(productTypeEntities);
+
     }
 
     @Override

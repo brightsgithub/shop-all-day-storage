@@ -62,8 +62,11 @@ public class DomainConfig {
         return new GetAllProductsUseCase(productsRepository);
     }
     @Bean
-    public CreateProductStockUseCase getCreateProductStockUseCase(ProductStockRepository productStockRepository) {
-        return new CreateProductStockUseCase(productStockRepository);
+    public CreateProductStockUseCase getCreateProductStockUseCase(
+            ProductStockRepository productStockRepository,
+            RepositoryManager repositoryManager
+            ) {
+        return new CreateProductStockUseCase(productStockRepository, repositoryManager);
     }
 
     @Bean

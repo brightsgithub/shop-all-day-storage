@@ -4,10 +4,8 @@ import com.shopallday.storage.domain.initializers.StorageInitializer;
 import com.shopallday.storage.domain.repository.*;
 import com.shopallday.storage.infra.initializers.cache.CacheInitializer;
 import com.shopallday.storage.infra.initializers.data.*;
-import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -75,9 +73,10 @@ public class InfraConfig {
     @Bean(name = "getProductStockData")
     public DataHelper getProductStockData(
         ProductsRepository productsRepository,
-        ProductStockRepository productStockRepository
+        ProductStockRepository productStockRepository,
+        RepositoryManager repositoryManager
     ) {
-        return new ProductStockData(productsRepository, productStockRepository);
+        return new ProductStockData(productsRepository, productStockRepository, repositoryManager);
     }
 
     @Bean(name = "getDummyClass")

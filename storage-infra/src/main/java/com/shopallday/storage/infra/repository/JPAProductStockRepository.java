@@ -2,8 +2,10 @@ package com.shopallday.storage.infra.repository;
 
 import com.shopallday.storage.domain.models.ProductStock;
 import com.shopallday.storage.domain.repository.ProductStockRepository;
-import com.shopallday.storage.infra.entities.ProductStockEntity;
+import com.shopallday.storage.domain.repository.RepositoryManager;
+import com.shopallday.storage.infra.entities.*;
 import com.shopallday.storage.infra.mappers.ProductStockMapper;
+import jakarta.persistence.EntityManager;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -12,8 +14,16 @@ public interface JPAProductStockRepository extends JpaRepository<ProductStockEnt
 
     ProductStockMapper mapper = ProductStockMapper.INSTANCE;
     @Override
-    default void createProductStock(List<ProductStock> productStocks) {
-        saveAll(mapper.mapToEntity(productStocks));
+    default void createProductStock(List<ProductStock> productStocks, RepositoryManager repositoryManager) {
+        final EntityManager entityManager = (EntityManager) repositoryManager.getManager();
+
+        final List<ProductStockEntity> productProductStockEntities = mapper.mapToEntity(productStocks);
+
+        for (ProductStockEntity productStockEntity : productProductStockEntities) {
+            Merge.mergeProductStockEntity(entityManager, productStockEntity);
+        }
+
+        saveAll(productProductStockEntities);
     }
 
     @Override

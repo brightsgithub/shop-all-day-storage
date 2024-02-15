@@ -55,4 +55,14 @@ public class TestFactoryData {
         }
         return expectedProducts;
     }
+
+    static List<ProductStock> createMockProductStock(int count) {
+        List<ProductStock> expectedProductStocks = new ArrayList<>();
+        List<Product> expectedProducts = createMockProducts(count);
+        for (int i = 0; i < count; i++) {
+            expectedProductStocks.add(
+                    new ProductStock(null, expectedProducts.get(i), 10, "size_"+i, "color_"+i, 521f));
+        }
+        return expectedProductStocks;
+    }
 }
