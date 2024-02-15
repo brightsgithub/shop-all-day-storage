@@ -65,7 +65,7 @@ public class DataInitializer implements StorageInitializer {
 
             for (DataHelper dataHelper: dataHelpers) {
                 dataHelper.create();
-                dataHelper.print();
+                //dataHelper.print();
             }
 
             System.out.println("DataInitializer finished");

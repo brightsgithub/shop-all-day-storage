@@ -19,7 +19,7 @@ public class ProductTypeEntity {
     @Column(name = "product_type_id", nullable = false, updatable = false)
     private Long productTypeId;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne(cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "category_id", nullable = false)
     private CategoryEntity categoryEntity;
 

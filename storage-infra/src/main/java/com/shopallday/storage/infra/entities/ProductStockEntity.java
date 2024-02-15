@@ -18,7 +18,7 @@ public class ProductStockEntity {
     @Column(name = "product_stock_id", nullable = false, updatable = false)
     private Long productStockId;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne(cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "product_id", nullable = false)
     private ProductEntity productEntity;
 
