@@ -2,10 +2,8 @@ package com.shopallday.storage.infra.repository;
 
 import com.shopallday.storage.domain.exceptions.product.ReadProductTypeException;
 import com.shopallday.storage.domain.models.ProductType;
-import com.shopallday.storage.domain.repository.CategoryRepository;
 import com.shopallday.storage.domain.repository.ProductTypeRepository;
 import com.shopallday.storage.domain.repository.RepositoryManager;
-import com.shopallday.storage.infra.entities.CategoryEntity;
 import com.shopallday.storage.infra.entities.ProductTypeEntity;
 import com.shopallday.storage.infra.mappers.ProductTypeMapper;
 import jakarta.persistence.EntityManager;
@@ -19,7 +17,7 @@ public interface JpaProductTypeRepository extends JpaRepository<ProductTypeEntit
 
     @Override
     default void createProductType(ProductType productType) {
-        final ProductTypeEntity productTypeEntity = productTypeMapper.productTypeToProductTypeEntity(productType);
+        final ProductTypeEntity productTypeEntity = productTypeMapper.mapToEntity(productType);
         save(productTypeEntity);
     }
 
@@ -41,10 +39,9 @@ public interface JpaProductTypeRepository extends JpaRepository<ProductTypeEntit
     default void createProductTypes(List<ProductType> productTypes, RepositoryManager repositoryManager) {
         final EntityManager entityManager = (EntityManager) repositoryManager.getManager();
 
-        final List<ProductTypeEntity> productTypeEntities = productTypeMapper.productTypesToProductTypeEntities(productTypes);
-        for (ProductTypeEntity productTypeEntity : productTypeEntities) {
-            Merge.mergeProductTypeEntity(entityManager, productTypeEntity);
-        }
+        final List<ProductTypeEntity> productTypeEntities = productTypeMapper.mapToEntity(productTypes);
+
+        Merge.mergeProductTypeEntity(entityManager, productTypeEntities);
 
         saveAll(productTypeEntities);
 
@@ -52,14 +49,14 @@ public interface JpaProductTypeRepository extends JpaRepository<ProductTypeEntit
 
     @Override
     default ProductType findProductTypeById(Long id) throws ReadProductTypeException {
-        return productTypeMapper.productTypeEntityToProductType(
+        return productTypeMapper.mapToDomain(
                 findById(id).orElseThrow(() -> new ReadProductTypeException("Id does not exist"
                 )));
     }
 
     @Override
     default List<ProductType> findAllProductTypes() {
-        return productTypeMapper.productTypeEntitiesToProductTypes(findAll());
+        return productTypeMapper.mapToDomain(findAll());
     }
 
     @Override
@@ -69,7 +66,7 @@ public interface JpaProductTypeRepository extends JpaRepository<ProductTypeEntit
 
     @Override
     default void deleteProductType(ProductType productType) {
-        final ProductTypeEntity productTypeEntity = productTypeMapper.productTypeToProductTypeEntity(productType);
+        final ProductTypeEntity productTypeEntity = productTypeMapper.mapToEntity(productType);
         delete(productTypeEntity);
     }
 }

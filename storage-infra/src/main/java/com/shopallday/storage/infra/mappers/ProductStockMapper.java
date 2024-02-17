@@ -8,7 +8,7 @@ import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 @Mapper(uses = ProductMapper.class)
-public interface ProductStockMapper {
+public interface ProductStockMapper extends StorageMapper<ProductStockEntity, ProductStock> {
 
     ProductStockMapper INSTANCE = Mappers.getMapper(ProductStockMapper.class);
 
@@ -20,5 +20,4 @@ public interface ProductStockMapper {
 
     List<ProductStockEntity> mapToEntity(List<ProductStock> productStocks);
     List<ProductStock> mapToDomain(List<ProductStockEntity> productStockEntities);
-
 }

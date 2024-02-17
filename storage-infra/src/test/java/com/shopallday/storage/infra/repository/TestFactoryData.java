@@ -2,7 +2,9 @@ package com.shopallday.storage.infra.repository;
 
 import com.shopallday.storage.domain.models.*;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class TestFactoryData {
@@ -81,5 +83,45 @@ public class TestFactoryData {
                     new ProductStock(null, expectedProducts.get(i), 10, "size_"+i, "color_"+i, 521f));
         }
         return expectedProductStocks;
+    }
+
+    static List<OrderStatusType> createMockOrderStatusType(int count) {
+        List<OrderStatusType> expectedOrderStatusTypes = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            expectedOrderStatusTypes.add(new OrderStatusType(null, "Test_Status_"+i));
+        }
+        return expectedOrderStatusTypes;
+    }
+
+    static List<Order> createMockOrders(int count) {
+        List<Order> expectedOrders = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            expectedOrders.add(
+                    new Order(
+                            null,
+                            new Timestamp(Calendar.getInstance().getTimeInMillis()),
+                            createMockCustomers(count).get(i),
+                            createMockOrderStatusType(count).get(i)
+                    )
+            );
+        }
+        return expectedOrders;
+    }
+
+    static List<OrderLine> createMockOrderLines(int count) {
+        List<OrderLine> expectedOrderLines = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            expectedOrderLines.add(
+                    new OrderLine(
+                            null,
+                            createMockOrders(count).get(i),
+                            createMockProducts(count).get(i),
+                            (i+1),
+                            "size_"+i,
+                            "color_"+i
+                    )
+            );
+        }
+        return expectedOrderLines;
     }
 }

@@ -3,10 +3,7 @@ package com.shopallday.storage.infra.repository;
 import com.shopallday.storage.domain.models.Product;
 import com.shopallday.storage.domain.repository.ProductsRepository;
 import com.shopallday.storage.domain.repository.RepositoryManager;
-import com.shopallday.storage.infra.entities.BrandEntity;
-import com.shopallday.storage.infra.entities.CategoryEntity;
 import com.shopallday.storage.infra.entities.ProductEntity;
-import com.shopallday.storage.infra.entities.ProductTypeEntity;
 import com.shopallday.storage.infra.mappers.ProductMapper;
 import jakarta.persistence.EntityManager;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,7 +15,7 @@ public interface JpaProductsRepository extends JpaRepository<ProductEntity, Long
     ProductMapper mapper = ProductMapper.INSTANCE;
 
     default void createProduct(Product product) {
-        final ProductEntity productEntity = mapper.productToProductEntity(product);
+        final ProductEntity productEntity = mapper.mapToEntity(product);
         save(productEntity);
     }
 
@@ -26,7 +23,7 @@ public interface JpaProductsRepository extends JpaRepository<ProductEntity, Long
     default void createProducts(List<Product> products, RepositoryManager manager) {
         final EntityManager entityManager = (EntityManager) manager.getManager();
 
-        final List<ProductEntity> productEntities = mapper.productsToProductEntities(products);
+        final List<ProductEntity> productEntities = mapper.mapToEntity(products);
         for (ProductEntity productEntity : productEntities) {
             Merge.mergeProductEntity(entityManager,productEntity);
         }
@@ -36,12 +33,12 @@ public interface JpaProductsRepository extends JpaRepository<ProductEntity, Long
 
     default List<Product> findProductsByIds(List<Long> ids) {
         return mapper
-                .productEntitiesToProducts(findAllById(ids));
+                .mapToDomain(findAllById(ids));
     }
 
     default List<Product> findAllProducts() {
         return mapper
-                .productEntitiesToProducts(findAll());
+                .mapToDomain(findAll());
     }
 
     default void updateProduct(Product product) {
@@ -49,7 +46,7 @@ public interface JpaProductsRepository extends JpaRepository<ProductEntity, Long
     }
 
     default void deleteProduct(Product product) {
-        final ProductEntity productEntity = mapper.productToProductEntity(product);
+        final ProductEntity productEntity = mapper.mapToEntity(product);
         delete(productEntity);
     }
 }

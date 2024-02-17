@@ -8,14 +8,19 @@ import org.mapstruct.factory.Mappers;
 import java.util.List;
 
 @Mapper
-public interface CategoryMapper {
+public interface CategoryMapper extends StorageMapper<CategoryEntity, Category>{
 
     CategoryMapper INSTANCE = Mappers.getMapper(CategoryMapper.class);
 
-    CategoryEntity categoryToEntity(Category category);
-    Category entityToCategory(CategoryEntity entity);
+    @Override
+    CategoryEntity mapToEntity(Category category);
 
-    List<CategoryEntity> categoriesToEntities(List<Category> categories);
-    List<Category> entitiesToCategories(List<CategoryEntity> entities);
+    @Override
+    Category mapToDomain(CategoryEntity categoryEntity);
 
+    @Override
+    List<CategoryEntity> mapToEntity(List<Category> categories);
+
+    @Override
+    List<Category> mapToDomain(List<CategoryEntity> categoryEntities);
 }

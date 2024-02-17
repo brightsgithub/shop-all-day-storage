@@ -1,9 +1,15 @@
 package com.shopallday.storage.infra.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "orders")
 @SequenceGenerator(name = "order_seq", sequenceName = "order_seq", initialValue = 30, allocationSize = 1)

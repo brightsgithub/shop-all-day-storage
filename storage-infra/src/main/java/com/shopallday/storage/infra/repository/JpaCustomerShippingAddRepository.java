@@ -32,7 +32,7 @@ public interface JpaCustomerShippingAddRepository extends JpaRepository<Customer
         final List<CustomerShippingAddressEntity> shippingAddressEntities = mapper.mapToEntity(shippingAddresses);
 
         for (CustomerShippingAddressEntity shippingAddressEntity : shippingAddressEntities) {
-            Merge.mergeCustomerEntity(entityManager, shippingAddressEntity);
+            Merge.mergeCustomerShipAddressEntity(entityManager, shippingAddressEntity);
         }
 
         saveAll(shippingAddressEntities);

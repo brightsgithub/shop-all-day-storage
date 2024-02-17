@@ -19,37 +19,38 @@ import java.util.List;
  */
 public interface JpaCustomerRepository extends JpaRepository<CustomerEntity, Long>, CustomerRepository {
 
+    CustomerMapper mapper = CustomerMapper.INSTANCE;
 
     // Implementing the createCustomer method using the save method provided by JpaRepository
     @Override
     default void createCustomers(List<Customer> customers) {
-        List<CustomerEntity> entities = CustomerMapper.INSTANCE.customersToEntities(customers);
+        List<CustomerEntity> entities = mapper.mapToEntity(customers);
         saveAll(entities);
     }
 
     @Override
     default Customer findCustomerById(final Long id) throws ReadCustomerException{
-        return CustomerMapper.INSTANCE.entityToCustomer(findById(id).orElseThrow(() -> new ReadCustomerException("")));
+        return mapper.mapToDomain(findById(id).orElseThrow(() -> new ReadCustomerException("")));
     }
 
     @Override
     default List<Customer> findCustomersById(final List<Long> ids) {
-        return CustomerMapper.INSTANCE.entitiesToCustomers(findAllById(ids));
+        return mapper.mapToDomain(findAllById(ids));
     }
 
     @Override
     default List<Customer> getCustomers() {
-        return CustomerMapper.INSTANCE.entitiesToCustomers(findAll());
+        return mapper.mapToDomain(findAll());
     }
 
     @Override
     default void updateCustomer(final Customer customer) {
-        save(CustomerMapper.INSTANCE.customerToEntity(customer));
+        save(mapper.mapToEntity(customer));
     }
 
     @Override
     default void deleteCustomer(final Customer customer) {
-        delete(CustomerMapper.INSTANCE.customerToEntity(customer));
+        delete(mapper.mapToEntity(customer));
     }
 
     @Override

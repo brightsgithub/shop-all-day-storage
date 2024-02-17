@@ -5,7 +5,6 @@ import com.shopallday.storage.domain.repository.CategoryRepository;
 import com.shopallday.storage.infra.entities.CategoryEntity;
 import com.shopallday.storage.infra.mappers.CategoryMapper;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,17 +15,17 @@ public interface JpaCategoryRepository extends JpaRepository<CategoryEntity, Lon
 
     @Override
     default void createCategories(List<Category> categories) {
-        saveAll(categoryMapper.categoriesToEntities(categories));
+        saveAll(categoryMapper.mapToEntity(categories));
     }
 
     @Override
     default void createCategory(Category category) {
-        save(categoryMapper.categoryToEntity(category));
+        save(categoryMapper.mapToEntity(category));
     }
 
     @Override
     default List<Category> getCategories() {
-        return categoryMapper.entitiesToCategories(findAll());
+        return categoryMapper.mapToDomain(findAll());
     }
 
     @Override
@@ -43,6 +42,6 @@ public interface JpaCategoryRepository extends JpaRepository<CategoryEntity, Lon
 
     @Override
     default void deleteCategory(Category category) {
-        delete(categoryMapper.categoryToEntity(category));
+        delete(categoryMapper.mapToEntity(category));
     }
 }

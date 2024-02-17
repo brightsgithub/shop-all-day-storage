@@ -9,19 +9,25 @@ import org.mapstruct.factory.Mappers;
 import java.util.List;
 
 @Mapper
-public interface ProductMapper {
+public interface ProductMapper extends StorageMapper<ProductEntity, Product>{
 
     ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);
 
+    @Override
     @Mapping(source = "productType.category", target = "productTypeEntity.categoryEntity")
     @Mapping(source = "productType", target = "productTypeEntity")
     @Mapping(source = "brand", target = "brandEntity")
-    ProductEntity productToProductEntity(Product product);
+    ProductEntity mapToEntity(Product product);
+
+    @Override
     @Mapping(source = "productTypeEntity.categoryEntity", target = "productType.category")
     @Mapping(source = "productTypeEntity", target = "productType")
     @Mapping(source = "brandEntity", target = "brand")
-    Product productEntityToProduct(ProductEntity productEntity);
+    Product mapToDomain(ProductEntity productEntity);
 
-    List<ProductEntity> productsToProductEntities(List<Product> products);
-    List<Product> productEntitiesToProducts(List<ProductEntity> productEntities);
+    @Override
+    List<ProductEntity> mapToEntity(List<Product> products);
+
+    @Override
+    List<Product> mapToDomain(List<ProductEntity> productEntities);
 }

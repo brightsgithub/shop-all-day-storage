@@ -13,6 +13,6 @@ public class Order {
 
     private Long orderId;
     private Timestamp orderDate;
-    private Customer customerId;
-    private Long orderStatusTypeId;
+    private Customer customer;
+    private OrderStatusType orderStatusType;
 }

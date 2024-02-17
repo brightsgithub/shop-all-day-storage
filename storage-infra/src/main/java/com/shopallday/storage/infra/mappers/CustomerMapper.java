@@ -8,12 +8,18 @@ import org.mapstruct.factory.Mappers;
 import java.util.List;
 
 @Mapper
-public interface CustomerMapper {
+public interface CustomerMapper extends StorageMapper<CustomerEntity, Customer>{
     CustomerMapper INSTANCE = Mappers.getMapper(CustomerMapper.class);
 
-    CustomerEntity customerToEntity(Customer customer);
-    Customer entityToCustomer(CustomerEntity entity);
+    @Override
+    CustomerEntity mapToEntity(Customer customer);
 
-    List<CustomerEntity> customersToEntities(List<Customer> customers);
-    List<Customer> entitiesToCustomers(List<CustomerEntity> entities);
+    @Override
+    Customer mapToDomain(CustomerEntity customerEntity);
+
+    @Override
+    List<CustomerEntity> mapToEntity(List<Customer> customers);
+
+    @Override
+    List<Customer> mapToDomain(List<CustomerEntity> customerEntities);
 }

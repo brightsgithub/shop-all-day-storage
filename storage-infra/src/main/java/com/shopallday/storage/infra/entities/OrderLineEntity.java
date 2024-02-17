@@ -1,7 +1,13 @@
 package com.shopallday.storage.infra.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "order_lines")
 @SequenceGenerator(name = "order_line_seq", sequenceName = "order_line_seq", initialValue = 44, allocationSize = 1)
