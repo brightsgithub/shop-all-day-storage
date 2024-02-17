@@ -1,15 +1,15 @@
-package com.shopallday.storage.domain.usecases;
+package com.shopallday.storage.domain.usecases.customer;
 
 import com.shopallday.storage.domain.exceptions.customer.ReadCustomerException;
 import com.shopallday.storage.domain.models.Customer;
 import com.shopallday.storage.domain.repository.CustomerRepository;
+import com.shopallday.storage.domain.usecases.TestFactoryData;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -27,9 +27,7 @@ public class GetAllCustomersUseCaseTest {
     @Test
     public void testExecute() throws ReadCustomerException {
         // Arrange
-        List<Customer> expectedCustomers = new ArrayList<>();
-        expectedCustomers.add(new Customer(1L, "John", "Doe", "123 Main St", "", "City", "12345", "johndoe", "password", "true", "johndoe@example.com", "123-456-7890"));
-        expectedCustomers.add(new Customer(2L, "Jane", "Smith", "456 Elm St", "", "Town", "54321", "janesmith", "password", "true", "janesmith@example.com", "987-654-3210"));
+        List<Customer> expectedCustomers = TestFactoryData.createMockCustomers(2);
 
         // Mocking behavior of the customerRepository
         when(customerRepository.getCustomers()).thenReturn(expectedCustomers);

@@ -15,14 +15,8 @@ public interface JpaCustomerShippingAddRepository extends JpaRepository<Customer
     CustomerShippingAddMapper mapper = CustomerShippingAddMapper.INSTANCE;
 
     @Override
-    default CustomerShippingAddress findCustomerShippingAddressById(final Long id) {
-        CustomerShippingAddressEntity shippingAddressEntity = findById(id).orElse(null);
-        return mapper.mapToDomain(shippingAddressEntity);
-    }
-
-    @Override
-    default List<CustomerShippingAddress> findCustomerShippingAddressesById(final List<Long> ids) {
-        List<CustomerShippingAddressEntity> shippingAddressEntities = findAllById(ids);
+    default List<CustomerShippingAddress> findCustomerShippingAddressesById(Long id) {
+        List<CustomerShippingAddressEntity> shippingAddressEntities = findAllById(List.of(id));
         return mapper.mapToDomain(shippingAddressEntities);
     }
 

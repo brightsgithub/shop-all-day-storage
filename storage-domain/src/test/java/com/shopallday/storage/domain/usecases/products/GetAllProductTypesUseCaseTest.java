@@ -1,15 +1,14 @@
-package com.shopallday.storage.domain.usecases;
+package com.shopallday.storage.domain.usecases.products;
 
-import com.shopallday.storage.domain.models.Category;
 import com.shopallday.storage.domain.models.ProductType;
 import com.shopallday.storage.domain.repository.ProductTypeRepository;
+import com.shopallday.storage.domain.usecases.TestFactoryData;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -27,9 +26,7 @@ public class GetAllProductTypesUseCaseTest {
     @Test
     public void testExecute() {
         // Arrange
-        List<ProductType> expectedProductTypes = new ArrayList<>();
-        expectedProductTypes.add(new ProductType(1L, new Category(1L, "Category1"), "Type1"));
-        expectedProductTypes.add(new ProductType(2L, new Category(2L, "Category2"), "Type2"));
+        List<ProductType> expectedProductTypes = TestFactoryData.createMockProductTypes(2);
 
         // Mocking behavior of the productTypeRepository
         when(productTypeRepository.findAllProductTypes()).thenReturn(expectedProductTypes);

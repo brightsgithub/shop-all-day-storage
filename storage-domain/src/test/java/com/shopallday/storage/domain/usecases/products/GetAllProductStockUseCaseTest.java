@@ -1,16 +1,14 @@
-package com.shopallday.storage.domain.usecases;
+package com.shopallday.storage.domain.usecases.products;
 
-import com.shopallday.storage.domain.models.Brand;
-import com.shopallday.storage.domain.models.Product;
 import com.shopallday.storage.domain.models.ProductStock;
 import com.shopallday.storage.domain.repository.ProductStockRepository;
+import com.shopallday.storage.domain.usecases.TestFactoryData;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -28,9 +26,7 @@ public class GetAllProductStockUseCaseTest {
     @Test
     public void testExecute() {
         // Arrange
-        List<ProductStock> expectedProductStocks = new ArrayList<>();
-        expectedProductStocks.add(new ProductStock(1L, new Product(1L, null, new Brand(1L, "Brand1"), "ShortTitle1", "LongTitle1", "ShortDescription1", "LongDescription1"), 10, "Large", "Red", 25.99f));
-        expectedProductStocks.add(new ProductStock(2L, new Product(2L, null, new Brand(2L, "Brand2"), "ShortTitle2", "LongTitle2", "ShortDescription2", "LongDescription2"), 20, "Small", "Blue", 19.99f));
+        List<ProductStock> expectedProductStocks = TestFactoryData.createMockProductStock(2);
 
         // Mocking behavior of the productStockRepository
         when(productStockRepository.findAllProductStocks()).thenReturn(expectedProductStocks);

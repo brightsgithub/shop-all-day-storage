@@ -1,7 +1,8 @@
 package com.shopallday.storage.app.config;
 
 import com.shopallday.storage.domain.repository.*;
-import com.shopallday.storage.domain.usecases.*;
+import com.shopallday.storage.domain.usecases.customer.*;
+import com.shopallday.storage.domain.usecases.products.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -72,5 +73,27 @@ public class DomainConfig {
     @Bean
     public GetAllProductStockUseCase getGetAllProductStockUseCase(ProductStockRepository productStockRepository) {
         return new GetAllProductStockUseCase(productStockRepository);
+    }
+
+    @Bean
+    public CreateCustomerShippingAddressUseCase getCreateCustomerShippingAddressUseCase(
+            CustomerShippingAddRepository customerShippingAddRepository,
+            RepositoryManager repositoryManager
+    ){
+        return new CreateCustomerShippingAddressUseCase(customerShippingAddRepository, repositoryManager);
+    }
+
+    @Bean
+    public GetAllCustomerShippingAddressUseCase getGetAllCustomerShippingAddressUseCase(
+            CustomerShippingAddRepository customerShippingAddRepository
+    ){
+        return new GetAllCustomerShippingAddressUseCase(customerShippingAddRepository);
+    }
+
+    @Bean
+    public GetCustomerShipAddByIdUseCase getGetCustomerShipAddByIdUseCase(
+            CustomerShippingAddRepository customerShippingAddRepository
+    ){
+        return new GetCustomerShipAddByIdUseCase(customerShippingAddRepository);
     }
 }

@@ -1,8 +1,9 @@
-package com.shopallday.storage.domain.usecases;
+package com.shopallday.storage.domain.usecases.customer;
 
 import com.shopallday.storage.domain.exceptions.customer.CreateCustomerException;
 import com.shopallday.storage.domain.models.Customer;
 import com.shopallday.storage.domain.repository.CustomerRepository;
+import com.shopallday.storage.domain.usecases.UseCaseNoReturnVal;
 
 import java.util.List;
 

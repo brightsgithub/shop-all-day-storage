@@ -7,10 +7,7 @@ import com.shopallday.storage.domain.models.CustomerShippingAddress;
 import java.util.List;
 
 public interface CustomerShippingAddRepository {
-
-    CustomerShippingAddress findCustomerShippingAddressById(final Long id);
-
-    List<CustomerShippingAddress> findCustomerShippingAddressesById(final List<Long> ids);
+    List<CustomerShippingAddress> findCustomerShippingAddressesById(final Long id);
 
     List<CustomerShippingAddress> getCustomerShippingAddresses() throws ReadCustomerException;
 

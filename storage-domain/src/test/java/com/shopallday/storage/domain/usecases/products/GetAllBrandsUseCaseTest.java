@@ -1,14 +1,14 @@
-package com.shopallday.storage.domain.usecases;
+package com.shopallday.storage.domain.usecases.products;
 
 import com.shopallday.storage.domain.models.Brand;
 import com.shopallday.storage.domain.repository.BrandRepository;
+import com.shopallday.storage.domain.usecases.TestFactoryData;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -26,10 +26,7 @@ public class GetAllBrandsUseCaseTest {
     @Test
     public void testThatFindAllBrandsWasCalledOnRepo() {
 
-        List<Brand> expectedBrands = new ArrayList<>();
-        expectedBrands.add(new Brand(1L, "Brand1"));
-        expectedBrands.add(new Brand(2L, "Brand2"));
-
+        List<Brand> expectedBrands = TestFactoryData.createMockBrands(2);
         when(brandRepository.findAllBrands()).thenReturn(expectedBrands);
 
         List<Brand> actualBrands = cut.execute();

@@ -1,7 +1,8 @@
-package com.shopallday.storage.domain.usecases;
+package com.shopallday.storage.domain.usecases.products;
 
 import com.shopallday.storage.domain.models.ProductStock;
 import com.shopallday.storage.domain.repository.ProductStockRepository;
+import com.shopallday.storage.domain.usecases.UseCaseNoParam;
 
 import java.util.List;
 

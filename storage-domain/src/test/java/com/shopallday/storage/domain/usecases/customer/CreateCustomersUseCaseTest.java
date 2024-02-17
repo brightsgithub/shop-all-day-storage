@@ -1,4 +1,4 @@
-package com.shopallday.storage.domain.usecases;
+package com.shopallday.storage.domain.usecases.customer;
 
 import com.shopallday.storage.domain.models.Customer;
 import com.shopallday.storage.domain.repository.CustomerRepository;

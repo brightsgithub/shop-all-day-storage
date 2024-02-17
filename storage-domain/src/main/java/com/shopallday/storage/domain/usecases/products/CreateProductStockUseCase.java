@@ -1,12 +1,13 @@
-package com.shopallday.storage.domain.usecases;
+package com.shopallday.storage.domain.usecases.products;
 
 import com.shopallday.storage.domain.models.ProductStock;
 import com.shopallday.storage.domain.repository.ProductStockRepository;
 import com.shopallday.storage.domain.repository.RepositoryManager;
+import com.shopallday.storage.domain.usecases.UseCaseNoReturnVal;
 
 import java.util.List;
 
-public class CreateProductStockUseCase implements UseCaseNoReturnVal<List<ProductStock>>{
+public class CreateProductStockUseCase implements UseCaseNoReturnVal<List<ProductStock>> {
 
     private final ProductStockRepository productStockRepository;
     private final RepositoryManager repositoryManager;
