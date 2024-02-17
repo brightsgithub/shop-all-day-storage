@@ -1,6 +1,6 @@
-drop table if exists "customer_shipping_address";
+drop table if exists "customer_shipping_address" CASCADE;
 
-drop table if exists "customer";
+drop table if exists "customer" CASCADE;
 
 drop sequence if exists customer_seq;
 create sequence customer_seq increment by 1 start with 10;
@@ -137,3 +137,54 @@ create table product_stock
     color text,
     price float NOT NULL
 );
+
+
+-- The types of statuses an order can have such as, PENDING, SUCCESSFUL, FAILED etc.
+drop table if exists "order_status_types" CASCADE;
+drop sequence if exists order_status_types_seq;
+
+create sequence order_status_types_seq increment by 1 start with 222;
+
+create table order_status_types
+(
+    order_status_type_id integer default nextval('order_status_types_seq') PRIMARY KEY,
+    status text,
+    CONSTRAINT ORDER_STATUS_NAME_UNIQUE UNIQUE(status)
+);
+
+commit;
+
+
+-- Lists all orders per customer
+drop table if exists "orders" CASCADE;
+drop sequence if exists order_seq;
+
+create sequence order_seq increment by 1 start with 30;
+
+create table orders
+(
+    order_id	  		  integer default nextval('order_seq') PRIMARY KEY,
+    order_date	  		  TIMESTAMP,
+    customer_id		  	  integer references customer(customer_id) NOT NULL,
+    order_status_type_id  integer references order_status_types(order_status_type_id) NOT NULL
+);
+
+commit;
+
+-- Order line, shows all the items a user has ordered
+drop table if exists "order_lines" CASCADE;
+drop sequence if exists order_line_seq;
+
+create sequence order_line_seq increment by 1 start with 44;
+
+create table order_lines
+(
+    order_lines_id integer default nextval('order_line_seq') PRIMARY KEY,
+    orders_id integer references orders(order_id) NOT NULL,
+    product_id integer references products(product_id) NOT NULL,
+    quantity integer NOT NULL,
+    size text,
+    color text
+);
+
+commit;

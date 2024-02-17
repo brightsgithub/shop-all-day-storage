@@ -922,3 +922,55 @@ values (nextval('customer_shipping_add_seq'), 10, '21 London road', 'Devonshire'
 insert into customer_shipping_address(shipping_address_id, customer_id, address1, address2, city, post_code)
 values (nextval('customer_shipping_add_seq'), 10, '42 Homesdale road', 'Preston park', 'Brighton','BP2 4MP');
 
+-- order status type PENDING, SUCCESSFUL, FAILED
+insert into order_status_types(order_status_type_id, status)
+values(nextval('order_status_types_seq'), 'PENDING');
+
+insert into order_status_types(order_status_type_id, status)
+values(nextval('order_status_types_seq'), 'SUCCESSFUL');
+
+insert into order_status_types(order_status_type_id, status)
+values(nextval('order_status_types_seq'), 'FAILED');
+
+-- PENDING
+insert into orders(order_id, order_date, customer_id, order_status_type_id)
+values(nextval('order_seq'), '2024-02-15 10:30:00', 10, 222);
+
+-- SUCCESSFUL
+insert into orders(order_id, order_date, customer_id, order_status_type_id)
+values(nextval('order_seq'), '2024-02-11 10:30:00', 10, 223);
+
+-- FAILED
+insert into orders(order_id, order_date, customer_id, order_status_type_id)
+values(nextval('order_seq'), '2024-01-15 10:30:00', 10, 224);
+
+
+-- order lines for 1st order -- PENDING
+INSERT INTO order_lines (order_lines_id, orders_id, product_id, quantity, size, color)
+VALUES (nextval('order_line_seq'), 30, 17, 2, 'Small', 'Black');
+
+INSERT INTO order_lines (order_lines_id, orders_id, product_id, quantity, size, color)
+VALUES (nextval('order_line_seq'), 30, 17, 4, 'Large', 'Black');
+
+INSERT INTO order_lines (order_lines_id, orders_id, product_id, quantity, size, color)
+VALUES (nextval('order_line_seq'), 30, 17, 1, 'Large', 'White');
+
+INSERT INTO order_lines (order_lines_id, orders_id, product_id, quantity, size, color)
+VALUES (nextval('order_line_seq'), 30, 18, 7, 'XLarge', 'White');
+
+-- order lines for 2nd order -- SUCCESSFUL
+INSERT INTO order_lines (order_lines_id, orders_id, product_id, quantity, size, color)
+VALUES (nextval('order_line_seq'), 31, 33, 2, 'Small', 'Black');
+
+INSERT INTO order_lines (order_lines_id, orders_id, product_id, quantity, size, color)
+VALUES (nextval('order_line_seq'), 31, 33, 4, 'Small', 'Red');
+
+INSERT INTO order_lines (order_lines_id, orders_id, product_id, quantity, size, color)
+VALUES (nextval('order_line_seq'), 31, 34, 1, 'Large', 'White');
+
+-- order lines for 3rd order -- FAILED
+INSERT INTO order_lines (order_lines_id, orders_id, product_id, quantity, size, color)
+VALUES (nextval('order_line_seq'), 32, 27, 2, 'Small', 'Black');
+
+INSERT INTO order_lines (order_lines_id, orders_id, product_id, quantity, size, color)
+VALUES (nextval('order_line_seq'), 32, 28, 4, 'Small', 'Red');
