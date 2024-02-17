@@ -1,10 +1,11 @@
-package com.shopallday.storage.infra.repository;
+package com.shopallday.storage.infra.repository.products;
 
 import com.shopallday.storage.domain.models.ProductStock;
 import com.shopallday.storage.domain.repository.ProductStockRepository;
 import com.shopallday.storage.domain.repository.RepositoryManager;
 import com.shopallday.storage.infra.entities.*;
 import com.shopallday.storage.infra.mappers.ProductStockMapper;
+import com.shopallday.storage.infra.repository.Merge;
 import jakarta.persistence.EntityManager;
 import org.springframework.data.jpa.repository.JpaRepository;
 

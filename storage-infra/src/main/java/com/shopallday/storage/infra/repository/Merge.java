@@ -7,13 +7,13 @@ import java.util.List;
 
 public class Merge {
 
-    static void mergeProductEntity(EntityManager entityManager, List<ProductEntity> productEntities) {
+    public static void mergeProductEntity(EntityManager entityManager, List<ProductEntity> productEntities) {
         for (ProductEntity productEntity : productEntities) {
             mergeProductEntity(entityManager, productEntity);
         }
     }
 
-    static void mergeProductEntity(EntityManager entityManager, ProductEntity productEntity) {
+    public static void mergeProductEntity(EntityManager entityManager, ProductEntity productEntity) {
         BrandEntity brandEntity = entityManager.merge(productEntity.getBrandEntity());
 
         mergeProductTypeEntity(entityManager, productEntity.getProductTypeEntity());
@@ -24,13 +24,13 @@ public class Merge {
         productEntity.setProductTypeEntity(productTypeEntity);
     }
 
-    static void mergeProductStockEntity(EntityManager entityManager, List<ProductStockEntity> productStockEntities) {
+    public static void mergeProductStockEntity(EntityManager entityManager, List<ProductStockEntity> productStockEntities) {
         for (ProductStockEntity productStockEntity : productStockEntities) {
             mergeProductStockEntity(entityManager, productStockEntity);
         }
     }
 
-    static void mergeProductStockEntity(EntityManager entityManager, ProductStockEntity productStockEntity) {
+    public static void mergeProductStockEntity(EntityManager entityManager, ProductStockEntity productStockEntity) {
 
         mergeProductEntity(entityManager, productStockEntity.getProductEntity());
         ProductEntity mergedProductEntity = entityManager.merge(productStockEntity.getProductEntity());
@@ -39,13 +39,13 @@ public class Merge {
         productStockEntity.setProductEntity(mergedProductEntity );
     }
 
-    static void mergeProductTypeEntity(EntityManager entityManager, List<ProductTypeEntity> productTypeEntityList) {
+    public static void mergeProductTypeEntity(EntityManager entityManager, List<ProductTypeEntity> productTypeEntityList) {
         for (ProductTypeEntity productTypeEntity : productTypeEntityList) {
             mergeProductTypeEntity(entityManager,productTypeEntity);
         }
     }
 
-    static void mergeProductTypeEntity(
+    public static void mergeProductTypeEntity(
             EntityManager entityManager,
             ProductTypeEntity productTypeEntity
     ) {
@@ -54,7 +54,7 @@ public class Merge {
         productTypeEntity.setCategoryEntity(categoryEntity);
     }
 
-    static void mergeCustomerShipAddressEntity(
+    public static void mergeCustomerShipAddressEntity(
             EntityManager entityManager,
             List<CustomerShippingAddressEntity> shippingAddressEntities
     ){
@@ -63,7 +63,7 @@ public class Merge {
         }
     }
 
-    static void mergeCustomerShipAddressEntity(
+    public static void mergeCustomerShipAddressEntity(
             EntityManager entityManager,
             CustomerShippingAddressEntity shippingAddressEntity
     ) {
@@ -72,13 +72,13 @@ public class Merge {
         shippingAddressEntity.setCustomerEntity(mergedCustomerEntity);
     }
 
-    static void mergeOrders(EntityManager entityManager, List<OrderEntity> orderEntities) {
+    public static void mergeOrders(EntityManager entityManager, List<OrderEntity> orderEntities) {
         for (OrderEntity orderEntity : orderEntities) {
             mergeOrders(entityManager, orderEntity);
         }
     }
 
-    static void mergeOrders(EntityManager entityManager, OrderEntity orderEntity) {
+    public static void mergeOrders(EntityManager entityManager, OrderEntity orderEntity) {
         CustomerEntity customerEntity = entityManager.merge(orderEntity.getCustomerEntity());
         OrderStatusTypeEntity orderStatusTypeEntity = entityManager.merge(orderEntity.getOrderStatusTypeEntity());
 
@@ -86,13 +86,13 @@ public class Merge {
         orderEntity.setOrderStatusTypeEntity(orderStatusTypeEntity);
     }
 
-    static void mergeOrderLines(EntityManager entityManager, List<OrderLineEntity> orderLineEntities) {
+    public static void mergeOrderLines(EntityManager entityManager, List<OrderLineEntity> orderLineEntities) {
         for (OrderLineEntity orderLineEntity : orderLineEntities) {
             mergeOrderLines(entityManager, orderLineEntity);
         }
     }
 
-    static void mergeOrderLines(EntityManager entityManager, OrderLineEntity orderLineEntity) {
+    public static void mergeOrderLines(EntityManager entityManager, OrderLineEntity orderLineEntity) {
         mergeOrders(entityManager, orderLineEntity.getOrderEntity());
         mergeProductEntity(entityManager, orderLineEntity.getProductEntity());
 

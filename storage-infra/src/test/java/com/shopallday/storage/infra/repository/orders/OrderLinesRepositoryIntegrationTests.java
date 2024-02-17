@@ -1,8 +1,10 @@
-package com.shopallday.storage.infra.repository;
+package com.shopallday.storage.infra.repository.orders;
 
 import com.shopallday.storage.domain.models.OrderLine;
 import com.shopallday.storage.domain.repository.OrderLinesRepository;
 import com.shopallday.storage.domain.repository.RepositoryManager;
+import com.shopallday.storage.infra.repository.BaseIntegrationTests;
+import com.shopallday.storage.infra.repository.TestFactoryData;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

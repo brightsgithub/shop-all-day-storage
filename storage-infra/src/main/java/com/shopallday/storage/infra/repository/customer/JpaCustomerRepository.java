@@ -1,4 +1,4 @@
-package com.shopallday.storage.infra.repository;
+package com.shopallday.storage.infra.repository.customer;
 
 import com.shopallday.storage.domain.exceptions.customer.ReadCustomerException;
 import com.shopallday.storage.domain.models.Customer;

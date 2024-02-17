@@ -1,10 +1,11 @@
-package com.shopallday.storage.infra.repository;
+package com.shopallday.storage.infra.repository.products;
 
 import com.shopallday.storage.domain.models.Product;
 import com.shopallday.storage.domain.repository.ProductsRepository;
 import com.shopallday.storage.domain.repository.RepositoryManager;
 import com.shopallday.storage.infra.entities.ProductEntity;
 import com.shopallday.storage.infra.mappers.ProductMapper;
+import com.shopallday.storage.infra.repository.Merge;
 import jakarta.persistence.EntityManager;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -24,9 +25,7 @@ public interface JpaProductsRepository extends JpaRepository<ProductEntity, Long
         final EntityManager entityManager = (EntityManager) manager.getManager();
 
         final List<ProductEntity> productEntities = mapper.mapToEntity(products);
-        for (ProductEntity productEntity : productEntities) {
-            Merge.mergeProductEntity(entityManager,productEntity);
-        }
+        Merge.mergeProductEntity(entityManager,productEntities);
 
         saveAll(productEntities);
     }

@@ -1,4 +1,4 @@
-package com.shopallday.storage.infra.repository;
+package com.shopallday.storage.infra.repository.products;
 
 import com.shopallday.storage.domain.models.Brand;
 import com.shopallday.storage.domain.repository.BrandRepository;

@@ -1,10 +1,11 @@
-package com.shopallday.storage.infra.repository;
+package com.shopallday.storage.infra.repository.customer;
 
 import com.shopallday.storage.domain.models.CustomerShippingAddress;
 import com.shopallday.storage.domain.repository.CustomerShippingAddRepository;
 import com.shopallday.storage.domain.repository.RepositoryManager;
 import com.shopallday.storage.infra.entities.CustomerShippingAddressEntity;
 import com.shopallday.storage.infra.mappers.CustomerShippingAddMapper;
+import com.shopallday.storage.infra.repository.Merge;
 import jakarta.persistence.EntityManager;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -31,9 +32,7 @@ public interface JpaCustomerShippingAddRepository extends JpaRepository<Customer
         final EntityManager entityManager = (EntityManager) repositoryManager.getManager();
         final List<CustomerShippingAddressEntity> shippingAddressEntities = mapper.mapToEntity(shippingAddresses);
 
-        for (CustomerShippingAddressEntity shippingAddressEntity : shippingAddressEntities) {
-            Merge.mergeCustomerShipAddressEntity(entityManager, shippingAddressEntity);
-        }
+        Merge.mergeCustomerShipAddressEntity(entityManager, shippingAddressEntities);
 
         saveAll(shippingAddressEntities);
     }

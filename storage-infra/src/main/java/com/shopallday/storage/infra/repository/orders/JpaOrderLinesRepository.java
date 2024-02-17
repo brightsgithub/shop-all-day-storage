@@ -1,10 +1,11 @@
-package com.shopallday.storage.infra.repository;
+package com.shopallday.storage.infra.repository.orders;
 
 import com.shopallday.storage.domain.models.OrderLine;
 import com.shopallday.storage.domain.repository.OrderLinesRepository;
 import com.shopallday.storage.domain.repository.RepositoryManager;
 import com.shopallday.storage.infra.entities.OrderLineEntity;
 import com.shopallday.storage.infra.mappers.OrderLineMapper;
+import com.shopallday.storage.infra.repository.Merge;
 import jakarta.persistence.EntityManager;
 import org.springframework.data.jpa.repository.JpaRepository;
 

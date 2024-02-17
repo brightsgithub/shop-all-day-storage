@@ -1,4 +1,4 @@
-package com.shopallday.storage.infra.repository;
+package com.shopallday.storage.infra.repository.products;
 
 import com.shopallday.storage.domain.exceptions.product.ReadProductTypeException;
 import com.shopallday.storage.domain.models.ProductType;
@@ -6,6 +6,7 @@ import com.shopallday.storage.domain.repository.ProductTypeRepository;
 import com.shopallday.storage.domain.repository.RepositoryManager;
 import com.shopallday.storage.infra.entities.ProductTypeEntity;
 import com.shopallday.storage.infra.mappers.ProductTypeMapper;
+import com.shopallday.storage.infra.repository.Merge;
 import jakarta.persistence.EntityManager;
 import org.springframework.data.jpa.repository.JpaRepository;
 

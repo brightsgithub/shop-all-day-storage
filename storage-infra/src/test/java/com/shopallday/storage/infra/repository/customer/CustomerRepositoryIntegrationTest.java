@@ -1,15 +1,14 @@
-package com.shopallday.storage.infra.repository;
+package com.shopallday.storage.infra.repository.customer;
 
-import com.shopallday.storage.domain.models.Brand;
 import com.shopallday.storage.domain.models.Customer;
 import com.shopallday.storage.domain.repository.CustomerRepository;
+import com.shopallday.storage.infra.repository.BaseIntegrationTests;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-import static com.shopallday.storage.infra.repository.TestFactoryData.createMockBrands;
 import static com.shopallday.storage.infra.repository.TestFactoryData.createMockCustomers;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

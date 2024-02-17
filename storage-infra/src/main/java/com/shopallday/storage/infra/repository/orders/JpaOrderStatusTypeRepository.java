@@ -1,4 +1,4 @@
-package com.shopallday.storage.infra.repository;
+package com.shopallday.storage.infra.repository.orders;
 
 import com.shopallday.storage.domain.models.OrderStatusType;
 import com.shopallday.storage.domain.repository.OrderStatusTypeRepository;

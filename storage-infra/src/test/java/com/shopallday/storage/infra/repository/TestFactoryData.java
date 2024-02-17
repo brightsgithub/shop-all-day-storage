@@ -9,7 +9,7 @@ import java.util.List;
 
 public class TestFactoryData {
 
-    static List<Brand> createMockBrands(int count) {
+    public static List<Brand> createMockBrands(int count) {
         List<Brand> expectedBrands = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
@@ -18,7 +18,7 @@ public class TestFactoryData {
         return expectedBrands;
     }
 
-    static List<Category> createMockCategories(int count) {
+    public static List<Category> createMockCategories(int count) {
         List<Category> expectedCategories = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
@@ -27,7 +27,7 @@ public class TestFactoryData {
         return expectedCategories;
     }
 
-    static List<Customer> createMockCustomers(int count) {
+    public static List<Customer> createMockCustomers(int count) {
         List<Customer> expected = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             expected.add(
@@ -38,7 +38,7 @@ public class TestFactoryData {
         return expected;
     }
 
-    static List<CustomerShippingAddress> createMockCustomerShippingAddresses(int count) {
+    public static List<CustomerShippingAddress> createMockCustomerShippingAddresses(int count) {
         List<Customer> customers = createMockCustomers(count);
         List<CustomerShippingAddress> expected = new ArrayList<>();
         for (int i = 0; i < count; i++) {
@@ -55,7 +55,7 @@ public class TestFactoryData {
         return expected;
     }
 
-    static List<ProductType> createMockProductTypes(int count) {
+    public static List<ProductType> createMockProductTypes(int count) {
         List<ProductType> expectedProductTypes = new ArrayList<>();
         List<Category> expectedCategories = createMockCategories(count);
         for (int i = 0; i < count; i++) {
@@ -64,7 +64,7 @@ public class TestFactoryData {
         return expectedProductTypes;
     }
 
-    static List<Product> createMockProducts(int count) {
+    public static List<Product> createMockProducts(int count) {
         List<Product> expectedProducts = new ArrayList<>();
         List<ProductType> expectedProductTypes = createMockProductTypes(count);
         List<Brand> expectedBrands = createMockBrands(count);
@@ -75,7 +75,7 @@ public class TestFactoryData {
         return expectedProducts;
     }
 
-    static List<ProductStock> createMockProductStock(int count) {
+    public static List<ProductStock> createMockProductStock(int count) {
         List<ProductStock> expectedProductStocks = new ArrayList<>();
         List<Product> expectedProducts = createMockProducts(count);
         for (int i = 0; i < count; i++) {
@@ -85,7 +85,7 @@ public class TestFactoryData {
         return expectedProductStocks;
     }
 
-    static List<OrderStatusType> createMockOrderStatusType(int count) {
+    public static List<OrderStatusType> createMockOrderStatusType(int count) {
         List<OrderStatusType> expectedOrderStatusTypes = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             expectedOrderStatusTypes.add(new OrderStatusType(null, "Test_Status_"+i));
@@ -93,7 +93,7 @@ public class TestFactoryData {
         return expectedOrderStatusTypes;
     }
 
-    static List<Order> createMockOrders(int count) {
+    public static List<Order> createMockOrders(int count) {
         List<Order> expectedOrders = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             expectedOrders.add(
@@ -108,7 +108,7 @@ public class TestFactoryData {
         return expectedOrders;
     }
 
-    static List<OrderLine> createMockOrderLines(int count) {
+    public static List<OrderLine> createMockOrderLines(int count) {
         List<OrderLine> expectedOrderLines = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             expectedOrderLines.add(
