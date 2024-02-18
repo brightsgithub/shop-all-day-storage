@@ -1,6 +1,9 @@
 package com.shopallday.storage.app.config;
 
 import com.shopallday.storage.domain.repository.*;
+import com.shopallday.storage.domain.repository.customer.CustomerRepository;
+import com.shopallday.storage.domain.repository.customer.CustomerShippingAddRepository;
+import com.shopallday.storage.domain.repository.products.*;
 import com.shopallday.storage.domain.usecases.customer.*;
 import com.shopallday.storage.domain.usecases.products.*;
 import org.springframework.context.annotation.Bean;

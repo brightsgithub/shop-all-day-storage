@@ -1,7 +1,7 @@
 package com.shopallday.storage.infra.repository.products;
 
 import com.shopallday.storage.domain.models.Category;
-import com.shopallday.storage.domain.repository.CategoryRepository;
+import com.shopallday.storage.domain.repository.products.CategoryRepository;
 import com.shopallday.storage.infra.entities.CategoryEntity;
 import com.shopallday.storage.infra.mappers.CategoryMapper;
 import org.springframework.data.jpa.repository.JpaRepository;

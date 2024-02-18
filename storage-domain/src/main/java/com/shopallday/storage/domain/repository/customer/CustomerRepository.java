@@ -1,4 +1,4 @@
-package com.shopallday.storage.domain.repository;
+package com.shopallday.storage.domain.repository.customer;
 
 import com.shopallday.storage.domain.exceptions.customer.CreateCustomerException;
 import com.shopallday.storage.domain.exceptions.customer.DeleteCustomerException;

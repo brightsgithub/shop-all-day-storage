@@ -1,7 +1,8 @@
-package com.shopallday.storage.domain.repository;
+package com.shopallday.storage.domain.repository.products;
 
 import com.shopallday.storage.domain.exceptions.product.ReadProductTypeException;
 import com.shopallday.storage.domain.models.ProductType;
+import com.shopallday.storage.domain.repository.RepositoryManager;
 
 import java.util.List;
 

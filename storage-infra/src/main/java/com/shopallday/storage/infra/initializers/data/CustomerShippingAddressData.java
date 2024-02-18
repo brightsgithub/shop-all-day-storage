@@ -2,8 +2,8 @@ package com.shopallday.storage.infra.initializers.data;
 
 import com.shopallday.storage.domain.models.Customer;
 import com.shopallday.storage.domain.models.CustomerShippingAddress;
-import com.shopallday.storage.domain.repository.CustomerRepository;
-import com.shopallday.storage.domain.repository.CustomerShippingAddRepository;
+import com.shopallday.storage.domain.repository.customer.CustomerRepository;
+import com.shopallday.storage.domain.repository.customer.CustomerShippingAddRepository;
 import com.shopallday.storage.domain.repository.RepositoryManager;
 import org.springframework.stereotype.Component;
 

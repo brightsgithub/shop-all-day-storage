@@ -946,31 +946,31 @@ values(nextval('order_seq'), '2024-01-15 10:30:00', 10, 224);
 
 
 -- order lines for 1st order -- PENDING
-INSERT INTO order_lines (order_lines_id, orders_id, product_id, quantity, size, color)
+INSERT INTO order_lines (order_lines_id, order_id, product_id, quantity, size, color)
 VALUES (nextval('order_line_seq'), 30, 17, 2, 'Small', 'Black');
 
-INSERT INTO order_lines (order_lines_id, orders_id, product_id, quantity, size, color)
+INSERT INTO order_lines (order_lines_id, order_id, product_id, quantity, size, color)
 VALUES (nextval('order_line_seq'), 30, 17, 4, 'Large', 'Black');
 
-INSERT INTO order_lines (order_lines_id, orders_id, product_id, quantity, size, color)
+INSERT INTO order_lines (order_lines_id, order_id, product_id, quantity, size, color)
 VALUES (nextval('order_line_seq'), 30, 17, 1, 'Large', 'White');
 
-INSERT INTO order_lines (order_lines_id, orders_id, product_id, quantity, size, color)
+INSERT INTO order_lines (order_lines_id, order_id, product_id, quantity, size, color)
 VALUES (nextval('order_line_seq'), 30, 18, 7, 'XLarge', 'White');
 
 -- order lines for 2nd order -- SUCCESSFUL
-INSERT INTO order_lines (order_lines_id, orders_id, product_id, quantity, size, color)
+INSERT INTO order_lines (order_lines_id, order_id, product_id, quantity, size, color)
 VALUES (nextval('order_line_seq'), 31, 33, 2, 'Small', 'Black');
 
-INSERT INTO order_lines (order_lines_id, orders_id, product_id, quantity, size, color)
+INSERT INTO order_lines (order_lines_id, order_id, product_id, quantity, size, color)
 VALUES (nextval('order_line_seq'), 31, 33, 4, 'Small', 'Red');
 
-INSERT INTO order_lines (order_lines_id, orders_id, product_id, quantity, size, color)
+INSERT INTO order_lines (order_lines_id, order_id, product_id, quantity, size, color)
 VALUES (nextval('order_line_seq'), 31, 34, 1, 'Large', 'White');
 
 -- order lines for 3rd order -- FAILED
-INSERT INTO order_lines (order_lines_id, orders_id, product_id, quantity, size, color)
+INSERT INTO order_lines (order_lines_id, order_id, product_id, quantity, size, color)
 VALUES (nextval('order_line_seq'), 32, 27, 2, 'Small', 'Black');
 
-INSERT INTO order_lines (order_lines_id, orders_id, product_id, quantity, size, color)
+INSERT INTO order_lines (order_lines_id, order_id, product_id, quantity, size, color)
 VALUES (nextval('order_line_seq'), 32, 28, 4, 'Small', 'Red');

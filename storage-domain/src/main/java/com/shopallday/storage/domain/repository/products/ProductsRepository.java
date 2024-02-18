@@ -1,6 +1,7 @@
-package com.shopallday.storage.domain.repository;
+package com.shopallday.storage.domain.repository.products;
 
 import com.shopallday.storage.domain.models.Product;
+import com.shopallday.storage.domain.repository.RepositoryManager;
 
 import java.util.List;
 

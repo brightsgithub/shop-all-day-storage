@@ -1,7 +1,7 @@
 package com.shopallday.storage.domain.usecases.customer;
 
 import com.shopallday.storage.domain.models.Customer;
-import com.shopallday.storage.domain.repository.CustomerRepository;
+import com.shopallday.storage.domain.repository.customer.CustomerRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

@@ -2,6 +2,10 @@ package com.shopallday.storage.infra;
 
 import com.shopallday.storage.domain.initializers.StorageInitializer;
 import com.shopallday.storage.domain.repository.*;
+import com.shopallday.storage.domain.repository.customer.CustomerRepository;
+import com.shopallday.storage.domain.repository.customer.CustomerShippingAddRepository;
+import com.shopallday.storage.domain.repository.orders.CustomerOrderDetailRepository;
+import com.shopallday.storage.domain.repository.products.*;
 import com.shopallday.storage.infra.initializers.cache.CacheInitializer;
 import com.shopallday.storage.infra.initializers.data.*;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -24,7 +28,8 @@ public class InfraConfig {
             @Qualifier("getProductTypeData") DataHelper productTypeData,
             @Qualifier("getBrandData") DataHelper brandData,
             @Qualifier("getProductStockData") DataHelper productStockData,
-            @Qualifier("getCustomerShippingAddressData") DataHelper customerShippingAddressData
+            @Qualifier("getCustomerShippingAddressData") DataHelper customerShippingAddressData,
+            @Qualifier("getOrdersData") DataHelper ordersData
 
     ) {
         return new DataInitializer(
@@ -97,6 +102,14 @@ public class InfraConfig {
                 customerRepository,
                 customerShippingAddRepository,
                 repositoryManager);
+    }
+    @Bean(name = "getOrdersData")
+    public DataHelper getOrdersData(
+        CustomerRepository customerRepository,
+        CustomerOrderDetailRepository customerOrderDetailRepository,
+        RepositoryManager repositoryManager
+    ) {
+        return new OrdersData(repositoryManager, customerOrderDetailRepository, customerRepository);
     }
 
     @Bean(name = "getDummyClass")

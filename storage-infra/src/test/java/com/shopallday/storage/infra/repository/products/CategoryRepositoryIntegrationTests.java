@@ -1,7 +1,7 @@
 package com.shopallday.storage.infra.repository.products;
 
 import com.shopallday.storage.domain.models.Category;
-import com.shopallday.storage.domain.repository.CategoryRepository;
+import com.shopallday.storage.domain.repository.products.CategoryRepository;
 import com.shopallday.storage.infra.repository.BaseIntegrationTests;
 import com.shopallday.storage.infra.repository.TestFactoryData;
 import jakarta.transaction.Transactional;

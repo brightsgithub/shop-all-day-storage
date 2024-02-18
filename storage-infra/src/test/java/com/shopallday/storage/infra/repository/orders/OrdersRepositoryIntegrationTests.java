@@ -1,7 +1,7 @@
 package com.shopallday.storage.infra.repository.orders;
 
 import com.shopallday.storage.domain.models.Order;
-import com.shopallday.storage.domain.repository.OrdersRepository;
+import com.shopallday.storage.domain.repository.orders.OrdersRepository;
 import com.shopallday.storage.domain.repository.RepositoryManager;
 import com.shopallday.storage.infra.repository.BaseIntegrationTests;
 import com.shopallday.storage.infra.repository.TestFactoryData;

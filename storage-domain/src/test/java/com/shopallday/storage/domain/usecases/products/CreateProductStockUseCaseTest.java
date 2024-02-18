@@ -1,7 +1,7 @@
 package com.shopallday.storage.domain.usecases.products;
 
 import com.shopallday.storage.domain.models.ProductStock;
-import com.shopallday.storage.domain.repository.ProductStockRepository;
+import com.shopallday.storage.domain.repository.products.ProductStockRepository;
 import com.shopallday.storage.domain.repository.RepositoryManager;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

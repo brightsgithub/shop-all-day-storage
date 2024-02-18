@@ -180,7 +180,7 @@ create sequence order_line_seq increment by 1 start with 44;
 create table order_lines
 (
     order_lines_id integer default nextval('order_line_seq') PRIMARY KEY,
-    orders_id integer references orders(order_id) NOT NULL,
+    order_id integer references orders(order_id) NOT NULL,
     product_id integer references products(product_id) NOT NULL,
     quantity integer NOT NULL,
     size text,

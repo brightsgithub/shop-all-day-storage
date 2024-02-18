@@ -1,7 +1,7 @@
 package com.shopallday.storage.infra.repository.products;
 
 import com.shopallday.storage.domain.models.Brand;
-import com.shopallday.storage.domain.repository.BrandRepository;
+import com.shopallday.storage.domain.repository.products.BrandRepository;
 import com.shopallday.storage.infra.repository.BaseIntegrationTests;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;

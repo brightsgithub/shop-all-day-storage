@@ -1,4 +1,4 @@
-package com.shopallday.storage.domain.repository;
+package com.shopallday.storage.domain.repository.products;
 
 import com.shopallday.storage.domain.exceptions.product.ReadBrandException;
 import com.shopallday.storage.domain.models.Brand;

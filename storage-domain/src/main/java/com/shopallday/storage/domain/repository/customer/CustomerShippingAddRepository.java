@@ -1,8 +1,9 @@
-package com.shopallday.storage.domain.repository;
+package com.shopallday.storage.domain.repository.customer;
 
 import com.shopallday.storage.domain.exceptions.customer.ReadCustomerException;
 import com.shopallday.storage.domain.models.Customer;
 import com.shopallday.storage.domain.models.CustomerShippingAddress;
+import com.shopallday.storage.domain.repository.RepositoryManager;
 
 import java.util.List;
 

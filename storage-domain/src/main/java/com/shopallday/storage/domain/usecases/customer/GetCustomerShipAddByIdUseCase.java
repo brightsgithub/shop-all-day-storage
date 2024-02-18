@@ -1,7 +1,7 @@
 package com.shopallday.storage.domain.usecases.customer;
 
 import com.shopallday.storage.domain.models.CustomerShippingAddress;
-import com.shopallday.storage.domain.repository.CustomerShippingAddRepository;
+import com.shopallday.storage.domain.repository.customer.CustomerShippingAddRepository;
 import com.shopallday.storage.domain.usecases.UseCase;
 
 import java.util.List;

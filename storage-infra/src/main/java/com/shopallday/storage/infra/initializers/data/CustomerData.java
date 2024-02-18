@@ -3,7 +3,7 @@ package com.shopallday.storage.infra.initializers.data;
 import com.shopallday.storage.domain.exceptions.customer.CreateCustomerException;
 import com.shopallday.storage.domain.exceptions.customer.ReadCustomerException;
 import com.shopallday.storage.domain.models.Customer;
-import com.shopallday.storage.domain.repository.CustomerRepository;
+import com.shopallday.storage.domain.repository.customer.CustomerRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

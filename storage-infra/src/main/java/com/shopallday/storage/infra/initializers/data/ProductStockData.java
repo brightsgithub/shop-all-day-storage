@@ -2,8 +2,8 @@ package com.shopallday.storage.infra.initializers.data;
 
 import com.shopallday.storage.domain.models.Product;
 import com.shopallday.storage.domain.models.ProductStock;
-import com.shopallday.storage.domain.repository.ProductStockRepository;
-import com.shopallday.storage.domain.repository.ProductsRepository;
+import com.shopallday.storage.domain.repository.products.ProductStockRepository;
+import com.shopallday.storage.domain.repository.products.ProductsRepository;
 import com.shopallday.storage.domain.repository.RepositoryManager;
 import org.springframework.stereotype.Component;
 

@@ -1,7 +1,7 @@
 package com.shopallday.storage.infra.initializers.data;
 
 import com.shopallday.storage.domain.models.Category;
-import com.shopallday.storage.domain.repository.CategoryRepository;
+import com.shopallday.storage.domain.repository.products.CategoryRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name="customer")
-@Table(uniqueConstraints = {
+@Entity
+@Table(name="customer", uniqueConstraints = {
         @UniqueConstraint(name = "username_unique", columnNames = "username"),
         @UniqueConstraint(name = "email_unique", columnNames = "email")
 })

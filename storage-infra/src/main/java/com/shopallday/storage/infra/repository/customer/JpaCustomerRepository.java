@@ -2,7 +2,7 @@ package com.shopallday.storage.infra.repository.customer;
 
 import com.shopallday.storage.domain.exceptions.customer.ReadCustomerException;
 import com.shopallday.storage.domain.models.Customer;
-import com.shopallday.storage.domain.repository.CustomerRepository;
+import com.shopallday.storage.domain.repository.customer.CustomerRepository;
 import com.shopallday.storage.infra.entities.CustomerEntity;
 import com.shopallday.storage.infra.mappers.CustomerMapper;
 import org.springframework.data.jpa.repository.JpaRepository;

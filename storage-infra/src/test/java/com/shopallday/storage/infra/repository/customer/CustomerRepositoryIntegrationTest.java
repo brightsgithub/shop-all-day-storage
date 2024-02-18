@@ -1,7 +1,7 @@
 package com.shopallday.storage.infra.repository.customer;
 
 import com.shopallday.storage.domain.models.Customer;
-import com.shopallday.storage.domain.repository.CustomerRepository;
+import com.shopallday.storage.domain.repository.customer.CustomerRepository;
 import com.shopallday.storage.infra.repository.BaseIntegrationTests;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;

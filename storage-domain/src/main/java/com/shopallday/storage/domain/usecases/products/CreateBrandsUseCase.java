@@ -1,7 +1,7 @@
 package com.shopallday.storage.domain.usecases.products;
 
 import com.shopallday.storage.domain.models.Brand;
-import com.shopallday.storage.domain.repository.BrandRepository;
+import com.shopallday.storage.domain.repository.products.BrandRepository;
 import com.shopallday.storage.domain.usecases.UseCaseNoReturnVal;
 
 import java.util.List;

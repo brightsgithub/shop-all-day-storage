@@ -1,7 +1,7 @@
 package com.shopallday.storage.infra.initializers.data;
 
 import com.shopallday.storage.domain.models.Brand;
-import com.shopallday.storage.domain.repository.BrandRepository;
+import com.shopallday.storage.domain.repository.products.BrandRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

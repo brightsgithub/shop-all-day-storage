@@ -1,7 +1,7 @@
 package com.shopallday.storage.infra.repository.customer;
 
 import com.shopallday.storage.domain.models.CustomerShippingAddress;
-import com.shopallday.storage.domain.repository.CustomerShippingAddRepository;
+import com.shopallday.storage.domain.repository.customer.CustomerShippingAddRepository;
 import com.shopallday.storage.domain.repository.RepositoryManager;
 import com.shopallday.storage.infra.entities.CustomerShippingAddressEntity;
 import com.shopallday.storage.infra.mappers.CustomerShippingAddMapper;
