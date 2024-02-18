@@ -15,6 +15,10 @@ public interface JpaCustomerOrderDetailRepository extends JpaRepository<OrderLin
     @Query("SELECT new com.shopallday.storage.domain.models.CustomerOrderDetail(" +
             "c.customerId, " +
             "o.orderId, " +
+            "ps.productStockId, " +
+            "cat.categoryName, " +
+            "b.brandName, " +
+            "pt.productTypeName, " +
             "p.shortTitle, " +
             "o.orderDate, " +
             "ol.quantity, " +
@@ -27,7 +31,10 @@ public interface JpaCustomerOrderDetailRepository extends JpaRepository<OrderLin
             "OrderLineEntity ol, " +
             "ProductEntity p, " +
             "CustomerEntity c, " +
-            "ProductStockEntity ps " +
+            "ProductStockEntity ps, " +
+            "ProductTypeEntity pt, " +
+            "BrandEntity b, " +
+            "CategoryEntity cat " +
             "WHERE ost.orderStatusTypeId = o.orderStatusTypeEntity.orderStatusTypeId " +
             "AND ol.orderEntity.orderId = o.orderId " +
             "AND ol.productEntity.productId = p.productId " +
@@ -35,6 +42,9 @@ public interface JpaCustomerOrderDetailRepository extends JpaRepository<OrderLin
             "AND ol.productEntity.productId = ps.productEntity.productId " +
             "AND ol.size = ps.size " +
             "AND ol.color = ps.color " +
+            "AND p.productTypeEntity.productTypeId = pt.productTypeId " +
+            "AND p.brandEntity.brandId = b.brandId " +
+            "AND pt.categoryEntity.categoryId = cat.categoryId " +
             "AND c.customerId = :customerId")
     List<CustomerOrderDetail> getOrdersByCustomerId(Long customerId);
 }

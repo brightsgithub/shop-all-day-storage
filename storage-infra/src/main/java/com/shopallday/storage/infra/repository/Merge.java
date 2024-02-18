@@ -96,10 +96,14 @@ public class Merge {
         mergeOrders(entityManager, orderLineEntity.getOrderEntity());
         mergeProductEntity(entityManager, orderLineEntity.getProductEntity());
 
-        OrderEntity mergedOrderEntity = orderLineEntity.getOrderEntity();
-        ProductEntity mergedProductEntity = orderLineEntity.getProductEntity();
+        OrderEntity mergedOrderEntity = entityManager.merge(orderLineEntity.getOrderEntity());
+        ProductEntity mergedProductEntity = entityManager.merge(orderLineEntity.getProductEntity());
 
         orderLineEntity.setOrderEntity(mergedOrderEntity);
         orderLineEntity.setProductEntity(mergedProductEntity);
+    }
+
+    private static void isManaged(EntityManager entityManager, Object object) {
+        System.out.println(object.getClass().getSimpleName() +" "+entityManager.contains(object));
     }
 }

@@ -107,9 +107,9 @@ public class CustomerOrderDetRepoIntegrationTests extends BaseIntegrationTests {
         ordersRepository.createOrder(orders, repositoryManager);
         List<Order> ordersFromDB = ordersRepository.getAllOrders();
 
+        // Create Order lines
         List<OrderLine> expectedOrderLines = ordersDataHelper.createMockOrderLines(productsFromDb, productStocksFromDB, ordersFromDB);
         orderLinesRepository.createOrderLine(expectedOrderLines, repositoryManager);
-        List<OrderLine> actualOrderLines = orderLinesRepository.getAllOrderLines();
 
         List<CustomerOrderDetail> customerOrderDetails = customerOrderDetailRepository.getOrdersByCustomerId(customerFromDB.getCustomerId());
         for (CustomerOrderDetail customerOrderDetail : customerOrderDetails) {

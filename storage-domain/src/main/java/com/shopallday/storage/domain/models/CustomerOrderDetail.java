@@ -11,6 +11,10 @@ public class CustomerOrderDetail {
 
     private Long customerId;
     private Long orderId;
+    private Long productStockId;
+    private String categoryName;
+    private String brandName;
+    private String productTypeName;
     private String shortTitle;
     private Timestamp timestamp;
     private Integer quantity;
