@@ -4,12 +4,12 @@ import com.shopallday.storage.domain.repository.RepositoryManager;
 import com.shopallday.storage.domain.repository.customer.CustomerRepository;
 import com.shopallday.storage.domain.repository.customer.CustomerShippingAddRepository;
 import com.shopallday.storage.domain.repository.orders.CustomerOrderDetailRepository;
+import com.shopallday.storage.domain.repository.orders.OrderLinesRepository;
+import com.shopallday.storage.domain.repository.orders.OrderStatusTypeRepository;
 import com.shopallday.storage.domain.repository.orders.OrdersRepository;
 import com.shopallday.storage.domain.repository.products.*;
 import com.shopallday.storage.domain.usecases.customer.*;
-import com.shopallday.storage.domain.usecases.orders.GetAllOrdersUseCase;
-import com.shopallday.storage.domain.usecases.orders.GetCustomerOrderDetailUseCase;
-import com.shopallday.storage.domain.usecases.orders.GetOrdersByCustomerIdUseCase;
+import com.shopallday.storage.domain.usecases.orders.*;
 import com.shopallday.storage.domain.usecases.products.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -118,5 +118,33 @@ public class DomainConfig {
             CustomerOrderDetailRepository customerOrderDetailRepository
     ) {
         return new GetCustomerOrderDetailUseCase(customerOrderDetailRepository);
+    }
+    @Bean
+    public CreateOrderUseCase getCreateOrderUseCase(
+            OrdersRepository ordersRepository,
+            RepositoryManager repositoryManager
+    ) {
+        return new CreateOrderUseCase(ordersRepository, repositoryManager);
+    }
+    @Bean
+    public CreateOrderLineUseCase getCreateOrderLineUseCase(
+            OrderLinesRepository orderLinesRepository,
+            RepositoryManager repositoryManager
+    ) {
+        return new CreateOrderLineUseCase(orderLinesRepository, repositoryManager);
+    }
+
+    @Bean
+    public CreateOrderStatusTypeUseCase getCreateOrderStatusTypeUseCase(
+            OrderStatusTypeRepository orderStatusTypeRepository,
+            RepositoryManager repositoryManager
+    ) {
+        return new CreateOrderStatusTypeUseCase(orderStatusTypeRepository, repositoryManager);
+    }
+    @Bean
+    public GetAllOrderStatusTypesUseCase getGetAllOrderStatusTypesUseCase(
+            OrderStatusTypeRepository orderStatusTypeRepository
+    ) {
+        return new GetAllOrderStatusTypesUseCase(orderStatusTypeRepository);
     }
 }
