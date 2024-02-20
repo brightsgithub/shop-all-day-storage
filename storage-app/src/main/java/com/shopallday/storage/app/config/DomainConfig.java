@@ -1,10 +1,15 @@
 package com.shopallday.storage.app.config;
 
-import com.shopallday.storage.domain.repository.*;
+import com.shopallday.storage.domain.repository.RepositoryManager;
 import com.shopallday.storage.domain.repository.customer.CustomerRepository;
 import com.shopallday.storage.domain.repository.customer.CustomerShippingAddRepository;
+import com.shopallday.storage.domain.repository.orders.CustomerOrderDetailRepository;
+import com.shopallday.storage.domain.repository.orders.OrdersRepository;
 import com.shopallday.storage.domain.repository.products.*;
 import com.shopallday.storage.domain.usecases.customer.*;
+import com.shopallday.storage.domain.usecases.orders.GetAllOrdersUseCase;
+import com.shopallday.storage.domain.usecases.orders.GetCustomerOrderDetailUseCase;
+import com.shopallday.storage.domain.usecases.orders.GetOrdersByCustomerIdUseCase;
 import com.shopallday.storage.domain.usecases.products.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -98,5 +103,20 @@ public class DomainConfig {
             CustomerShippingAddRepository customerShippingAddRepository
     ){
         return new GetCustomerShipAddByIdUseCase(customerShippingAddRepository);
+    }
+    @Bean
+    public GetAllOrdersUseCase getGetAllOrdersUseCase(OrdersRepository ordersRepository) {
+        return new GetAllOrdersUseCase(ordersRepository);
+    }
+
+    @Bean
+    public GetOrdersByCustomerIdUseCase getGetOrdersByCustomerIdUseCase(OrdersRepository ordersRepository) {
+        return new GetOrdersByCustomerIdUseCase(ordersRepository);
+    }
+    @Bean
+    public GetCustomerOrderDetailUseCase getGetCustomerOrderDetailUseCase(
+            CustomerOrderDetailRepository customerOrderDetailRepository
+    ) {
+        return new GetCustomerOrderDetailUseCase(customerOrderDetailRepository);
     }
 }
