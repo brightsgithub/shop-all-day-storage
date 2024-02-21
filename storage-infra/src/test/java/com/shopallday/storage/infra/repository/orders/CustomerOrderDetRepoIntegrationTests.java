@@ -70,8 +70,7 @@ public class CustomerOrderDetRepoIntegrationTests extends BaseIntegrationTests {
 
         // Create customer
         Customer customer = ordersDataHelper.createMockCustomer().get(0);
-        customerRepository.createCustomers(List.of(customer));
-        Customer customerFromDB = customerRepository.getCustomers().get(0);
+        Customer customerFromDB = customerRepository.createCustomers(List.of(customer)).get(0);
 
         // Create Categories
         List<Category> expectedCategories = ordersDataHelper.createMockCategories();

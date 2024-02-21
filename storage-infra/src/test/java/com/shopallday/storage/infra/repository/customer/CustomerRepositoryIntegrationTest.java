@@ -25,7 +25,7 @@ public class CustomerRepositoryIntegrationTest extends BaseIntegrationTests {
     @Transactional
     public void testThatCustomersCanBeCreatedAndObtained() throws Exception {
         List<Customer> expectedResults = createMockCustomers(3);
-        customerRepository.createCustomers(expectedResults);
+        List<Customer> justCreatedCustomers = customerRepository.createCustomers(expectedResults);
 
         List<Customer> actualResults = customerRepository.getCustomers();
 
@@ -34,8 +34,11 @@ public class CustomerRepositoryIntegrationTest extends BaseIntegrationTests {
         for (int i = 0; i < expectedResults.size(); i++) {
             Customer expectedCustomer = expectedResults.get(i);
             Customer actualCustomer = actualResults.get(i);
+            Customer justCreatedCustomer = justCreatedCustomers.get(i);
             assertEquals(expectedCustomer.getEmail(), actualCustomer.getEmail());
             assertEquals(expectedCustomer.getFirstName(), actualCustomer.getFirstName());
+
+            assertEquals(actualCustomer, justCreatedCustomer);
         }
     }
 }

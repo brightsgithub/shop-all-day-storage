@@ -16,9 +16,10 @@ public interface CustomerRepository {
 
     List<Customer> getCustomers() throws ReadCustomerException;
 
-    void createCustomers(final List<Customer> customer) throws CreateCustomerException;
+    List<Customer> createCustomers(final List<Customer> customer) throws CreateCustomerException;
+    Customer createCustomer(final Customer customer) throws CreateCustomerException;
 
-    void updateCustomer(final Customer customer) throws UpdateCustomerException;
+    Customer updateCustomer(final Customer customer) throws UpdateCustomerException;
 
     void deleteCustomer(final Customer customer) throws DeleteCustomerException;
 

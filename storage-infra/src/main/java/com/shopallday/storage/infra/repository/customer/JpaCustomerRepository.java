@@ -1,5 +1,6 @@
 package com.shopallday.storage.infra.repository.customer;
 
+import com.shopallday.storage.domain.exceptions.customer.CreateCustomerException;
 import com.shopallday.storage.domain.exceptions.customer.ReadCustomerException;
 import com.shopallday.storage.domain.models.Customer;
 import com.shopallday.storage.domain.repository.customer.CustomerRepository;
@@ -23,9 +24,15 @@ public interface JpaCustomerRepository extends JpaRepository<CustomerEntity, Lon
 
     // Implementing the createCustomer method using the save method provided by JpaRepository
     @Override
-    default void createCustomers(List<Customer> customers) {
+    default List<Customer> createCustomers(List<Customer> customers) {
         List<CustomerEntity> entities = mapper.mapToEntity(customers);
-        saveAll(entities);
+        return mapper.mapToDomain(saveAll(entities));
+    }
+
+    @Override
+    default Customer createCustomer(final Customer customer) throws CreateCustomerException {
+        final CustomerEntity customerEntity = mapper.mapToEntity(customer);
+        return mapper.mapToDomain(save(customerEntity));
     }
 
     @Override
@@ -44,8 +51,9 @@ public interface JpaCustomerRepository extends JpaRepository<CustomerEntity, Lon
     }
 
     @Override
-    default void updateCustomer(final Customer customer) {
-        save(mapper.mapToEntity(customer));
+    default Customer updateCustomer(final Customer customer) {
+        final CustomerEntity customerEntity = mapper.mapToEntity(customer);
+        return mapper.mapToDomain(save(customerEntity));
     }
 
     @Override
