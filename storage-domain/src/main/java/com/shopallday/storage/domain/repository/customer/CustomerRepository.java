@@ -14,7 +14,7 @@ public interface CustomerRepository {
 
     List<Customer> findCustomersById(final List<Long> ids) throws ReadCustomerException;
 
-    List<Customer> getCustomers() throws ReadCustomerException;
+    List<Customer> getCustomers();
 
     List<Customer> createCustomers(final List<Customer> customer) throws CreateCustomerException;
     Customer createCustomer(final Customer customer) throws CreateCustomerException;
@@ -24,4 +24,7 @@ public interface CustomerRepository {
     void deleteCustomer(final Customer customer) throws DeleteCustomerException;
 
     void deleteCustomerById(final Long id) throws DeleteCustomerException;
+    Customer findCustomerByEmail(String email);
+
+    boolean doesCustomerExist(String username, String email);
 }

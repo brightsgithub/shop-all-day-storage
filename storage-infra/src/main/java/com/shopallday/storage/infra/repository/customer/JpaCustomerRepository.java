@@ -7,6 +7,8 @@ import com.shopallday.storage.domain.repository.customer.CustomerRepository;
 import com.shopallday.storage.infra.entities.CustomerEntity;
 import com.shopallday.storage.infra.mappers.CustomerMapper;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -41,6 +43,14 @@ public interface JpaCustomerRepository extends JpaRepository<CustomerEntity, Lon
     }
 
     @Override
+    default Customer findCustomerByEmail(String email) {
+        final CustomerEntity customerEntity = findByEmail(email);
+        return mapper.mapToDomain(customerEntity);
+    }
+
+    CustomerEntity findByEmail(String email);
+
+    @Override
     default List<Customer> findCustomersById(final List<Long> ids) {
         return mapper.mapToDomain(findAllById(ids));
     }
@@ -65,4 +75,14 @@ public interface JpaCustomerRepository extends JpaRepository<CustomerEntity, Lon
     default void deleteCustomerById(final Long id) {
         deleteById(id);
     }
+
+    // case statement
+    @Override
+    @Query("SELECT " +
+            "CASE " +
+            "WHEN COUNT(c) > 0 THEN true " +
+            "ELSE false END" +
+            " FROM CustomerEntity c WHERE c.username = :username OR c.email = :email")
+    boolean doesCustomerExist(@Param("username") String username, @Param("email") String email);
+
 }

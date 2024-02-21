@@ -15,13 +15,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-//@ComponentScan(basePackages = {"com.shopallday.storage.infra"})
-//@ComponentScan(basePackages = {"com.shopallday.*"})
 public class DomainConfig {
 
     @Bean
     public CreateCustomersUseCase getCreateCustomersUseCase(CustomerRepository customerRepository) {
         return new CreateCustomersUseCase(customerRepository);
+    }
+    @Bean
+    public CreateSingleCustomerUseCase getCreateSingleCustomerUseCase(CustomerRepository customerRepository) {
+        return new CreateSingleCustomerUseCase(customerRepository);
     }
     @Bean
     public GetAllCustomersUseCase getGetAllCustomersUseCase(CustomerRepository customerRepository) {
@@ -146,5 +148,11 @@ public class DomainConfig {
             OrderStatusTypeRepository orderStatusTypeRepository
     ) {
         return new GetAllOrderStatusTypesUseCase(orderStatusTypeRepository);
+    }
+    @Bean
+    public GetCustomersByIdUseCase getGetCustomersByIdUseCase(
+            CustomerRepository customerRepository
+    ) {
+        return new GetCustomersByIdUseCase(customerRepository);
     }
 }

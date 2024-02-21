@@ -1,6 +1,5 @@
 package com.shopallday.storage.domain.usecases.customer;
 
-import com.shopallday.storage.domain.exceptions.customer.ReadCustomerException;
 import com.shopallday.storage.domain.models.Customer;
 import com.shopallday.storage.domain.repository.customer.CustomerRepository;
 import com.shopallday.storage.domain.usecases.UseCaseNoParam;
@@ -15,7 +14,7 @@ public class GetAllCustomersUseCase implements UseCaseNoParam<List<Customer>> {
         this.customerRepository = customerRepository;
     }
 
-    public List<Customer> execute() throws ReadCustomerException {
+    public List<Customer> execute() {
         return customerRepository.getCustomers();
     }
 }
