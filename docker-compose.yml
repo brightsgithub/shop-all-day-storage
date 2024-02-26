@@ -8,12 +8,9 @@ services:
       - "5432:5432"
     restart: always
     environment:
-      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: changemeinprod!
-      POSTGRES_DB: storeage-db
     networks:
       - db-network
-    hostname: db  # Specify the hostname for the PostgreSQL service
 
   storage_app:
     build:
