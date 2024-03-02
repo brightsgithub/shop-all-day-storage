@@ -1,0 +1,45 @@
+to install docker-compose on my ec2 instance i ran the commands below:
+==========================
+sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+docker-compose version
+
+mount the drive
+================
+see this: https://www.youtube.com/watch?v=gRgdnHHuvoI
+
+
+Install java
+===============
+Since you are using Amazon Linux on an x86_64 architecture, you should download the "Linux x64 Compressed Archive" version of Java. Here are the steps to download and install it:
+Download the Java 17 compressed archive for Linux x64:
+wget https://download.oracle.com/java/17/archive/jdk-17.0.10_linux-x64_bin.tar.gz
+
+Extract the downloaded archive:
+tar -xvf jdk-17.0.10_linux-x64_bin.tar.gz
+
+Move the extracted directory to a location of your choice. For example, you can move it to /usr/local/
+sudo mkdir -p /usr/local/java
+sudo mv jdk-17.0.10 /usr/local/java/
+
+Set the JAVA_HOME environment variable:
+echo 'export JAVA_HOME=/usr/local/java/jdk-17.0.10' >> ~/.bashrc
+source ~/.bashrc
+
+echo 'export PATH="$JAVA_HOME/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+
+java -version
+java version "17.0.10" 2024-01-16 LTS
+Java(TM) SE Runtime Environment (build 17.0.10+11-LTS-240)
+Java HotSpot(TM) 64-Bit Server VM (build 17.0.10+11-LTS-240, mixed mode, sharing)
+
+ssh into ec2 instance
+==============================
+sudo ssh -i shopallday-storage-aws.pem ec2-user@3.10.170.235
+
+copy project over
+==============================
+scp -i shopallday-storage-aws.pem -r SHOP_ALL_DAY_PROJECT ec2-user@3.10.170.235:/data
+
+
