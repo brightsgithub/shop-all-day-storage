@@ -1,13 +1,16 @@
 package com.shopallday.storage.infra.repository.products;
 
 import com.shopallday.storage.domain.models.Product;
-import com.shopallday.storage.domain.repository.products.ProductsRepository;
 import com.shopallday.storage.domain.repository.RepositoryManager;
+import com.shopallday.storage.domain.repository.products.ProductsRepository;
 import com.shopallday.storage.infra.entities.ProductEntity;
 import com.shopallday.storage.infra.mappers.ProductMapper;
 import com.shopallday.storage.infra.repository.Merge;
 import jakarta.persistence.EntityManager;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,9 +42,15 @@ public interface JpaProductsRepository extends JpaRepository<ProductEntity, Long
         return createProduct(product, manager);
     }
 
-    default void deleteProductById(Long id) {
-        deleteById(id);
+    default void deleteProductById(Long productId) {
+        deleteProductStocksByProductId(productId); // needed since cascade remove does not seem to be having any effect
+        deleteById(productId);
     }
+
+
+    @Modifying // needed since this is not a select statement
+    @Query("DELETE FROM ProductStockEntity ps WHERE ps.productEntity.productId = :productId")
+    void deleteProductStocksByProductId(@Param("productId") Long productId);
 
     static List<ProductEntity> mergeProductEntity(List<Product> products, RepositoryManager manager) {
         List<ProductEntity> productEntities = new ArrayList<>();

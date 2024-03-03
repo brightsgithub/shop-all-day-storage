@@ -8,6 +8,7 @@ import com.shopallday.storage.domain.exceptions.product.ReadProductException;
 import com.shopallday.storage.domain.exceptions.product.UpdateProductException;
 import com.shopallday.storage.domain.models.Product;
 import com.shopallday.storage.domain.usecases.products.*;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -43,28 +44,33 @@ public class ProductsServiceImpl implements ProductsService {
 
 
     @Override
+    @Transactional
     public ProductDto createProduct(Product product) throws CreateProductException {
         final Product justCreatedProduct = createSingleProductUseCase.execute(product);
         return productMapper.mapFromDomainToDto(justCreatedProduct);
     }
 
     @Override
+    @Transactional
     public ProductDto getProductById(Long id) throws ReadProductException {
         final Product product = getProductByIdUseCase.execute(id);
         return productMapper.mapFromDomainToDto(product);
     }
 
     @Override
+    @Transactional
     public List<ProductDto> getAllProducts() {
         return productMapper.mapFromDomainToDto(getAllProductsUseCase.execute());
     }
 
     @Override
+    @Transactional
     public void deleteProductById(Long id) throws DeleteProductException {
         deleteProductUseCase.execute(id);
     }
 
     @Override
+    @Transactional
     public ProductDto updateProduct(Product product) throws UpdateProductException {
         final Product updatedProduct = updateProductUseCase.execute(product);
         return productMapper.mapFromDomainToDto(updatedProduct);

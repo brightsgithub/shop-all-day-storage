@@ -33,6 +33,20 @@ public class ProductsRepositoryIntegrationTests extends BaseIntegrationTests {
 
         List<Product> actual = productsRepository.findAllProducts();
 
+//        System.out.println("size "+actual.size());
+//        for (Product product : actual) {
+//            System.out.println(product);
+//        }
+//
+//
+//        productsRepository.deleteProductById(actual.get(0).getProductId());
+//
+//        System.out.println("size again "+actual.size());
+//        for (Product product : actual) {
+//            System.out.println(product);
+//        }
+
+        assertEquals(actual.size(), expected.size());
         for (int i = 0; i < expected.size(); i++) {
             Product expectedProduct = expected.get(i);
             Product actuaProduct = actual.get(i);
