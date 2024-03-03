@@ -37,15 +37,15 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     @Transactional
     public CustomerDto createCustomer(Customer customer) throws CreateCustomerException {
-        final Customer justCreatedCustomer =  createSingleCustomerUseCase.execute(customer);
+        final Customer justCreatedCustomer = createSingleCustomerUseCase.execute(customer);
         return customerMapper.mapFromDomainToDto(justCreatedCustomer);
     }
 
     @Override
     @Transactional
     public CustomerDto getCustomerById(Long id) throws ReadCustomerException {
-        final Customer justCreatedCustomer =  getCustomersByIdUseCase.execute(List.of(id)).get(0);
-        return customerMapper.mapFromDomainToDto(justCreatedCustomer);
+        final Customer customer = getCustomersByIdUseCase.execute(List.of(id)).get(0);
+        return customerMapper.mapFromDomainToDto(customer);
     }
 
     @Override

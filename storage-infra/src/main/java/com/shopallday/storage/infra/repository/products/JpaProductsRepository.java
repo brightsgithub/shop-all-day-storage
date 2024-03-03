@@ -9,25 +9,20 @@ import com.shopallday.storage.infra.repository.Merge;
 import jakarta.persistence.EntityManager;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface JpaProductsRepository extends JpaRepository<ProductEntity, Long>, ProductsRepository {
 
     ProductMapper mapper = ProductMapper.INSTANCE;
 
-    default void createProduct(Product product) {
-        final ProductEntity productEntity = mapper.mapToEntity(product);
-        save(productEntity);
+    default Product createProduct(Product product, RepositoryManager manager) {
+        return mapper.mapToDomain(save(mergeProductEntity(product, manager)));
     }
 
     @Override
     default void createProducts(List<Product> products, RepositoryManager manager) {
-        final EntityManager entityManager = (EntityManager) manager.getManager();
-
-        final List<ProductEntity> productEntities = mapper.mapToEntity(products);
-        Merge.mergeProductEntity(entityManager,productEntities);
-
-        saveAll(productEntities);
+        saveAll(mergeProductEntity(products, manager));
     }
 
     default List<Product> findProductsByIds(List<Long> ids) {
@@ -40,12 +35,26 @@ public interface JpaProductsRepository extends JpaRepository<ProductEntity, Long
                 .mapToDomain(findAll());
     }
 
-    default void updateProduct(Product product) {
-        createProduct(product);
+    default Product updateProduct(Product product, RepositoryManager manager) {
+        return createProduct(product, manager);
     }
 
-    default void deleteProduct(Product product) {
+    default void deleteProductById(Long id) {
+        deleteById(id);
+    }
+
+    static List<ProductEntity> mergeProductEntity(List<Product> products, RepositoryManager manager) {
+        List<ProductEntity> productEntities = new ArrayList<>();
+        for (Product product : products) {
+            productEntities.add(mergeProductEntity(product, manager));
+        }
+        return productEntities;
+    }
+
+    static ProductEntity mergeProductEntity(Product product, RepositoryManager manager) {
+        final EntityManager entityManager = (EntityManager) manager.getManager();
         final ProductEntity productEntity = mapper.mapToEntity(product);
-        delete(productEntity);
+        Merge.mergeProductEntity(entityManager,productEntity);
+        return productEntity;
     }
 }

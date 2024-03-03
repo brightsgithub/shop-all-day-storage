@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ProductsRepository {
 
-    void createProduct(Product product);
+    Product createProduct(Product product, RepositoryManager manager);
 
     void createProducts(List<Product> products, RepositoryManager manager);
 
@@ -15,7 +15,7 @@ public interface ProductsRepository {
 
     List<Product> findAllProducts();
 
-    void updateProduct(Product product);
+    Product updateProduct(Product product, RepositoryManager manager);
 
-    void deleteProduct(Product product);
+    void deleteProductById(Long id);
 }

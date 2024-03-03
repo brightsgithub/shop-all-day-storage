@@ -155,4 +155,30 @@ public class DomainConfig {
     ) {
         return new GetCustomersByIdUseCase(customerRepository);
     }
+    @Bean
+    public DeleteProductUseCase getDeleteProductUseCase(
+            ProductsRepository productsRepository
+    ) {
+        return new DeleteProductUseCase(productsRepository);
+    }
+    @Bean
+    public UpdateProductUseCase getUpdateProductUseCase(
+            ProductsRepository productsRepository,
+            RepositoryManager repositoryManager
+    ) {
+        return new UpdateProductUseCase(productsRepository, repositoryManager);
+    }
+    @Bean
+    public CreateSingleProductUseCase getCreateSingleProductUseCase(
+            ProductsRepository productsRepository,
+            RepositoryManager repositoryManager
+    ) {
+        return new CreateSingleProductUseCase(productsRepository, repositoryManager);
+    }
+    @Bean
+    public GetProductByIdUseCase getGetProductByIdUseCase(
+            ProductsRepository productsRepository
+    ) {
+        return new GetProductByIdUseCase(productsRepository);
+    }
 }

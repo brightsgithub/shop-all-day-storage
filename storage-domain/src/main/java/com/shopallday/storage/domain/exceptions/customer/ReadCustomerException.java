@@ -8,5 +8,4 @@ public class ReadCustomerException extends BusinessException {
     public ReadCustomerException(String ids) {
         super("Customer with id/ids "+ids+" could not be found.", CUSTOMER_NOT_FOUND);
     }
-
 }
