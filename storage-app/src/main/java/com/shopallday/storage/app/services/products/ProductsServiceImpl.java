@@ -41,6 +41,7 @@ public class ProductsServiceImpl implements ProductsService {
         this.productMapper = productMapper;
     }
 
+
     @Override
     public ProductDto createProduct(Product product) throws CreateProductException {
         final Product justCreatedProduct = createSingleProductUseCase.execute(product);

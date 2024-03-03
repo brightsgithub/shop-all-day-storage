@@ -8,19 +8,22 @@ import com.shopallday.storage.app.models.ProductDto;
 import com.shopallday.storage.domain.models.Customer;
 import com.shopallday.storage.domain.models.Product;
 import org.mapstruct.factory.Mappers;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class AppConfig {
 
+    @Qualifier("productMapper")
+    @Bean
+    public Mapper<Product, ProductDto> producrMapper() {
+        return Mappers.getMapper(ProductMapper.class);
+    }
+    @Qualifier("customerMapper")
     @Bean
     public Mapper<Customer, CustomerDto> customerMapper() {
         return Mappers.getMapper(CustomerMapper.class);
     }
 
-    @Bean
-    public Mapper<Product, ProductDto> producrMapper() {
-        return Mappers.getMapper(ProductMapper.class);
-    }
 }
