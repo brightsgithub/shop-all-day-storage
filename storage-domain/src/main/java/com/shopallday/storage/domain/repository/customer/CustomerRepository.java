@@ -27,4 +27,5 @@ public interface CustomerRepository {
     Customer findCustomerByEmail(String email);
 
     boolean doesCustomerExist(String username, String email);
+    boolean isExists(Long id);
 }

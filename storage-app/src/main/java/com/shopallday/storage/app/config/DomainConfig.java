@@ -169,6 +169,14 @@ public class DomainConfig {
         return new UpdateProductUseCase(productsRepository, repositoryManager);
     }
     @Bean
+    public UpdateCustomerUseCase getUpdateCustomerUseCase(
+            CustomerRepository repository,
+            RepositoryManager repositoryManager
+    ) {
+        return new UpdateCustomerUseCase(repository, repositoryManager);
+    }
+
+    @Bean
     public CreateSingleProductUseCase getCreateSingleProductUseCase(
             ProductsRepository productsRepository,
             RepositoryManager repositoryManager

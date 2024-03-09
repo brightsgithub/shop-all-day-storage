@@ -2,6 +2,7 @@ package com.shopallday.storage.app.services.products;
 
 import com.shopallday.storage.app.mappers.Mapper;
 import com.shopallday.storage.app.models.ProductDto;
+import com.shopallday.storage.app.services.BaseService;
 import com.shopallday.storage.domain.exceptions.product.CreateProductException;
 import com.shopallday.storage.domain.exceptions.product.DeleteProductException;
 import com.shopallday.storage.domain.exceptions.product.ReadProductException;
@@ -11,14 +12,12 @@ import com.shopallday.storage.domain.usecases.products.*;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ReflectionUtils;
 
-import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
 
 @Service
-public class ProductsServiceImpl implements ProductsService {
+public class ProductsServiceImpl extends BaseService implements ProductsService {
 
     private CreateProductsUseCase createProductsUseCase;
     private CreateSingleProductUseCase createSingleProductUseCase;
@@ -84,14 +83,8 @@ public class ProductsServiceImpl implements ProductsService {
     public ProductDto partialUpdateProduct(
             final Long id, final Map<String, Object> fields
     ) throws UpdateProductException, ReadProductException {
-
         Product existingProduct = getProductByIdUseCase.execute(id);
-
-        fields.forEach((key, value) -> {
-            Field field = ReflectionUtils.findField(Product.class, key);
-            field.setAccessible(true); //
-            ReflectionUtils.setField(field, existingProduct, value);
-        });
+        updateFieldsOnObject(fields, existingProduct, Product.class);
         return updateProduct(existingProduct);
     }
 }

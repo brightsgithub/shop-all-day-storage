@@ -1,10 +1,9 @@
 package com.shopallday.storage.app.controllers.products;
 
-import com.shopallday.storage.app.controllers.CustomErrorResponse;
+import com.shopallday.storage.app.controllers.BaseController;
 import com.shopallday.storage.app.mappers.Mapper;
 import com.shopallday.storage.app.models.ProductDto;
 import com.shopallday.storage.app.services.products.ProductsService;
-import com.shopallday.storage.domain.exceptions.BusinessException;
 import com.shopallday.storage.domain.exceptions.product.CreateProductException;
 import com.shopallday.storage.domain.exceptions.product.DeleteProductException;
 import com.shopallday.storage.domain.exceptions.product.ReadProductException;
@@ -20,7 +19,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping(path = "storage/v1/products")
-public class ProductsController {
+public class ProductsController extends BaseController {
 
     private final ProductsService productsService;
     private final Mapper<Product, ProductDto> productMapper;
@@ -90,7 +89,7 @@ public class ProductsController {
     }
 
     @PatchMapping(path = "{id}")
-    public ResponseEntity partialUpdateProduct(
+    public ResponseEntity partiallyUpdateProduct(
             @PathVariable("id") Long id,
             @RequestBody final Map<String, Object> fields
     ) {
@@ -101,11 +100,6 @@ public class ProductsController {
         } catch (Exception exception) {
             return ResponseEntity.internalServerError().build();
         }
-    }
-
-    private ResponseEntity getErrorResponse(BusinessException e, HttpStatus httpStatus) {
-        CustomErrorResponse errorResponse = new CustomErrorResponse(e);
-        return new ResponseEntity<>(errorResponse, httpStatus);
     }
 }
 

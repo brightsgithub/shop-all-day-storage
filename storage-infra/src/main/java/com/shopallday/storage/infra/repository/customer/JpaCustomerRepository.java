@@ -85,4 +85,8 @@ public interface JpaCustomerRepository extends JpaRepository<CustomerEntity, Lon
             " FROM CustomerEntity c WHERE c.username = :username OR c.email = :email")
     boolean doesCustomerExist(@Param("username") String username, @Param("email") String email);
 
+    @Override
+    default boolean isExists(Long id) {
+        return existsById(id);
+    }
 }
