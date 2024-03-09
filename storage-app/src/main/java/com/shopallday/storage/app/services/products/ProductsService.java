@@ -6,9 +6,11 @@ import com.shopallday.storage.domain.exceptions.product.DeleteProductException;
 import com.shopallday.storage.domain.exceptions.product.ReadProductException;
 import com.shopallday.storage.domain.exceptions.product.UpdateProductException;
 import com.shopallday.storage.domain.models.Product;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 
 @Component
 public interface ProductsService {
@@ -16,5 +18,9 @@ public interface ProductsService {
     ProductDto getProductById(Long id) throws ReadProductException;
     List<ProductDto> getAllProducts();
     void deleteProductById(Long id) throws DeleteProductException;
-    ProductDto updateProduct(Product product) throws UpdateProductException;
+    ProductDto updateProduct(Product product) throws UpdateProductException, ReadProductException;
+
+    @Transactional
+    ProductDto partialUpdateProduct(final Long id, final Map<String, Object> fields)
+            throws UpdateProductException, ReadProductException;
 }

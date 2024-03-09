@@ -11,8 +11,11 @@ import com.shopallday.storage.domain.usecases.products.*;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ReflectionUtils;
 
+import java.lang.reflect.Field;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ProductsServiceImpl implements ProductsService {
@@ -71,8 +74,24 @@ public class ProductsServiceImpl implements ProductsService {
 
     @Override
     @Transactional
-    public ProductDto updateProduct(Product product) throws UpdateProductException {
+    public ProductDto updateProduct(Product product) throws UpdateProductException, ReadProductException {
         final Product updatedProduct = updateProductUseCase.execute(product);
         return productMapper.mapFromDomainToDto(updatedProduct);
+    }
+
+    @Override
+    @Transactional
+    public ProductDto partialUpdateProduct(
+            final Long id, final Map<String, Object> fields
+    ) throws UpdateProductException, ReadProductException {
+
+        Product existingProduct = getProductByIdUseCase.execute(id);
+
+        fields.forEach((key, value) -> {
+            Field field = ReflectionUtils.findField(Product.class, key);
+            field.setAccessible(true); //
+            ReflectionUtils.setField(field, existingProduct, value);
+        });
+        return updateProduct(existingProduct);
     }
 }

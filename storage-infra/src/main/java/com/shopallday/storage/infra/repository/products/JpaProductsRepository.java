@@ -66,4 +66,9 @@ public interface JpaProductsRepository extends JpaRepository<ProductEntity, Long
         Merge.mergeProductEntity(entityManager,productEntity);
         return productEntity;
     }
+
+    @Override
+    default boolean isExists(Long id) {
+        return existsById(id);
+    }
 }

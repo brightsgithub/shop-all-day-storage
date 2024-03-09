@@ -18,4 +18,6 @@ public interface ProductsRepository {
     Product updateProduct(Product product, RepositoryManager manager);
 
     void deleteProductById(Long id);
+
+    boolean isExists(Long id);
 }
