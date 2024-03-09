@@ -162,6 +162,12 @@ public class DomainConfig {
         return new DeleteProductUseCase(productsRepository);
     }
     @Bean
+    public DeleteCustomerUseCase getDeleteCustomerUseCase(
+            CustomerRepository customerRepository
+    ) {
+        return new DeleteCustomerUseCase(customerRepository);
+    }
+    @Bean
     public UpdateProductUseCase getUpdateProductUseCase(
             ProductsRepository productsRepository,
             RepositoryManager repositoryManager

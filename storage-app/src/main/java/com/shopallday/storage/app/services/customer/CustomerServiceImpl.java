@@ -4,13 +4,11 @@ import com.shopallday.storage.app.mappers.Mapper;
 import com.shopallday.storage.app.models.CustomerDto;
 import com.shopallday.storage.app.services.BaseService;
 import com.shopallday.storage.domain.exceptions.customer.CreateCustomerException;
+import com.shopallday.storage.domain.exceptions.customer.DeleteCustomerException;
 import com.shopallday.storage.domain.exceptions.customer.ReadCustomerException;
 import com.shopallday.storage.domain.exceptions.customer.UpdateCustomerException;
 import com.shopallday.storage.domain.models.Customer;
-import com.shopallday.storage.domain.usecases.customer.CreateSingleCustomerUseCase;
-import com.shopallday.storage.domain.usecases.customer.GetAllCustomersUseCase;
-import com.shopallday.storage.domain.usecases.customer.GetCustomersByIdUseCase;
-import com.shopallday.storage.domain.usecases.customer.UpdateCustomerUseCase;
+import com.shopallday.storage.domain.usecases.customer.*;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -25,6 +23,7 @@ public class CustomerServiceImpl extends BaseService implements CustomerService 
     private GetAllCustomersUseCase getAllCustomersUseCase;
     private GetCustomersByIdUseCase getCustomersByIdUseCase;
     private UpdateCustomerUseCase updateCustomerUseCase;
+    private DeleteCustomerUseCase deleteCustomerUseCase;
     @Qualifier("customerMapper")
     private Mapper<Customer, CustomerDto> customerMapper;
 
@@ -32,11 +31,14 @@ public class CustomerServiceImpl extends BaseService implements CustomerService 
             CreateSingleCustomerUseCase createSingleCustomerUseCase,
             GetAllCustomersUseCase getAllCustomersUseCase,
             GetCustomersByIdUseCase getCustomersByIdUseCase,
-            UpdateCustomerUseCase updateCustomerUseCase, @Qualifier("customerMapper") Mapper<Customer, CustomerDto> customerMapper) {
+            UpdateCustomerUseCase updateCustomerUseCase,
+            DeleteCustomerUseCase deleteCustomerUseCase,
+            @Qualifier("customerMapper") Mapper<Customer, CustomerDto> customerMapper) {
         this.createSingleCustomerUseCase = createSingleCustomerUseCase;
         this.getAllCustomersUseCase = getAllCustomersUseCase;
         this.getCustomersByIdUseCase = getCustomersByIdUseCase;
         this.updateCustomerUseCase = updateCustomerUseCase;
+        this.deleteCustomerUseCase = deleteCustomerUseCase;
         this.customerMapper = customerMapper;
     }
 
@@ -69,17 +71,25 @@ public class CustomerServiceImpl extends BaseService implements CustomerService 
     }
 
     @Override
+    @Transactional
     public CustomerDto updateCustomer(Customer customer) throws ReadCustomerException, UpdateCustomerException {
         final Customer updatedCustomer = updateCustomerUseCase.execute(customer);
         return customerMapper.mapFromDomainToDto(updatedCustomer);
     }
 
     @Override
+    @Transactional
     public CustomerDto partiallyUpdateCustomer(
             Long id,
             Map<String, Object> fields) throws ReadCustomerException, UpdateCustomerException {
         final Customer existingCustomer = getCustomersByIdUseCase.execute(List.of(id)).get(0);
         updateFieldsOnObject(fields, existingCustomer, Customer.class);
         return updateCustomer(existingCustomer);
+    }
+
+    @Override
+    @Transactional
+    public void deleteCustomerById(Long id) throws DeleteCustomerException {
+        deleteCustomerUseCase.execute(id);
     }
 }

@@ -6,6 +6,7 @@ import com.shopallday.storage.app.mappers.Mapper;
 import com.shopallday.storage.app.models.CustomerDto;
 import com.shopallday.storage.app.services.customer.CustomerService;
 import com.shopallday.storage.domain.exceptions.customer.CreateCustomerException;
+import com.shopallday.storage.domain.exceptions.customer.DeleteCustomerException;
 import com.shopallday.storage.domain.exceptions.customer.ReadCustomerException;
 import com.shopallday.storage.domain.exceptions.customer.UpdateCustomerException;
 import com.shopallday.storage.domain.models.Customer;
@@ -86,6 +87,19 @@ public class CustomerController extends BaseController {
         } catch (ReadCustomerException | UpdateCustomerException e) {
             return getErrorResponse(e, HttpStatus.NOT_FOUND);
         } catch (Exception exception) {
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    @DeleteMapping(path = "{id}")
+    public ResponseEntity deleteCustomerById(@PathVariable("id") Long id) {
+        try {
+            customerService.deleteCustomerById(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (DeleteCustomerException e) {
+            return getErrorResponse(e, HttpStatus.NOT_FOUND);
+        } catch (Exception exception) {
+            exception.printStackTrace();
             return ResponseEntity.internalServerError().build();
         }
     }
