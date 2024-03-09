@@ -74,7 +74,7 @@ public interface JpaCustomerRepository extends JpaRepository<CustomerEntity, Lon
 
     @Override
     default void deleteCustomerById(final Long id) {
-        it deleteCustomerShippingAddressById(id);
+        deleteCustomerShippingAddressById(id);
         deleteById(id);
     }
 
