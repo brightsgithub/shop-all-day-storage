@@ -79,6 +79,12 @@ Stop docker containers
 sudo docker stop <container id>
 
 
+
+Remove containers
+------------------------------------------
+sudo docker rm <container id>
+
+
 List docker images
 ------------------------------------------
 sudo docker images -q
