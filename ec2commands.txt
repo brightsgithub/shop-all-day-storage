@@ -8,6 +8,31 @@ mount the drive
 ================
 see this: https://www.youtube.com/watch?v=gRgdnHHuvoI
 
+When you stop the EC2 instance, the IP address will change.
+This also means you have to remount the volume so it can be seen again:
+
+List all drives  - lsblk
+
+[ec2-user@ip-172-31-30-71 data]$ lsblk
+NAME      MAJ:MIN RM SIZE RO TYPE MOUNTPOINTS
+xvda      202:0    0   8G  0 disk
+├─xvda1   202:1    0   8G  0 part /
+├─xvda127 259:0    0   1M  0 part
+└─xvda128 259:1    0  10M  0 part /boot/efi
+xvdf      202:80   0   1G  0 disk
+
+then mount and list again:
+[ec2-user@ip-172-31-30-71 /]$ sudo mount /dev/xvdf /data
+[ec2-user@ip-172-31-30-71 /]$ lsblk
+NAME      MAJ:MIN RM SIZE RO TYPE MOUNTPOINTS
+xvda      202:0    0   8G  0 disk
+├─xvda1   202:1    0   8G  0 part /
+├─xvda127 259:0    0   1M  0 part
+└─xvda128 259:1    0  10M  0 part /boot/efi
+xvdf      202:80   0   1G  0 disk /data
+
+Now I can see my project folder and things that have been pushed here
+
 
 Install java
 ===============
@@ -36,10 +61,33 @@ Java HotSpot(TM) 64-Bit Server VM (build 17.0.10+11-LTS-240, mixed mode, sharing
 
 ssh into ec2 instance
 ==============================
-sudo ssh -i shopallday-storage-aws.pem ec2-user@3.10.170.235
+sudo ssh -i shopallday-storage-aws.pem ec2-user@13.40.33.68
 
 copy project over
 ==============================
-scp -i shopallday-storage-aws.pem -r SHOP_ALL_DAY_PROJECT ec2-user@3.10.170.235:/data
+scp -i shopallday-storage-aws.pem -r SHOP_ALL_DAY_PROJECT ec2-user@13.40.33.68:/data
+
+start stop commands
+
+List all containers (including stopped ones):
+------------------------------------------
+docker ps -a
+
+
+Stop docker containers
+------------------------------------------
+sudo docker stop <container id>
+
+
+List docker images
+------------------------------------------
+sudo docker images -q
+
+
+Remove docker images
+------------------------------------------
+docker rmi <image_id_or_name> <image_id_or_name>
+
+
 
 
