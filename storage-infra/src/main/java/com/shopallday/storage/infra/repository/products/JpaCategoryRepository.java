@@ -69,7 +69,7 @@ public interface JpaCategoryRepository extends JpaRepository<CategoryEntity, Lon
     void deleteProductStocksByProductIds(@Param("productId") List<Long> productIds);
     @Modifying // needed since this is not a select statement
     @Query("DELETE FROM ProductEntity p WHERE p.productId in :productIds")
-    void deleteProductsByIds(@Param("categoryId") List<Long> productIds);
+    void deleteProductsByIds(@Param("productId") List<Long> productIds);
     @Modifying // needed since this is not a select statement
     @Query("DELETE FROM ProductTypeEntity pte WHERE pte.categoryEntity.categoryId in :categoryId")
     void deleteProductTypeByCategoryIds(@Param("categoryId") Long categoryId);

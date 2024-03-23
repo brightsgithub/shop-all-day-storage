@@ -18,7 +18,7 @@ public class GetCategoryByIdUseCase implements UseCase<Category, Long> {
     }
 
     @Override
-    public Category execute(Long param) throws Exception {
+    public Category execute(Long param) throws ReadException {
         List<Category> categoryList = categoryRepository.findCategoryById(param);
         if (categoryList.isEmpty()) {
             throw new ReadException("Category with id "+param+" could not be found.", CATEGORY_NOT_FOUND);

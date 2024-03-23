@@ -14,7 +14,7 @@ public class DeleteCategoryUseCase implements UseCaseNoReturnVal<Long> {
     }
 
     @Override
-    public void execute(Long id) throws Exception {
+    public void execute(Long id) throws DeleteException {
         try{
             categoryRepository.deleteCategoryById(id);
         } catch (Exception e) {

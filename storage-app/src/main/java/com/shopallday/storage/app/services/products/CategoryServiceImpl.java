@@ -2,6 +2,7 @@ package com.shopallday.storage.app.services.products;
 
 import com.shopallday.storage.app.mappers.Mapper;
 import com.shopallday.storage.app.models.CategoryDto;
+import com.shopallday.storage.app.services.BaseService;
 import com.shopallday.storage.domain.exceptions.crud.CreateException;
 import com.shopallday.storage.domain.exceptions.crud.DeleteException;
 import com.shopallday.storage.domain.exceptions.crud.ReadException;
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 @Service
-public class CategoryServiceImpl implements CategoryService {
+public class CategoryServiceImpl extends BaseService implements CategoryService {
 
     private final CreateCategoryUseCase createCategoryUseCase;
     private final CreateSingleCategoryUseCase createSingleCategoryUseCase;
@@ -50,26 +51,32 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<CategoryDto> getCategories() {
-        return null;
+        return categoryMapper.mapFromDomainToDto(getCategoryUseCase.execute());
     }
 
     @Override
     public CategoryDto getCategoryById(Long id) throws ReadException {
-        return null;
+        final Category category = getCategoryByIdUseCase.execute(id);
+        return categoryMapper.mapFromDomainToDto(category);
     }
 
     @Override
     public CategoryDto updateCategory(CategoryDto categoryDto) throws ReadException, UpdateException {
-        return null;
+        final Category category = categoryMapper.mapFromDtoToDomain(categoryDto);
+        final Category updatedCategory = updateCategoryUseCase.execute(category);
+        return categoryMapper.mapFromDomainToDto(updatedCategory);
     }
 
     @Override
-    public void deleteCategory(CategoryDto categoryDto) throws DeleteException {
-
+    public void deleteCategoryById(Long id) throws DeleteException {
+        deleteCategoryUseCase.execute(id);
     }
 
     @Override
-    public CategoryDto partialUpdateCategory(Long id, Map<String, Object> fields) throws ReadException, UpdateException {
-        return null;
+    public CategoryDto partialUpdateCategory(Long id, Map<String, Object> fields)
+            throws ReadException, UpdateException {
+        Category existingCategory = getCategoryByIdUseCase.execute(id);
+        updateFieldsOnObject(fields, existingCategory, Category.class);
+        return updateCategory(categoryMapper.mapFromDomainToDto(existingCategory));
     }
 }

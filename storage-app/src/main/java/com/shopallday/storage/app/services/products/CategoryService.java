@@ -14,6 +14,6 @@ public interface CategoryService {
     List<CategoryDto> getCategories();
     CategoryDto getCategoryById(Long id) throws ReadException;
     CategoryDto updateCategory(CategoryDto categoryDto) throws ReadException, UpdateException;
-    void deleteCategory(CategoryDto categoryDto) throws DeleteException;
+    void deleteCategoryById(Long id) throws DeleteException;
     CategoryDto partialUpdateCategory(final Long id, final Map<String, Object> fields) throws ReadException, UpdateException;
 }

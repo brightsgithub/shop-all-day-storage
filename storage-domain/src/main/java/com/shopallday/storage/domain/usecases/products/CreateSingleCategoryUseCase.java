@@ -19,7 +19,7 @@ public class CreateSingleCategoryUseCase implements UseCase<Category, Category> 
         try {
             return categoryRepository.createCategory(param);
         } catch (Exception e) {
-            throw new CreateException("Could not create ctegory", BusinessErrorCodes.CATEGORY_COULD_NOT_BE_CREATED)''
+            throw new CreateException("Could not create ctegory", BusinessErrorCodes.CATEGORY_COULD_NOT_BE_CREATED);
         }
     }
 }
