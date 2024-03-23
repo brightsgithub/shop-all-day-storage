@@ -9,6 +9,7 @@ import com.shopallday.storage.domain.exceptions.crud.ReadException;
 import com.shopallday.storage.domain.exceptions.crud.UpdateException;
 import com.shopallday.storage.domain.models.Category;
 import com.shopallday.storage.domain.usecases.products.*;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -43,6 +44,7 @@ public class CategoryServiceImpl extends BaseService implements CategoryService 
     }
 
     @Override
+    @Transactional
     public CategoryDto createCategory(CategoryDto categoryDto) throws CreateException {
         final Category category = categoryMapper.mapFromDtoToDomain(categoryDto);
         final Category justCreatedCategory = createSingleCategoryUseCase.execute(category);
@@ -50,17 +52,20 @@ public class CategoryServiceImpl extends BaseService implements CategoryService 
     }
 
     @Override
+    @Transactional
     public List<CategoryDto> getCategories() {
         return categoryMapper.mapFromDomainToDto(getCategoryUseCase.execute());
     }
 
     @Override
+    @Transactional
     public CategoryDto getCategoryById(Long id) throws ReadException {
         final Category category = getCategoryByIdUseCase.execute(id);
         return categoryMapper.mapFromDomainToDto(category);
     }
 
     @Override
+    @Transactional
     public CategoryDto updateCategory(CategoryDto categoryDto) throws ReadException, UpdateException {
         final Category category = categoryMapper.mapFromDtoToDomain(categoryDto);
         final Category updatedCategory = updateCategoryUseCase.execute(category);
@@ -68,11 +73,13 @@ public class CategoryServiceImpl extends BaseService implements CategoryService 
     }
 
     @Override
+    @Transactional
     public void deleteCategoryById(Long id) throws DeleteException {
         deleteCategoryUseCase.execute(id);
     }
 
     @Override
+    @Transactional
     public CategoryDto partialUpdateCategory(Long id, Map<String, Object> fields)
             throws ReadException, UpdateException {
         Category existingCategory = getCategoryByIdUseCase.execute(id);

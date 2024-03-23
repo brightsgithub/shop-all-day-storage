@@ -50,7 +50,7 @@ public interface JpaCategoryRepository extends JpaRepository<CategoryEntity, Lon
         deleteById(id);
     }
 
-    @Query("SELECT " +
+    @Query("SELECT distinct " +
             "p.productId " +
             "FROM CategoryEntity c," +
             "ProductTypeEntity pt," +
@@ -63,13 +63,13 @@ public interface JpaCategoryRepository extends JpaRepository<CategoryEntity, Lon
     List<Long> getProductIdConstraints(@Param("categoryId") Long categoryId);
     @Modifying // needed since this is not a select statement
     @Query("DELETE FROM OrderLineEntity ol WHERE ol.productEntity.productId in :productIds")
-    void deleteOrderLinesByProductIds(@Param("productId") List<Long> productIds);
+    void deleteOrderLinesByProductIds(@Param("productIds") List<Long> productIds);
     @Modifying // needed since this is not a select statement
     @Query("DELETE FROM ProductStockEntity ps WHERE ps.productEntity.productId in :productIds")
-    void deleteProductStocksByProductIds(@Param("productId") List<Long> productIds);
+    void deleteProductStocksByProductIds(@Param("productIds") List<Long> productIds);
     @Modifying // needed since this is not a select statement
     @Query("DELETE FROM ProductEntity p WHERE p.productId in :productIds")
-    void deleteProductsByIds(@Param("productId") List<Long> productIds);
+    void deleteProductsByIds(@Param("productIds") List<Long> productIds);
     @Modifying // needed since this is not a select statement
     @Query("DELETE FROM ProductTypeEntity pte WHERE pte.categoryEntity.categoryId in :categoryId")
     void deleteProductTypeByCategoryIds(@Param("categoryId") Long categoryId);

@@ -18,6 +18,7 @@ public class DeleteCategoryUseCase implements UseCaseNoReturnVal<Long> {
         try{
             categoryRepository.deleteCategoryById(id);
         } catch (Exception e) {
+            e.printStackTrace();
             throw new DeleteException("Category with id "+ id+" could not be deleted", BusinessErrorCodes.CATEGORY_COULD_NOT_BE_DELETED);
         }
     }
