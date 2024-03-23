@@ -33,10 +33,26 @@ public class DomainConfig {
     public CreateCategoryUseCase getCreateCategoryUseCase(CategoryRepository categoryRepository) {
         return new CreateCategoryUseCase(categoryRepository);
     }
+    @Bean
+    public GetCategoryByIdUseCase getGetCategoryByIdUseCase(CategoryRepository categoryRepository) {
+        return new GetCategoryByIdUseCase(categoryRepository);
+    }
+    @Bean
+    public UpdateCategoryUseCase getUpdateCategoryUseCase(CategoryRepository categoryRepository) {
+        return new UpdateCategoryUseCase(categoryRepository);
+    }
+    @Bean
+    public DeleteCategoryUseCase getDeleteCategoryUseCase(CategoryRepository categoryRepository) {
+        return new DeleteCategoryUseCase(categoryRepository);
+    }
 
     @Bean
     public GetCategoryUseCase getGetCategoryUseCase(CategoryRepository categoryRepository) {
         return new GetCategoryUseCase(categoryRepository);
+    }
+    @Bean
+    public CreateSingleCategoryUseCase getCreateSingleCategoryUseCase(CategoryRepository categoryRepository) {
+        return new CreateSingleCategoryUseCase(categoryRepository);
     }
 
     @Bean
