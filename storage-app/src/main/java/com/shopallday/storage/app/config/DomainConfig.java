@@ -77,6 +77,22 @@ public class DomainConfig {
     }
 
     @Bean
+    public CreateSingleBrandUseCase getGetSingleBrandUseCase(BrandRepository brandRepository) {
+        return new CreateSingleBrandUseCase(brandRepository);
+    }
+    @Bean
+    public UpdateBrandsUseCase getUpdateBrandsUseCase(BrandRepository brandRepository) {
+        return new UpdateBrandsUseCase(brandRepository);
+    }
+    @Bean
+    public DeleteBrandsUseCase getDeleteBrandsUseCase(BrandRepository brandRepository) {
+        return new DeleteBrandsUseCase(brandRepository);
+    }
+    @Bean
+    public GetBrandByIdUseCase getGetBrandByIdUseCase(BrandRepository brandRepository) {
+        return new GetBrandByIdUseCase(brandRepository);
+    }
+    @Bean
     public CreateProductsUseCase getCreateProductsUseCase(
             ProductsRepository productsRepository,
             RepositoryManager repositoryManager
