@@ -8,9 +8,14 @@ import com.shopallday.storage.domain.repository.orders.OrderLinesRepository;
 import com.shopallday.storage.domain.repository.orders.OrderStatusTypeRepository;
 import com.shopallday.storage.domain.repository.orders.OrdersRepository;
 import com.shopallday.storage.domain.repository.products.*;
+import com.shopallday.storage.domain.usecases.brand.*;
+import com.shopallday.storage.domain.usecases.category.*;
 import com.shopallday.storage.domain.usecases.customer.*;
 import com.shopallday.storage.domain.usecases.orders.*;
 import com.shopallday.storage.domain.usecases.products.*;
+import com.shopallday.storage.domain.usecases.productstock.CreateProductStockUseCase;
+import com.shopallday.storage.domain.usecases.productstock.GetAllProductStockUseCase;
+import com.shopallday.storage.domain.usecases.producttype.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -64,6 +69,25 @@ public class DomainConfig {
     @Bean
     public GetAllProductTypesUseCase getGetAllProductTypesUseCase(ProductTypeRepository productTypeRepository) {
         return new GetAllProductTypesUseCase(productTypeRepository);
+    }
+    @Bean
+    public CreateSingleProductTypeUseCase getCreateSingleProductTypeUseCase(
+            ProductTypeRepository productTypeRepository, RepositoryManager repositoryManager) {
+        return new CreateSingleProductTypeUseCase(productTypeRepository, repositoryManager);
+    }
+    @Bean
+    public DeleteProductTypeUseCase getDeleteProductTypeUseCase(
+            ProductTypeRepository productTypeRepository) {
+        return new DeleteProductTypeUseCase(productTypeRepository);
+    }
+    @Bean
+    public UpdateProductTypeUseCase getUpdateProductTypeUseCase(
+            ProductTypeRepository productTypeRepository, RepositoryManager repositoryManager) {
+        return new UpdateProductTypeUseCase(productTypeRepository, repositoryManager);
+    }
+    @Bean
+    public GetProductTypeByIdUseCase getGetProductTypeByIdUseCase(ProductTypeRepository productTypeRepository) {
+        return new GetProductTypeByIdUseCase(productTypeRepository);
     }
 
     @Bean

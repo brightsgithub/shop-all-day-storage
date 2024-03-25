@@ -3,6 +3,7 @@ package com.shopallday.storage.domain.usecases.products;
 import com.shopallday.storage.domain.models.ProductStock;
 import com.shopallday.storage.domain.repository.products.ProductStockRepository;
 import com.shopallday.storage.domain.repository.RepositoryManager;
+import com.shopallday.storage.domain.usecases.productstock.CreateProductStockUseCase;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

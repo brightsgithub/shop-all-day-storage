@@ -1,4 +1,4 @@
-package com.shopallday.storage.domain.usecases.products;
+package com.shopallday.storage.domain.usecases.producttype;
 
 import com.shopallday.storage.domain.models.ProductType;
 import com.shopallday.storage.domain.repository.products.ProductTypeRepository;

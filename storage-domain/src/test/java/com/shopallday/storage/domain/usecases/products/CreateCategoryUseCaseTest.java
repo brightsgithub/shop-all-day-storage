@@ -2,6 +2,7 @@ package com.shopallday.storage.domain.usecases.products;
 
 import com.shopallday.storage.domain.models.Category;
 import com.shopallday.storage.domain.repository.products.CategoryRepository;
+import com.shopallday.storage.domain.usecases.category.CreateCategoryUseCase;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

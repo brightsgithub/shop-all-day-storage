@@ -1,14 +1,18 @@
 package com.shopallday.storage.infra.repository.products;
 
-import com.shopallday.storage.domain.exceptions.product.ReadProductTypeException;
+import com.shopallday.storage.domain.exceptions.BusinessErrorCodes;
+import com.shopallday.storage.domain.exceptions.crud.ReadException;
 import com.shopallday.storage.domain.models.ProductType;
-import com.shopallday.storage.domain.repository.products.ProductTypeRepository;
 import com.shopallday.storage.domain.repository.RepositoryManager;
+import com.shopallday.storage.domain.repository.products.ProductTypeRepository;
 import com.shopallday.storage.infra.entities.ProductTypeEntity;
 import com.shopallday.storage.infra.mappers.ProductTypeMapper;
 import com.shopallday.storage.infra.repository.Merge;
 import jakarta.persistence.EntityManager;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -17,9 +21,14 @@ public interface JpaProductTypeRepository extends JpaRepository<ProductTypeEntit
     ProductTypeMapper productTypeMapper = ProductTypeMapper.INSTANCE;
 
     @Override
-    default void createProductType(ProductType productType) {
+    default ProductType createProductType(ProductType productType, RepositoryManager repositoryManager) {
+        final EntityManager entityManager = (EntityManager) repositoryManager.getManager();
+
         final ProductTypeEntity productTypeEntity = productTypeMapper.mapToEntity(productType);
-        save(productTypeEntity);
+
+        Merge.mergeProductTypeEntity(entityManager, productTypeEntity);
+
+        return productTypeMapper.mapToDomain(save(productTypeEntity));
     }
 
     /*
@@ -37,21 +46,21 @@ public interface JpaProductTypeRepository extends JpaRepository<ProductTypeEntit
 
          */
 
-    default void createProductTypes(List<ProductType> productTypes, RepositoryManager repositoryManager) {
+    default List<ProductType> createProductTypes(List<ProductType> productTypes, RepositoryManager repositoryManager) {
         final EntityManager entityManager = (EntityManager) repositoryManager.getManager();
 
         final List<ProductTypeEntity> productTypeEntities = productTypeMapper.mapToEntity(productTypes);
 
         Merge.mergeProductTypeEntity(entityManager, productTypeEntities);
 
-        saveAll(productTypeEntities);
-
+        return productTypeMapper.mapToDomain(saveAll(productTypeEntities));
     }
 
     @Override
-    default ProductType findProductTypeById(Long id) throws ReadProductTypeException {
+    default ProductType findProductTypeById(Long id) throws ReadException {
         return productTypeMapper.mapToDomain(
-                findById(id).orElseThrow(() -> new ReadProductTypeException("Id does not exist"
+                findById(id).orElseThrow(() -> new ReadException(
+                        "Id "+id+" does not exist", BusinessErrorCodes.PRODUCT_TYPE_NOT_FOUND
                 )));
     }
 
@@ -61,13 +70,41 @@ public interface JpaProductTypeRepository extends JpaRepository<ProductTypeEntit
     }
 
     @Override
-    default void updateProductType(ProductType productType) {
-        createProductType(productType);
+    default ProductType updateProductType(ProductType productType, RepositoryManager repositoryManager) {
+        return createProductType(productType, repositoryManager);
     }
 
     @Override
-    default void deleteProductType(ProductType productType) {
-        final ProductTypeEntity productTypeEntity = productTypeMapper.mapToEntity(productType);
-        delete(productTypeEntity);
+    default void deleteProductTypeById(Long id) {
+        final List<Long> productIds = getProductIdConstraints(id);
+        deleteOrderLinesByProductIds(productIds);
+        deleteProductStocksByProductIds(productIds);
+        deleteProductsByIds(productIds);
+        deleteById(id);
+    }
+
+    @Query("SELECT distinct " +
+            "p.productId " +
+            "FROM ProductTypeEntity pt," +
+            "ProductEntity p," +
+            "ProductStockEntity ps " +
+            "WHERE pt.productTypeId = p.productTypeEntity.productTypeId " +
+            "AND p.productId = ps.productEntity.productId " +
+            "AND pt.productTypeId = :productTypeId")
+    List<Long> getProductIdConstraints(@Param("productTypeId") Long productTypeId);
+
+    @Modifying // needed since this is not a select statement
+    @Query("DELETE FROM OrderLineEntity ol WHERE ol.productEntity.productId in :productIds")
+    void deleteOrderLinesByProductIds(@Param("productIds") List<Long> productIds);
+    @Modifying // needed since this is not a select statement
+    @Query("DELETE FROM ProductStockEntity ps WHERE ps.productEntity.productId in :productIds")
+    void deleteProductStocksByProductIds(@Param("productIds") List<Long> productIds);
+    @Modifying // needed since this is not a select statement
+    @Query("DELETE FROM ProductEntity p WHERE p.productId in :productIds")
+    void deleteProductsByIds(@Param("productIds") List<Long> productIds);
+
+    @Override
+    default boolean isExists(Long id) {
+        return existsById(id);
     }
 }

@@ -8,7 +8,7 @@ import com.shopallday.storage.domain.exceptions.crud.DeleteException;
 import com.shopallday.storage.domain.exceptions.crud.ReadException;
 import com.shopallday.storage.domain.exceptions.crud.UpdateException;
 import com.shopallday.storage.domain.models.Brand;
-import com.shopallday.storage.domain.usecases.products.*;
+import com.shopallday.storage.domain.usecases.brand.*;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ import java.util.Map;
 public class BrandsServiceImpl extends BaseService implements BrandsService {
     private final GetAllBrandsUseCase getAllBrandsUseCase;
     private final CreateSingleBrandUseCase createSingleBrandUseCase;
-    private final  GetBrandByIdUseCase getBrandByIdUseCase;
+    private final GetBrandByIdUseCase getBrandByIdUseCase;
     private final UpdateBrandsUseCase updateBrandsUseCase;
     private final DeleteBrandsUseCase deleteBrandsUseCase;
     @Qualifier("brandMapper")

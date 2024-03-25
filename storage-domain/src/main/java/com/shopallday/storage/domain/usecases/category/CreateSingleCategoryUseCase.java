@@ -1,4 +1,4 @@
-package com.shopallday.storage.domain.usecases.products;
+package com.shopallday.storage.domain.usecases.category;
 
 import com.shopallday.storage.domain.exceptions.BusinessErrorCodes;
 import com.shopallday.storage.domain.exceptions.crud.CreateException;

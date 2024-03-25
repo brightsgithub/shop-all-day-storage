@@ -1,14 +1,8 @@
 package com.shopallday.storage.app.config;
 
 import com.shopallday.storage.app.mappers.*;
-import com.shopallday.storage.app.models.BrandDto;
-import com.shopallday.storage.app.models.CategoryDto;
-import com.shopallday.storage.app.models.CustomerDto;
-import com.shopallday.storage.app.models.ProductDto;
-import com.shopallday.storage.domain.models.Brand;
-import com.shopallday.storage.domain.models.Category;
-import com.shopallday.storage.domain.models.Customer;
-import com.shopallday.storage.domain.models.Product;
+import com.shopallday.storage.app.models.*;
+import com.shopallday.storage.domain.models.*;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -36,5 +30,10 @@ public class AppConfig {
     @Bean
     public Mapper<Brand, BrandDto> brandMapper() {
         return Mappers.getMapper(BrandMapper.class);
+    }
+    @Qualifier("productTypeMapper")
+    @Bean
+    public Mapper<ProductType, ProductTypeDto> productTypeMapper() {
+        return Mappers.getMapper(ProductTypeMapper.class);
     }
 }
