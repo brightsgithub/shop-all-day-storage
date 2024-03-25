@@ -67,9 +67,8 @@ public class DomainConfig {
     }
 
     @Bean
-    public GetAllProductTypesUseCase getGetAllProductTypesUseCase(ProductTypeRepository productTypeRepository,
-                                                                  RepositoryManager repositoryManager) {
-        return new GetAllProductTypesUseCase(productTypeRepository, repositoryManager);
+    public GetAllProductTypesUseCase getGetAllProductTypesUseCase(ProductTypeRepository productTypeRepository) {
+        return new GetAllProductTypesUseCase(productTypeRepository);
     }
     @Bean
     public CreateSingleProductTypeUseCase getCreateSingleProductTypeUseCase(
@@ -87,10 +86,8 @@ public class DomainConfig {
         return new UpdateProductTypeUseCase(productTypeRepository, repositoryManager);
     }
     @Bean
-    public GetProductTypeByIdUseCase getGetProductTypeByIdUseCase(
-            ProductTypeRepository productTypeRepository,
-            RepositoryManager repositoryManager) {
-        return new GetProductTypeByIdUseCase(productTypeRepository, repositoryManager);
+    public GetProductTypeByIdUseCase getGetProductTypeByIdUseCase(ProductTypeRepository productTypeRepository) {
+        return new GetProductTypeByIdUseCase(productTypeRepository);
     }
 
     @Bean

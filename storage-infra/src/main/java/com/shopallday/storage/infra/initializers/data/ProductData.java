@@ -69,7 +69,7 @@ public class ProductData implements DataHelper {
     public void create() {
         List<Product> products = new ArrayList<>();
 
-        List<ProductType> productTypes = productTypeRepository.findAllProductTypes(repositoryManager);
+        List<ProductType> productTypes = productTypeRepository.findAllProductTypes();
         List<Brand> brands = brandRepository.findAllBrands();
 
         ProductType productTypeLaptop = filterProductsByTypeName(productTypes, ProductTypeNames.LAPTOP);

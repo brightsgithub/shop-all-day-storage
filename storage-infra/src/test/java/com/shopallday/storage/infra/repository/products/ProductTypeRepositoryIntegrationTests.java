@@ -33,7 +33,7 @@ public class ProductTypeRepositoryIntegrationTests extends BaseIntegrationTests 
 
         productTypeRepository.createProductTypes(expectedProductTypes, repositoryManager);
 
-        List<ProductType> actualProductTypes = productTypeRepository.findAllProductTypes(repositoryManager);
+        List<ProductType> actualProductTypes = productTypeRepository.findAllProductTypes();
 
         for (int i = 0; i < expectedProductTypes.size(); i++) {
             ProductType expectedProductType = expectedProductTypes.get(i);
