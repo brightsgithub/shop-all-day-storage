@@ -11,9 +11,9 @@ public interface ProductTypeRepository {
     ProductType createProductType(ProductType productType, RepositoryManager repositoryManager);
     List<ProductType> createProductTypes(List<ProductType> productTypes, RepositoryManager repositoryManager);
 
-    ProductType findProductTypeById(Long id) throws ReadException;
+    ProductType findProductTypeById(Long id, RepositoryManager repositoryManager) throws ReadException;
 
-    List<ProductType> findAllProductTypes();
+    List<ProductType> findAllProductTypes(RepositoryManager repositoryManage);
 
     ProductType updateProductType(ProductType productType, RepositoryManager repositoryManager);
 

@@ -58,7 +58,7 @@ public class ProductTypeData implements DataHelper {
 
     public void print() {
         System.out.println("printProductTypes called...");
-        for(ProductType productType: productTypeRepository.findAllProductTypes()) {
+        for(ProductType productType: productTypeRepository.findAllProductTypes(repositoryManager)) {
             System.out.println(productType);
         }
         System.out.println("printProductTypes finished");

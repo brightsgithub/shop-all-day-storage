@@ -1,6 +1,7 @@
 package com.shopallday.storage.domain.usecases.products;
 
 import com.shopallday.storage.domain.models.ProductType;
+import com.shopallday.storage.domain.repository.RepositoryManager;
 import com.shopallday.storage.domain.repository.products.ProductTypeRepository;
 import com.shopallday.storage.domain.usecases.TestFactoryData;
 import com.shopallday.storage.domain.usecases.producttype.GetAllProductTypesUseCase;
@@ -21,6 +22,8 @@ public class GetAllProductTypesUseCaseTest {
     @Mock
     private ProductTypeRepository productTypeRepository;
 
+    @Mock
+    private RepositoryManager repositoryManager;
     @InjectMocks
     private GetAllProductTypesUseCase getAllProductTypesUseCase;
 
@@ -30,7 +33,7 @@ public class GetAllProductTypesUseCaseTest {
         List<ProductType> expectedProductTypes = TestFactoryData.createMockProductTypes(2);
 
         // Mocking behavior of the productTypeRepository
-        when(productTypeRepository.findAllProductTypes()).thenReturn(expectedProductTypes);
+        when(productTypeRepository.findAllProductTypes(repositoryManager)).thenReturn(expectedProductTypes);
 
         // Act
         List<ProductType> actualProductTypes = getAllProductTypesUseCase.execute();

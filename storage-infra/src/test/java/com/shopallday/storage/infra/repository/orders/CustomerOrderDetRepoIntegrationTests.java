@@ -84,7 +84,7 @@ public class CustomerOrderDetRepoIntegrationTests extends BaseIntegrationTests {
         // Create ProductType
         List<ProductType> expectedProductTypes = ordersDataHelper.createMockProductTypes(categoriesFromDB);
         productTypeRepository.createProductTypes(expectedProductTypes, repositoryManager);
-        List<ProductType> productTypesFromDb = productTypeRepository.findAllProductTypes();
+        List<ProductType> productTypesFromDb = productTypeRepository.findAllProductTypes(repositoryManager);
 
         // Create Products
         List<Product> mockProducts = ordersDataHelper.createMockProducts(productTypesFromDb, brandsFromDBands);

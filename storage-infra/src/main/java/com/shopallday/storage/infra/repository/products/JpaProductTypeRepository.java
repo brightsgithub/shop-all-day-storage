@@ -57,7 +57,7 @@ public interface JpaProductTypeRepository extends JpaRepository<ProductTypeEntit
     }
 
     @Override
-    default ProductType findProductTypeById(Long id) throws ReadException {
+    default ProductType findProductTypeById(Long id, RepositoryManager repositoryManage) throws ReadException {
         return productTypeMapper.mapToDomain(
                 findById(id).orElseThrow(() -> new ReadException(
                         "Id "+id+" does not exist", BusinessErrorCodes.PRODUCT_TYPE_NOT_FOUND
@@ -65,8 +65,11 @@ public interface JpaProductTypeRepository extends JpaRepository<ProductTypeEntit
     }
 
     @Override
-    default List<ProductType> findAllProductTypes() {
-        return productTypeMapper.mapToDomain(findAll());
+    default List<ProductType> findAllProductTypes(RepositoryManager repositoryManager) {
+        final EntityManager entityManager = (EntityManager) repositoryManager.getManager();
+        final List<ProductTypeEntity> productTypeEntities = findAll();
+        Merge.mergeProductTypeEntity(entityManager, productTypeEntities);
+        return productTypeMapper.mapToDomain(productTypeEntities);
     }
 
     @Override
