@@ -33,7 +33,7 @@ public class GetAllProductTypesUseCaseTest {
         List<ProductType> expectedProductTypes = TestFactoryData.createMockProductTypes(2);
 
         // Mocking behavior of the productTypeRepository
-        when(productTypeRepository.findAllProductTypes(repositoryManager)).thenReturn(expectedProductTypes);
+        when(productTypeRepository.findAllProductTypes()).thenReturn(expectedProductTypes);
 
         // Act
         List<ProductType> actualProductTypes = getAllProductTypesUseCase.execute();
