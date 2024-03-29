@@ -13,8 +13,7 @@ import com.shopallday.storage.domain.usecases.category.*;
 import com.shopallday.storage.domain.usecases.customer.*;
 import com.shopallday.storage.domain.usecases.orders.*;
 import com.shopallday.storage.domain.usecases.products.*;
-import com.shopallday.storage.domain.usecases.productstock.CreateProductStockUseCase;
-import com.shopallday.storage.domain.usecases.productstock.GetAllProductStockUseCase;
+import com.shopallday.storage.domain.usecases.productstock.*;
 import com.shopallday.storage.domain.usecases.producttype.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -140,7 +139,32 @@ public class DomainConfig {
     public GetAllProductStockUseCase getGetAllProductStockUseCase(ProductStockRepository productStockRepository) {
         return new GetAllProductStockUseCase(productStockRepository);
     }
-
+    @Bean
+    public CreateSingleProductStockUseCase getCreateSingleProductStockUseCase(
+            ProductStockRepository productStockRepository,
+            RepositoryManager repositoryManager
+            ) {
+        return new CreateSingleProductStockUseCase(productStockRepository, repositoryManager);
+    }
+    @Bean
+    public UpdateProductStockUseCase getUpdateProductStockUseCase(
+            ProductStockRepository productStockRepository,
+            RepositoryManager repositoryManager
+    ) {
+        return new UpdateProductStockUseCase(productStockRepository, repositoryManager);
+    }
+    @Bean
+    public DeleteProductStockUseCase getDeleteProductStockUseCase(
+            ProductStockRepository productStockRepository
+    ) {
+        return new DeleteProductStockUseCase(productStockRepository);
+    }
+    @Bean
+    public GetProductStockByIdUseCase getGetProductStockByIdUseCase(
+            ProductStockRepository productStockRepository
+    ) {
+        return new GetProductStockByIdUseCase(productStockRepository);
+    }
     @Bean
     public CreateCustomerShippingAddressUseCase getCreateCustomerShippingAddressUseCase(
             CustomerShippingAddRepository customerShippingAddRepository,

@@ -1,41 +1,38 @@
 package com.shopallday.storage.app.controllers.products;
 
 import com.shopallday.storage.app.controllers.BaseController;
-import com.shopallday.storage.app.mappers.Mapper;
-import com.shopallday.storage.app.models.BrandDto;
-import com.shopallday.storage.app.services.products.BrandsService;
+import com.shopallday.storage.app.models.ProductStockDto;
+import com.shopallday.storage.app.services.products.ProductStockService;
 import com.shopallday.storage.domain.exceptions.crud.CreateException;
 import com.shopallday.storage.domain.exceptions.crud.DeleteException;
 import com.shopallday.storage.domain.exceptions.crud.ReadException;
 import com.shopallday.storage.domain.exceptions.crud.UpdateException;
-import com.shopallday.storage.domain.models.Brand;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+
 @RestController
-@RequestMapping(path = "storage/v1/brands")
-public class BrandsController extends BaseController {
+@RequestMapping(path = "storage/v1/product-stock")
+public class ProductStockController extends BaseController {
 
-    private final BrandsService brandsService;
-    private final Mapper<Brand, BrandDto> mapper;
+    private final ProductStockService service;
 
-    public BrandsController(BrandsService brandsService, Mapper<Brand, BrandDto> mapper) {
-        this.brandsService = brandsService;
-        this.mapper = mapper;
+    public ProductStockController(ProductStockService service) {
+        this.service = service;
     }
 
     @GetMapping
-    public List<BrandDto> getBrands() {
-        return brandsService.getBrands();
+    public List<ProductStockDto> get() {
+        return service.getProductStocks();
     }
 
     @GetMapping(path = "{id}")
-    public ResponseEntity getBrandById(@PathVariable("id") Long id) {
+    public ResponseEntity getById(@PathVariable("id") Long id) {
         try {
-            return new ResponseEntity<>(brandsService.getBrandById(id), HttpStatus.OK);
+            return new ResponseEntity<>(service.getProductStockById(id), HttpStatus.OK);
         } catch (ReadException e) {
             return getErrorResponse(e, HttpStatus.NOT_FOUND);
         } catch (Exception exception) {
@@ -44,9 +41,9 @@ public class BrandsController extends BaseController {
     }
 
     @DeleteMapping(path = "{id}")
-    public ResponseEntity deleteBrandById(@PathVariable("id") Long id) {
+    public ResponseEntity deleteById(@PathVariable("id") Long id) {
         try {
-            brandsService.deleteBrandById(id);
+            service.deleteProductStockById(id);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (DeleteException e) {
             return getErrorResponse(e, HttpStatus.NOT_FOUND);
@@ -57,9 +54,9 @@ public class BrandsController extends BaseController {
     }
 
     @PostMapping
-    public ResponseEntity createBrand(@RequestBody final BrandDto brandDto) {
+    public ResponseEntity create(@RequestBody final ProductStockDto productStockDto) {
         try {
-            return new ResponseEntity(brandsService.createBrand(brandDto), HttpStatus.CREATED);
+            return new ResponseEntity(service.createProductStock(productStockDto), HttpStatus.CREATED);
         } catch (CreateException e) {
             return getErrorResponse(e, HttpStatus.CONFLICT);
         } catch (Exception exception) {
@@ -68,13 +65,13 @@ public class BrandsController extends BaseController {
     }
 
     @PutMapping(path = "{id}")
-    public ResponseEntity updateBrand(
+    public ResponseEntity update(
             @PathVariable("id") Long id,
-            @RequestBody final BrandDto brandDto
+            @RequestBody final ProductStockDto productStockDto
     ) {
         try {
-            brandDto.setBrandId(id);
-            return new ResponseEntity(brandsService.updateBrand(brandDto), HttpStatus.OK);
+            productStockDto.setProductStockId(id);
+            return new ResponseEntity(service.updateProductStock(productStockDto), HttpStatus.OK);
         } catch (ReadException | UpdateException e) {
             return getErrorResponse(e, HttpStatus.NOT_FOUND);
         } catch (Exception exception) {
@@ -83,12 +80,12 @@ public class BrandsController extends BaseController {
     }
 
     @PatchMapping(path = "{id}")
-    public ResponseEntity partiallyUpdateBrand(
+    public ResponseEntity partiallyUpdate(
             @PathVariable("id") Long id,
             @RequestBody final Map<String, Object> fields
     ) {
         try {
-            return new ResponseEntity(brandsService.partiallyUpdateBrand(id, fields), HttpStatus.OK);
+            return new ResponseEntity(service.partiallyUpdateProductStock(id, fields), HttpStatus.OK);
         } catch (ReadException | UpdateException e) {
             return getErrorResponse(e, HttpStatus.NOT_FOUND);
         } catch (Exception exception) {

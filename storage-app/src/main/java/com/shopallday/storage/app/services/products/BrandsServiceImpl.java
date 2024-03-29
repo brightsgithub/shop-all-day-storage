@@ -75,7 +75,7 @@ public class BrandsServiceImpl extends BaseService implements BrandsService {
 
     @Override
     @Transactional
-    public BrandDto partialUpdateBrand(Long id, Map<String, Object> fields)
+    public BrandDto partiallyUpdateBrand(Long id, Map<String, Object> fields)
             throws ReadException, UpdateException {
         Brand existingBrand = getBrandByIdUseCase.execute(id);
         updateFieldsOnObject(fields, existingBrand, Brand.class);

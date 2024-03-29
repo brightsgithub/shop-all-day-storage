@@ -7,14 +7,15 @@ import java.util.List;
 
 public interface ProductStockRepository {
 
-    void createProductStock(ProductStock productStocks);
-    void createProductStock(List<ProductStock> productStocks, RepositoryManager repositoryManager);
+    ProductStock createProductStock(ProductStock productStocks, RepositoryManager repositoryManager);
+    List<ProductStock> createProductStock(List<ProductStock> productStocks, RepositoryManager repositoryManager);
 
     List<ProductStock> findAllProductStocks();
 
     List<ProductStock> findProductStocksById(List<Long> ids);
 
-    void updateProductStock(ProductStock productStock);
+    ProductStock updateProductStock(ProductStock productStock, RepositoryManager repositoryManager);
 
-    void deleteProductStock(ProductStock productStock);
+    void deleteProductStock(Long id);
+    boolean isExists(Long id);
 }

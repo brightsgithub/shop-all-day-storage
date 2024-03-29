@@ -15,6 +15,6 @@ public interface BrandsService {
     BrandDto getBrandById(Long id) throws ReadException;
     BrandDto updateBrand(BrandDto brandDto) throws ReadException, UpdateException;
     void deleteBrandById(Long id) throws DeleteException;
-    BrandDto partialUpdateBrand(Long id, Map<String, Object> fields)
+    BrandDto partiallyUpdateBrand(Long id, Map<String, Object> fields)
             throws ReadException, UpdateException;
 }

@@ -15,7 +15,7 @@ public interface JPAProductStockRepository extends JpaRepository<ProductStockEnt
 
     ProductStockMapper mapper = ProductStockMapper.INSTANCE;
     @Override
-    default void createProductStock(List<ProductStock> productStocks, RepositoryManager repositoryManager) {
+    default List<ProductStock> createProductStock(List<ProductStock> productStocks, RepositoryManager repositoryManager) {
         final EntityManager entityManager = (EntityManager) repositoryManager.getManager();
 
         final List<ProductStockEntity> productProductStockEntities = mapper.mapToEntity(productStocks);
@@ -24,12 +24,16 @@ public interface JPAProductStockRepository extends JpaRepository<ProductStockEnt
             Merge.mergeProductStockEntity(entityManager, productStockEntity);
         }
 
-        saveAll(productProductStockEntities);
+        return mapper.mapToDomain(saveAll(productProductStockEntities));
     }
 
     @Override
-    default void createProductStock(ProductStock productStock) {
-        save(mapper.mapToEntity(productStock));
+    default ProductStock createProductStock(ProductStock productStock, RepositoryManager repositoryManager) {
+        final EntityManager entityManager = (EntityManager) repositoryManager.getManager();
+
+        final ProductStockEntity productStockEntity = mapper.mapToEntity(productStock);
+        Merge.mergeProductStockEntity(entityManager, productStockEntity);
+        return mapper.mapToDomain(save(productStockEntity));
     }
 
     @Override
@@ -43,12 +47,16 @@ public interface JPAProductStockRepository extends JpaRepository<ProductStockEnt
     }
 
     @Override
-    default void updateProductStock(ProductStock productStock) {
-        createProductStock(productStock);
+    default ProductStock updateProductStock(ProductStock productStock, RepositoryManager repositoryManager) {
+        return createProductStock(productStock, repositoryManager);
     }
 
     @Override
-    default void deleteProductStock(ProductStock productStock) {
-        delete(mapper.mapToEntity(productStock));
+    default void deleteProductStock(Long id) {
+        deleteById(id);
+    }
+    @Override
+    default boolean isExists(Long id) {
+        return existsById(id);
     }
 }
