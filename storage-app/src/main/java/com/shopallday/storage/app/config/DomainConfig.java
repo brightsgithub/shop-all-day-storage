@@ -12,6 +12,7 @@ import com.shopallday.storage.domain.usecases.brand.*;
 import com.shopallday.storage.domain.usecases.category.*;
 import com.shopallday.storage.domain.usecases.customer.*;
 import com.shopallday.storage.domain.usecases.orders.*;
+import com.shopallday.storage.domain.usecases.orderstatustype.*;
 import com.shopallday.storage.domain.usecases.products.*;
 import com.shopallday.storage.domain.usecases.productstock.*;
 import com.shopallday.storage.domain.usecases.producttype.*;
@@ -228,6 +229,30 @@ public class DomainConfig {
             OrderStatusTypeRepository orderStatusTypeRepository
     ) {
         return new GetAllOrderStatusTypesUseCase(orderStatusTypeRepository);
+    }
+    @Bean
+    public CreateSingleOrderStatusTypeUseCase getCreateSingleOrderStatusTypeUseCase(
+            OrderStatusTypeRepository orderStatusTypeRepository
+    ) {
+        return new CreateSingleOrderStatusTypeUseCase(orderStatusTypeRepository);
+    }
+    @Bean
+    public DeleteOrderStatusTypeUseCase getDeleteOrderStatusTypeUseCase(
+            OrderStatusTypeRepository orderStatusTypeRepository
+    ) {
+        return new DeleteOrderStatusTypeUseCase(orderStatusTypeRepository);
+    }
+    @Bean
+    public GetOrderStatusTypeByIdUseCase getGetOrderStatusTypeByIdUseCase(
+            OrderStatusTypeRepository orderStatusTypeRepository
+    ) {
+        return new GetOrderStatusTypeByIdUseCase(orderStatusTypeRepository);
+    }
+    @Bean
+    public UpdateOrderStatusTypeUseCase getUpdateOrderStatusTypeUseCase(
+            OrderStatusTypeRepository orderStatusTypeRepository
+    ) {
+        return new UpdateOrderStatusTypeUseCase(orderStatusTypeRepository);
     }
     @Bean
     public GetCustomersByIdUseCase getGetCustomersByIdUseCase(

@@ -98,7 +98,7 @@ public class CustomerOrderDetRepoIntegrationTests extends BaseIntegrationTests {
 
 
         // Create order statuses
-        orderStatusTypeRepository.createOrderStatusType(ordersDataHelper.createMockOrderStatusTypes(), repositoryManager);
+        orderStatusTypeRepository.createOrderStatusType(ordersDataHelper.createMockOrderStatusTypes());
         List<OrderStatusType> orderStatusTypesFromDB = orderStatusTypeRepository.getAllOrderStatusTypes();
 
         // Create orders

@@ -2,6 +2,7 @@ package com.shopallday.storage.domain.usecases.orders;
 
 import com.shopallday.storage.domain.models.OrderStatusType;
 import com.shopallday.storage.domain.repository.orders.OrderStatusTypeRepository;
+import com.shopallday.storage.domain.usecases.orderstatustype.GetAllOrderStatusTypesUseCase;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

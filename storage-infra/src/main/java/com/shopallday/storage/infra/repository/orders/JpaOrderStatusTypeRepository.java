@@ -1,8 +1,9 @@
 package com.shopallday.storage.infra.repository.orders;
 
+import com.shopallday.storage.domain.exceptions.BusinessErrorCodes;
+import com.shopallday.storage.domain.exceptions.crud.ReadException;
 import com.shopallday.storage.domain.models.OrderStatusType;
 import com.shopallday.storage.domain.repository.orders.OrderStatusTypeRepository;
-import com.shopallday.storage.domain.repository.RepositoryManager;
 import com.shopallday.storage.infra.entities.OrderStatusTypeEntity;
 import com.shopallday.storage.infra.mappers.OrderStatusTypeMapper;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,8 +14,13 @@ public interface JpaOrderStatusTypeRepository extends JpaRepository<OrderStatusT
 
     OrderStatusTypeMapper mapper = OrderStatusTypeMapper.INSTANCE;
     @Override
-    default void createOrderStatusType(final List<OrderStatusType> orderStatusTypes, RepositoryManager repositoryManager) {
-        saveAll(mapper.mapToEntity(orderStatusTypes));
+    default List<OrderStatusType> createOrderStatusType(final List<OrderStatusType> orderStatusTypes) {
+        return mapper.mapToDomain(saveAll(mapper.mapToEntity(orderStatusTypes)));
+    }
+
+    @Override
+    default OrderStatusType createOrderStatusType(final OrderStatusType orderStatusType) {
+        return mapper.mapToDomain(save(mapper.mapToEntity(orderStatusType)));
     }
 
     @Override
@@ -28,12 +34,24 @@ public interface JpaOrderStatusTypeRepository extends JpaRepository<OrderStatusT
     }
 
     @Override
-    default void updateOrderStatusType(final OrderStatusType orderStatusType, RepositoryManager repositoryManager) {
-        createOrderStatusType(List.of(orderStatusType), repositoryManager);
+    default OrderStatusType findOrderStatusTypeById(Long id) throws ReadException {
+        return mapper.mapToDomain(
+                findById(id).orElseThrow(() -> new ReadException(
+                        "Id "+id+" does not exist", BusinessErrorCodes.ORDER_STATUS_TYPE_NOT_FOUND
+                )));
     }
 
     @Override
-    default void deleteOrderStatusType(final OrderStatusType orderStatusType) {
-        delete(mapper.mapToEntity(orderStatusType));
+    default OrderStatusType updateOrderStatusType(final OrderStatusType orderStatusType) {
+        return createOrderStatusType(orderStatusType);
+    }
+
+    @Override
+    default void deleteOrderStatusType(final Long id) {
+        deleteById(id);
+    }
+    @Override
+    default boolean isExists(Long id) {
+        return existsById(id);
     }
 }

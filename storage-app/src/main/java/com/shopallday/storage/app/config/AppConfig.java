@@ -41,4 +41,9 @@ public class AppConfig {
     public Mapper<ProductStock, ProductStockDto> productStockMapper() {
         return Mappers.getMapper(ProductStockMapperApp.class);
     }
+    @Qualifier("orderStatusTypeMapper")
+    @Bean
+    public Mapper<OrderStatusType, OrderStatusTypeDto> orderStatusTypeMapper() {
+        return Mappers.getMapper(OrderStatusTypeMapperApp.class);
+    }
 }

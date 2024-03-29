@@ -28,7 +28,7 @@ public class OrderStatusTypeRepositoryIntegrationTests extends BaseIntegrationTe
     @Transactional
     public void testThatOrderStatusTypeCanBeCreatedAndObtained() {
         final List<OrderStatusType> expectedOrderStatusTypes = TestFactoryData.createMockOrderStatusType(3);
-        orderStatusTypeRepository.createOrderStatusType(expectedOrderStatusTypes, repositoryManager);
+        orderStatusTypeRepository.createOrderStatusType(expectedOrderStatusTypes);
 
         List<OrderStatusType> actualOrderStatusTypes = orderStatusTypeRepository.getAllOrderStatusTypes();
 

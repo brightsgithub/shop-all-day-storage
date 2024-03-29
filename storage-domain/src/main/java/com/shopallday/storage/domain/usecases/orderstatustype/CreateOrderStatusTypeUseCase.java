@@ -1,4 +1,4 @@
-package com.shopallday.storage.domain.usecases.orders;
+package com.shopallday.storage.domain.usecases.orderstatustype;
 
 import com.shopallday.storage.domain.models.OrderStatusType;
 import com.shopallday.storage.domain.repository.RepositoryManager;
@@ -22,6 +22,6 @@ public class CreateOrderStatusTypeUseCase implements UseCaseNoReturnVal<List<Ord
 
     @Override
     public void execute(List<OrderStatusType> orderStatusTypes) throws Exception {
-        orderStatusTypeRepository.createOrderStatusType(orderStatusTypes, repositoryManager);
+        orderStatusTypeRepository.createOrderStatusType(orderStatusTypes);
     }
 }

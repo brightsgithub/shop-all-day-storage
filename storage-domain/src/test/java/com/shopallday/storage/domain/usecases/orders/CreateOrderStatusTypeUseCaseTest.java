@@ -3,6 +3,7 @@ package com.shopallday.storage.domain.usecases.orders;
 import com.shopallday.storage.domain.models.OrderStatusType;
 import com.shopallday.storage.domain.repository.RepositoryManager;
 import com.shopallday.storage.domain.repository.orders.OrderStatusTypeRepository;
+import com.shopallday.storage.domain.usecases.orderstatustype.CreateOrderStatusTypeUseCase;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -27,6 +28,6 @@ public class CreateOrderStatusTypeUseCaseTest {
     @Test
     public void testThat() throws Exception {
         cut.execute(orderStatusTypes);
-        verify(orderStatusTypeRepository).createOrderStatusType(orderStatusTypes, repositoryManager);
+        verify(orderStatusTypeRepository).createOrderStatusType(orderStatusTypes);
     }
 }
