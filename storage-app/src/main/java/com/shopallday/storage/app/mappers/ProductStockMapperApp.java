@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-@org.mapstruct.Mapper
+@org.mapstruct.Mapper(uses = ProductMapper.class)
 public interface ProductStockMapperApp extends Mapper<ProductStock, ProductStockDto> {
     ProductStockMapperApp INSTANCE = Mappers.getMapper(ProductStockMapperApp.class);
 
