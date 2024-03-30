@@ -3,7 +3,6 @@ package com.shopallday.storage.app.mappers;
 import com.shopallday.storage.app.models.ProductDto;
 import com.shopallday.storage.domain.models.Product;
 import org.mapstruct.Mapping;
-import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -11,9 +10,6 @@ import java.util.List;
 @Component
 @org.mapstruct.Mapper
 public interface ProductMapper extends Mapper<Product, ProductDto> {
-
-    ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);
-
     @Override
     @Mapping(source = "productType.category", target = "productTypeDto.categoryDto")
     @Mapping(source = "productType", target = "productTypeDto")

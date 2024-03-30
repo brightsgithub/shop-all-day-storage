@@ -13,6 +13,6 @@ public class OrderDto {
 
     private Long orderId;
     private Timestamp orderDate;
-    private CustomerDto customer;
+    private CustomerDto customerDto;
     private OrderStatusTypeDto orderStatusTypeDto;
 }

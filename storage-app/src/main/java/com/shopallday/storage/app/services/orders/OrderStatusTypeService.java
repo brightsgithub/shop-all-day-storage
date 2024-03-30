@@ -1,4 +1,4 @@
-package com.shopallday.storage.app.services.products;
+package com.shopallday.storage.app.services.orders;
 
 import com.shopallday.storage.app.models.OrderStatusTypeDto;
 import com.shopallday.storage.domain.exceptions.crud.CreateException;

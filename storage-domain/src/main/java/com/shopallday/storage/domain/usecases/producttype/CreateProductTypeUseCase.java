@@ -8,7 +8,6 @@ import com.shopallday.storage.domain.usecases.UseCaseNoReturnVal;
 import java.util.List;
 
 public class CreateProductTypeUseCase implements UseCaseNoReturnVal<List<ProductType>> {
-
     private final ProductTypeRepository productTypeRepository;
     private final RepositoryManager repositoryManager;
 

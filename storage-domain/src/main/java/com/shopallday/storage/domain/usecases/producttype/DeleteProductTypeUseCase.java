@@ -19,7 +19,7 @@ public class DeleteProductTypeUseCase implements UseCaseNoReturnVal<Long> {
             repository.deleteProductTypeById(id);
         } catch (Exception e) {
             e.printStackTrace();
-            throw new DeleteException("Brand with id "+ id+" could not be deleted", BusinessErrorCodes.BRAND_COULD_NOT_BE_DELETED);
+            throw new DeleteException("DeleteProductType with id "+ id+" could not be deleted", BusinessErrorCodes.PRODUCT_TYPE_COULD_NOT_BE_DELETED);
         }
     }
 }

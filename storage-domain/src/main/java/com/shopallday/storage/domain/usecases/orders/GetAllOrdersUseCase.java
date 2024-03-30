@@ -15,7 +15,7 @@ public class GetAllOrdersUseCase implements UseCaseNoParam<List<Order>> {
     }
 
     @Override
-    public List<Order> execute() throws Exception {
+    public List<Order> execute() {
         return ordersRepository.getAllOrders();
     }
 }

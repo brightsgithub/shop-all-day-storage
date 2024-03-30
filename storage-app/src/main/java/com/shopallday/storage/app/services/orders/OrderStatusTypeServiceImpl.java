@@ -1,4 +1,4 @@
-package com.shopallday.storage.app.services.products;
+package com.shopallday.storage.app.services.orders;
 
 import com.shopallday.storage.app.mappers.Mapper;
 import com.shopallday.storage.app.models.OrderStatusTypeDto;
@@ -9,6 +9,7 @@ import com.shopallday.storage.domain.exceptions.crud.ReadException;
 import com.shopallday.storage.domain.exceptions.crud.UpdateException;
 import com.shopallday.storage.domain.models.OrderStatusType;
 import com.shopallday.storage.domain.usecases.orderstatustype.*;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
@@ -43,6 +44,7 @@ public class OrderStatusTypeServiceImpl extends BaseService implements OrderStat
     }
 
     @Override
+    @Transactional
     public OrderStatusTypeDto createOrderStatusType(OrderStatusTypeDto orderStatusTypeDto) throws CreateException {
         final OrderStatusType orderStatusType = mapper.mapFromDtoToDomain(orderStatusTypeDto);
         final OrderStatusType justCreatedProductType = createSingleOrderStatusTypeUseCase.execute(orderStatusType);
@@ -50,17 +52,20 @@ public class OrderStatusTypeServiceImpl extends BaseService implements OrderStat
     }
 
     @Override
+    @Transactional
     public List<OrderStatusTypeDto> getOrderStatusTypes() {
         return mapper.mapFromDomainToDto(getAllOrderStatusTypesUseCase.execute());
     }
 
     @Override
+    @Transactional
     public OrderStatusTypeDto getOrderStatusTypeById(Long id) throws ReadException {
         final OrderStatusType orderStatusType= getOrderStatusTypeByIdUseCase.execute(id);
         return mapper.mapFromDomainToDto(orderStatusType);
     }
 
     @Override
+    @Transactional
     public OrderStatusTypeDto updateOrderStatusType(OrderStatusTypeDto orderStatusTypeDto) throws ReadException, UpdateException {
         final OrderStatusType orderStatusType = mapper.mapFromDtoToDomain(orderStatusTypeDto);
         final OrderStatusType updatedOrderStatusType = updateOrderStatusTypeUseCase.execute(orderStatusType);
@@ -68,11 +73,13 @@ public class OrderStatusTypeServiceImpl extends BaseService implements OrderStat
     }
 
     @Override
+    @Transactional
     public void deleteOrderStatusTypeById(Long id) throws DeleteException {
         deleteOrderStatusTypeUseCase.execute(id);
     }
 
     @Override
+    @Transactional
     public OrderStatusTypeDto partiallyUpdateOrderStatusType(Long id, Map<String, Object> fields) throws ReadException, UpdateException {
         OrderStatusType existingOrderStatusType = getOrderStatusTypeByIdUseCase.execute(id);
         updateFieldsOnObject(fields, existingOrderStatusType, OrderStatusType.class);

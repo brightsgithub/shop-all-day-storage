@@ -210,6 +210,33 @@ public class DomainConfig {
         return new CreateOrderUseCase(ordersRepository, repositoryManager);
     }
     @Bean
+    public CreateSingleOrderUseCase getCreateSingleOrderUseCase(
+            OrdersRepository ordersRepository,
+            RepositoryManager repositoryManager
+    ) {
+        return new CreateSingleOrderUseCase(ordersRepository, repositoryManager);
+    }
+    @Bean
+    public DeleteOrderUseCase getDeleteOrderUseCase(
+            OrdersRepository ordersRepository
+    ) {
+        return new DeleteOrderUseCase(ordersRepository);
+    }
+    @Bean
+    public GetOrderByIdUseCase getGetOrderByIdUseCase(
+            OrdersRepository ordersRepository
+    ) {
+        return new GetOrderByIdUseCase(ordersRepository);
+    }
+    @Bean
+    public UpdateOrderUseCase getUpdateOrderUseCase(
+            OrdersRepository ordersRepository,
+            RepositoryManager repositoryManager
+    ) {
+        return new UpdateOrderUseCase(ordersRepository, repositoryManager);
+    }
+
+    @Bean
     public CreateOrderLineUseCase getCreateOrderLineUseCase(
             OrderLinesRepository orderLinesRepository,
             RepositoryManager repositoryManager

@@ -1,8 +1,8 @@
-package com.shopallday.storage.app.controllers.products;
+package com.shopallday.storage.app.controllers.orders;
 
 import com.shopallday.storage.app.controllers.BaseController;
 import com.shopallday.storage.app.models.OrderStatusTypeDto;
-import com.shopallday.storage.app.services.products.OrderStatusTypeService;
+import com.shopallday.storage.app.services.orders.OrderStatusTypeService;
 import com.shopallday.storage.domain.exceptions.crud.CreateException;
 import com.shopallday.storage.domain.exceptions.crud.DeleteException;
 import com.shopallday.storage.domain.exceptions.crud.ReadException;

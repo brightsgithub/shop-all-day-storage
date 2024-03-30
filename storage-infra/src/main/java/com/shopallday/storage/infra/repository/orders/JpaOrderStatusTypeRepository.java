@@ -7,6 +7,9 @@ import com.shopallday.storage.domain.repository.orders.OrderStatusTypeRepository
 import com.shopallday.storage.infra.entities.OrderStatusTypeEntity;
 import com.shopallday.storage.infra.mappers.OrderStatusTypeMapper;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -48,8 +51,28 @@ public interface JpaOrderStatusTypeRepository extends JpaRepository<OrderStatusT
 
     @Override
     default void deleteOrderStatusType(final Long id) {
+        final List<Long> orderIds = getOrderIdConstraints(id);
+        deleteOrdersOrderIds(orderIds);
+        deleteOrderLinesByOrderIds(orderIds);
         deleteById(id);
     }
+    @Query("SELECT distinct " +
+            "o.orderId " +
+            "FROM OrderEntity o," +
+            "OrderStatusTypeEntity ost," +
+            "OrderLineEntity ol " +
+            "WHERE o.orderId = ol.orderEntity.orderId " +
+            "AND o.orderStatusTypeEntity.orderStatusTypeId = ost.orderStatusTypeId " +
+            "AND ost.orderStatusTypeId = :orderStatusTypeId")
+    List<Long> getOrderIdConstraints(@Param("orderStatusTypeId") Long productTypeId);
+
+    @Modifying // needed since this is not a select statement
+    @Query("DELETE FROM OrderEntity o WHERE o.orderId in :orderIds")
+    void deleteOrdersOrderIds(@Param("orderIds") List<Long> orderIds);
+    @Modifying // needed since this is not a select statement
+    @Query("DELETE FROM OrderLineEntity ol WHERE ol.orderEntity.orderId in :orderIds")
+    void deleteOrderLinesByOrderIds(@Param("orderIds") List<Long> orderIds);
+
     @Override
     default boolean isExists(Long id) {
         return existsById(id);

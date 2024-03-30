@@ -7,13 +7,17 @@ import java.util.List;
 
 public interface OrdersRepository {
 
-    void createOrder(final List<Order> orders, RepositoryManager repositoryManager);
+    List<Order> createOrder(final List<Order> orders, RepositoryManager repositoryManager);
+
+    Order createOrder(Order order, RepositoryManager repositoryManager);
+
     List<Order> getAllOrders();
 
     List<Order> findOrdersById(final List<Long> ids);
 
-    void updateOrder(final Order order, RepositoryManager repositoryManager);
+    Order updateOrder(final Order order, RepositoryManager repositoryManager);
 
-    void deleteOrder(final Order order);
+    void deleteOrder(final Long id);
 
+    boolean isExists(Long id);
 }
