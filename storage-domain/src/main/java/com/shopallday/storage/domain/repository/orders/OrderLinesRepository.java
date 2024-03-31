@@ -7,13 +7,17 @@ import java.util.List;
 
 public interface OrderLinesRepository {
 
-    void createOrderLine(final List<OrderLine> orderLines, RepositoryManager repositoryManager);
+    List<OrderLine> createOrderLine(final List<OrderLine> orderLines, RepositoryManager repositoryManager);
+
+    OrderLine createOrderLine(OrderLine orderLine, RepositoryManager repositoryManager);
+
     List<OrderLine> getAllOrderLines();
 
     List<OrderLine> findOrderLinesById(final List<Long> ids);
 
-    void updateOrderLine(final OrderLine orderLine, RepositoryManager repositoryManager);
+    OrderLine updateOrderLine(final OrderLine orderLine, RepositoryManager repositoryManager);
 
-    void deleteOrderLine(final OrderLine orderLine);
+    void deleteOrderLine(Long id);
 
+    boolean isExists(Long id);
 }

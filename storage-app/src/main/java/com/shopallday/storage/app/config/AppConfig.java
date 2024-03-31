@@ -51,4 +51,9 @@ public class AppConfig {
     public Mapper<Order, OrderDto> orderMapper() {
         return Mappers.getMapper(OrderMapperApp.class);
     }
+    @Qualifier("orderLinesMapper")
+    @Bean
+    public Mapper<OrderLine, OrderLineDto> orderLinesMapper() {
+        return Mappers.getMapper(OrderLinesMapperApp.class);
+    }
 }

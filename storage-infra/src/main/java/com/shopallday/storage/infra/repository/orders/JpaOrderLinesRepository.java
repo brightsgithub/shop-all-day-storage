@@ -16,11 +16,18 @@ public interface JpaOrderLinesRepository extends JpaRepository<OrderLineEntity, 
     OrderLineMapper mapper = OrderLineMapper.INSTANCE;
 
     @Override
-    default void createOrderLine(final List<OrderLine> orderLines, RepositoryManager repositoryManager) {
+    default List<OrderLine> createOrderLine(final List<OrderLine> orderLines, RepositoryManager repositoryManager) {
         final EntityManager entityManager = (EntityManager) repositoryManager.getManager();
         final List<OrderLineEntity> orderLineEntities = mapper.mapToEntity(orderLines);
         Merge.mergeOrderLines(entityManager, orderLineEntities);
-        saveAll(orderLineEntities);
+        return mapper.mapToDomain(saveAll(orderLineEntities));
+    }
+    @Override
+    default OrderLine createOrderLine(final OrderLine orderLine, RepositoryManager repositoryManager) {
+        final EntityManager entityManager = (EntityManager) repositoryManager.getManager();
+        final OrderLineEntity orderLineEntity = mapper.mapToEntity(orderLine);
+        Merge.mergeOrderLines(entityManager, orderLineEntity);
+        return mapper.mapToDomain(save(orderLineEntity));
     }
 
     @Override
@@ -34,12 +41,16 @@ public interface JpaOrderLinesRepository extends JpaRepository<OrderLineEntity, 
     }
 
     @Override
-    default void updateOrderLine(final OrderLine orderLine, RepositoryManager repositoryManager) {
-        createOrderLine(List.of(orderLine),repositoryManager);
+    default OrderLine updateOrderLine(final OrderLine orderLine, RepositoryManager repositoryManager) {
+        return createOrderLine(orderLine,repositoryManager);
     }
 
     @Override
-    default void deleteOrderLine(final OrderLine orderLine) {
-        delete(mapper.mapToEntity(orderLine));
+    default void deleteOrderLine(final Long id) {
+        deleteById(id);
+    }
+    @Override
+    default boolean isExists(Long id) {
+        return existsById(id);
     }
 }

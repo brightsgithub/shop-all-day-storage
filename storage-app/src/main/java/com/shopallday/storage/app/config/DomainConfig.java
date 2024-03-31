@@ -243,7 +243,38 @@ public class DomainConfig {
     ) {
         return new CreateOrderLineUseCase(orderLinesRepository, repositoryManager);
     }
-
+    @Bean
+    public CreateSingleOrderLineUseCase getCreateSingleOrderLineUseCase(
+            OrderLinesRepository orderLinesRepository,
+            RepositoryManager repositoryManager
+    ) {
+        return new CreateSingleOrderLineUseCase(orderLinesRepository, repositoryManager);
+    }
+    @Bean
+    public DeleteSingleOrderLineUseCase getDeleteSingleOrderLineUseCase(
+            OrderLinesRepository orderLinesRepository
+    ) {
+        return new DeleteSingleOrderLineUseCase(orderLinesRepository);
+    }
+    @Bean
+    public GetOrderLineByIdUseCase getGetOrderLineByIdUseCase(
+            OrderLinesRepository orderLinesRepository
+    ) {
+        return new GetOrderLineByIdUseCase(orderLinesRepository);
+    }
+    @Bean
+    public GetAllOrderLinesUseCase getGetAllOrderLinesUseCase(
+            OrderLinesRepository orderLinesRepository
+    ) {
+        return new GetAllOrderLinesUseCase(orderLinesRepository);
+    }
+    @Bean
+    public UpdateOrderLineUseCase getUpdateOrderLineUseCase(
+            OrderLinesRepository orderLinesRepository,
+            RepositoryManager repositoryManager
+    ) {
+        return new UpdateOrderLineUseCase(orderLinesRepository, repositoryManager);
+    }
     @Bean
     public CreateOrderStatusTypeUseCase getCreateOrderStatusTypeUseCase(
             OrderStatusTypeRepository orderStatusTypeRepository,

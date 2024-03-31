@@ -60,7 +60,7 @@ public class OrdersServiceImpl extends BaseService implements OrdersService {
     @Override
     @Transactional
     public OrderDto getOrderById(Long id) throws ReadException {
-        final Order order= getOrderByIdUseCase.execute(id);
+        final Order order = getOrderByIdUseCase.execute(id);
         return mapper.mapFromDomainToDto(order);
     }
 
