@@ -10,7 +10,6 @@ import java.util.List;
 
 public interface JpaCustomerOrderDetailRepository extends JpaRepository<OrderLineEntity, Long>,CustomerOrderDetailRepository {
 
-
     @Override
     @Query("SELECT new com.shopallday.storage.domain.models.CustomerOrderDetail(" +
             "c.customerId, " +

@@ -103,7 +103,11 @@ drop table if exists "products" CASCADE;
 drop sequence if exists product_seq;
 
 create sequence product_seq increment by 1 start with 17;
-
+-- short_description, long_description when using this script uncomment:
+-- @Lob
+-- private String shortDescription;
+-- @Lob
+-- private String longDescription;
 create table products
 (
     product_id           integer default nextval('product_seq') PRIMARY KEY,
@@ -117,6 +121,9 @@ create table products
 );
 
 commit;
+
+
+
 
 
 /*

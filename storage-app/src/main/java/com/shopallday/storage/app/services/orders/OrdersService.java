@@ -1,5 +1,6 @@
 package com.shopallday.storage.app.services.orders;
 
+import com.shopallday.storage.app.models.CustomerOrderDetailDto;
 import com.shopallday.storage.app.models.OrderDto;
 import com.shopallday.storage.domain.exceptions.crud.CreateException;
 import com.shopallday.storage.domain.exceptions.crud.DeleteException;
@@ -17,4 +18,5 @@ public interface OrdersService {
     void deleteOrderById(Long id) throws DeleteException;
     OrderDto partiallyUpdateOrder(Long id, Map<String, Object> fields)
             throws ReadException, UpdateException;
+    List<CustomerOrderDetailDto> getCustomerOrderDetailsById(Long customerId) throws ReadException;
 }

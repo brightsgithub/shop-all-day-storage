@@ -92,4 +92,15 @@ public class OrdersController extends BaseController {
             return ResponseEntity.internalServerError().build();
         }
     }
+
+    @GetMapping(path = "customer-orders/{id}")
+    public ResponseEntity getCustomerOrderDetails(@PathVariable("id") Long id) {
+        try {
+            return new ResponseEntity<>(service.getCustomerOrderDetailsById(id), HttpStatus.OK);
+        } catch (ReadException e) {
+            return getErrorResponse(e, HttpStatus.NOT_FOUND);
+        } catch (Exception exception) {
+            return ResponseEntity.internalServerError().build();
+        }
+    }
 }
