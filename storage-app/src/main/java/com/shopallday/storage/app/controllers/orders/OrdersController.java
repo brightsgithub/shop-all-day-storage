@@ -29,6 +29,17 @@ public class OrdersController extends BaseController {
         return service.getOrders();
     }
 
+    @GetMapping(path = "customer-orders/{id}")
+    public ResponseEntity getCustomerOrderDetails(@PathVariable("id") Long id) {
+        try {
+            return new ResponseEntity<>(service.getCustomerOrderDetailsById(id), HttpStatus.OK);
+        } catch (ReadException e) {
+            return getErrorResponse(e, HttpStatus.NOT_FOUND);
+        } catch (Exception exception) {
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
     @GetMapping(path = "{id}")
     public ResponseEntity getById(@PathVariable("id") Long id) {
         try {
@@ -87,17 +98,6 @@ public class OrdersController extends BaseController {
         try {
             return new ResponseEntity(service.partiallyUpdateOrder(id, fields), HttpStatus.OK);
         } catch (ReadException | UpdateException e) {
-            return getErrorResponse(e, HttpStatus.NOT_FOUND);
-        } catch (Exception exception) {
-            return ResponseEntity.internalServerError().build();
-        }
-    }
-
-    @GetMapping(path = "customer-orders/{id}")
-    public ResponseEntity getCustomerOrderDetails(@PathVariable("id") Long id) {
-        try {
-            return new ResponseEntity<>(service.getCustomerOrderDetailsById(id), HttpStatus.OK);
-        } catch (ReadException e) {
             return getErrorResponse(e, HttpStatus.NOT_FOUND);
         } catch (Exception exception) {
             return ResponseEntity.internalServerError().build();

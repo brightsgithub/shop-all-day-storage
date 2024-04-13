@@ -1,10 +1,13 @@
 package com.shopallday.storage.infra;
 
 import com.shopallday.storage.domain.initializers.StorageInitializer;
-import com.shopallday.storage.domain.repository.*;
+import com.shopallday.storage.domain.repository.RepositoryManager;
 import com.shopallday.storage.domain.repository.customer.CustomerRepository;
 import com.shopallday.storage.domain.repository.customer.CustomerShippingAddRepository;
 import com.shopallday.storage.domain.repository.orders.CustomerOrderDetailRepository;
+import com.shopallday.storage.domain.repository.orders.OrderLinesRepository;
+import com.shopallday.storage.domain.repository.orders.OrderStatusTypeRepository;
+import com.shopallday.storage.domain.repository.orders.OrdersRepository;
 import com.shopallday.storage.domain.repository.products.*;
 import com.shopallday.storage.infra.initializers.cache.CacheInitializer;
 import com.shopallday.storage.infra.initializers.data.*;
@@ -39,8 +42,8 @@ public class InfraConfig {
                 productTypeData,
                 brandData,
                 productStockData,
-                customerShippingAddressData
-        );
+                customerShippingAddressData,
+                ordersData);
     }
     @Bean(name = "getCacheInitializer")
     public StorageInitializer getCacheInitializer() {
@@ -107,9 +110,21 @@ public class InfraConfig {
     public DataHelper getOrdersData(
         CustomerRepository customerRepository,
         CustomerOrderDetailRepository customerOrderDetailRepository,
-        RepositoryManager repositoryManager
+        RepositoryManager repositoryManager,
+        OrderStatusTypeRepository orderStatusTypeRepository,
+        ProductStockRepository productStockRepository,
+        ProductsRepository productsRepository,
+        OrdersRepository ordersRepository,
+        OrderLinesRepository orderLinesRepository
     ) {
-        return new OrdersData(repositoryManager, customerOrderDetailRepository, customerRepository);
+        return new OrdersData(repositoryManager,
+                customerOrderDetailRepository,
+                customerRepository,
+                orderStatusTypeRepository,
+                productStockRepository,
+                productsRepository,
+                ordersRepository,
+                orderLinesRepository);
     }
 
     @Bean(name = "getDummyClass")

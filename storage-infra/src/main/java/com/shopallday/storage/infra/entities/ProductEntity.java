@@ -35,10 +35,10 @@ public class ProductEntity {
     private String longTitle;
 
     @Column(name = "short_description", nullable = false)
-    //@Lob // When using schema.sql comment out @Lob. Leave when using Hibernate. Since the create table statements differ
+    @Lob // When using schema.sql comment out @Lob. Leave when using Hibernate. Since the create table statements differ
     private String shortDescription;
 
     @Column(name = "long_description")
-    //@Lob // When using schema.sql comment out @Lob. Leave when using Hibernate. Since the create table statements differ
+    @Lob // When using schema.sql comment out @Lob. Leave when using Hibernate. Since the create table statements differ
     private String longDescription;
 }

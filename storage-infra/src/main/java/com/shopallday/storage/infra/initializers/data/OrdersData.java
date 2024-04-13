@@ -4,6 +4,11 @@ import com.shopallday.storage.domain.models.*;
 import com.shopallday.storage.domain.repository.RepositoryManager;
 import com.shopallday.storage.domain.repository.customer.CustomerRepository;
 import com.shopallday.storage.domain.repository.orders.CustomerOrderDetailRepository;
+import com.shopallday.storage.domain.repository.orders.OrderLinesRepository;
+import com.shopallday.storage.domain.repository.orders.OrderStatusTypeRepository;
+import com.shopallday.storage.domain.repository.orders.OrdersRepository;
+import com.shopallday.storage.domain.repository.products.ProductStockRepository;
+import com.shopallday.storage.domain.repository.products.ProductsRepository;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
@@ -16,20 +21,40 @@ public class OrdersData implements DataHelper {
     private final RepositoryManager repositoryManager;
     private final CustomerOrderDetailRepository customerOrderDetailRepository;
     private final CustomerRepository customerRepository;
+    private final OrderStatusTypeRepository orderStatusTypeRepository;
+    private final ProductStockRepository productStockRepository;
+    private final ProductsRepository productsRepository;
+    private final OrdersRepository ordersRepository;
+    private final OrderLinesRepository orderLinesRepository;
 
     public OrdersData(
             RepositoryManager repositoryManager,
             CustomerOrderDetailRepository customerOrderDetailRepository,
-            CustomerRepository customerRepository) {
+            CustomerRepository customerRepository,
+            OrderStatusTypeRepository orderStatusTypeRepository,
+            ProductStockRepository productStockRepository, ProductsRepository productsRepository, OrdersRepository ordersRepository, OrderLinesRepository orderLinesRepository) {
 
         this.repositoryManager = repositoryManager;
         this.customerOrderDetailRepository = customerOrderDetailRepository;
         this.customerRepository = customerRepository;
+        this.orderStatusTypeRepository = orderStatusTypeRepository;
+        this.productStockRepository = productStockRepository;
+        this.productsRepository = productsRepository;
+        this.ordersRepository = ordersRepository;
+        this.orderLinesRepository = orderLinesRepository;
     }
 
     @Override
     public void create() throws Exception {
-        
+        final List<Customer> customers = customerRepository.getCustomers();
+        final List<OrderStatusType> createdOrderStatusTypes = createMockOrderStatusTypes();
+        final List<OrderStatusType> orderStatusTypesFromDB = orderStatusTypeRepository.createOrderStatusType(createdOrderStatusTypes);
+        final List<Order> createdOrders = createMockOrders(customers, orderStatusTypesFromDB);
+        final List<Order> ordersFromDB = ordersRepository.createOrder(createdOrders, repositoryManager);
+        final List<Product> products = productsRepository.findAllProducts();
+        final List<ProductStock> productStocks = productStockRepository.findAllProductStocks();
+        final List<OrderLine> createdOrderLines = createMockOrderLines(products, productStocks, ordersFromDB);
+        orderLinesRepository.createOrderLine(createdOrderLines, repositoryManager);
     }
 
     @Override
