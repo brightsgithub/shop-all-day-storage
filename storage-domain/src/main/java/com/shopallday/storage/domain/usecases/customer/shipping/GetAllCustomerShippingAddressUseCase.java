@@ -1,4 +1,4 @@
-package com.shopallday.storage.domain.usecases.customer;
+package com.shopallday.storage.domain.usecases.customer.shipping;
 
 import com.shopallday.storage.domain.models.CustomerShippingAddress;
 import com.shopallday.storage.domain.repository.customer.CustomerShippingAddRepository;
@@ -16,7 +16,7 @@ public class GetAllCustomerShippingAddressUseCase implements UseCaseNoParam<List
     }
 
     @Override
-    public List<CustomerShippingAddress> execute() throws Exception {
+    public List<CustomerShippingAddress> execute() {
         return customerShippingAddRepository.getCustomerShippingAddresses();
     }
 }

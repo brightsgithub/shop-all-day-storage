@@ -3,6 +3,7 @@ package com.shopallday.storage.domain.usecases.customer;
 import com.shopallday.storage.domain.models.CustomerShippingAddress;
 import com.shopallday.storage.domain.repository.customer.CustomerShippingAddRepository;
 import com.shopallday.storage.domain.usecases.TestFactoryData;
+import com.shopallday.storage.domain.usecases.customer.shipping.GetAllCustomerShippingAddressUseCase;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

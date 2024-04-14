@@ -15,6 +15,8 @@ public interface OrderMapperApp extends Mapper<Order, OrderDto> {
     OrderDto mapFromDomainToDto(Order domain);
 
     @Override
+    @Mapping(source = "customerDto", target = "customer")
+    @Mapping(source = "orderStatusTypeDto", target = "orderStatusType")
     Order mapFromDtoToDomain(OrderDto Dto);
 
     @Override

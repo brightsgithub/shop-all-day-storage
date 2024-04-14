@@ -96,6 +96,7 @@ public class OrdersServiceImpl extends BaseService implements OrdersService {
     }
 
     @Override
+    @Transactional
     public List<CustomerOrderDetailDto> getCustomerOrderDetailsById(Long customerId) throws ReadException {
         final List<CustomerOrderDetail> customerOrderDetails = getCustomerOrderDetailUseCase.execute(customerId);
         return customerOrderDetailMapper.mapFromDomainToDto(customerOrderDetails);

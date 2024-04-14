@@ -1,5 +1,7 @@
-package com.shopallday.storage.domain.usecases.customer;
+package com.shopallday.storage.domain.usecases.customer.shipping;
 
+import com.shopallday.storage.domain.exceptions.BusinessErrorCodes;
+import com.shopallday.storage.domain.exceptions.crud.ReadException;
 import com.shopallday.storage.domain.models.CustomerShippingAddress;
 import com.shopallday.storage.domain.repository.customer.CustomerShippingAddRepository;
 import com.shopallday.storage.domain.usecases.UseCase;
@@ -16,7 +18,10 @@ public class GetCustomerShipAddByIdUseCase implements UseCase<List<CustomerShipp
     }
 
     @Override
-    public List<CustomerShippingAddress> execute(Long id) throws Exception {
+    public List<CustomerShippingAddress> execute(Long id) throws ReadException {
+        if (id == null) {
+            throw new ReadException("CustomerShippingAddress id cannot be null", BusinessErrorCodes.CUSTOMER_SHIPPING_NOT_FOUND);
+        }
         return customerShippingAddRepository.findCustomerShippingAddressesById(id);
     }
 }

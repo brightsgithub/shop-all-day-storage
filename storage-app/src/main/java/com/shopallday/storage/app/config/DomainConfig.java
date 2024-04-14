@@ -11,6 +11,7 @@ import com.shopallday.storage.domain.repository.products.*;
 import com.shopallday.storage.domain.usecases.brand.*;
 import com.shopallday.storage.domain.usecases.category.*;
 import com.shopallday.storage.domain.usecases.customer.*;
+import com.shopallday.storage.domain.usecases.customer.shipping.*;
 import com.shopallday.storage.domain.usecases.orders.*;
 import com.shopallday.storage.domain.usecases.orderstatustype.*;
 import com.shopallday.storage.domain.usecases.products.*;
@@ -167,11 +168,11 @@ public class DomainConfig {
         return new GetProductStockByIdUseCase(productStockRepository);
     }
     @Bean
-    public CreateCustomerShippingAddressUseCase getCreateCustomerShippingAddressUseCase(
+    public CreateCustomerShippingAddressesUseCase getCreateCustomerShippingAddressUseCase(
             CustomerShippingAddRepository customerShippingAddRepository,
             RepositoryManager repositoryManager
     ){
-        return new CreateCustomerShippingAddressUseCase(customerShippingAddRepository, repositoryManager);
+        return new CreateCustomerShippingAddressesUseCase(customerShippingAddRepository, repositoryManager);
     }
 
     @Bean
@@ -186,6 +187,27 @@ public class DomainConfig {
             CustomerShippingAddRepository customerShippingAddRepository
     ){
         return new GetCustomerShipAddByIdUseCase(customerShippingAddRepository);
+    }
+
+    @Bean
+    public CreateSingleCustomerShippingAddUseCase getCreateSingleCustomerShippingAddUseCase(
+            CustomerShippingAddRepository customerShippingAddRepository,
+            RepositoryManager repositoryManager
+    ){
+        return new CreateSingleCustomerShippingAddUseCase(customerShippingAddRepository, repositoryManager);
+    }
+    @Bean
+    public DeleteCustomerShippingAddressUseCase getDeleteCustomerShippingAddressUseCase(
+            CustomerShippingAddRepository customerShippingAddRepository
+    ){
+        return new DeleteCustomerShippingAddressUseCase(customerShippingAddRepository);
+    }
+    @Bean
+    public UpdateCustomerShippingAddressUseCase getUpdateCustomerShippingAddressUseCase(
+            CustomerShippingAddRepository customerShippingAddRepository,
+            RepositoryManager repositoryManager
+    ){
+        return new UpdateCustomerShippingAddressUseCase(customerShippingAddRepository, repositoryManager);
     }
     @Bean
     public GetAllOrdersUseCase getGetAllOrdersUseCase(OrdersRepository ordersRepository) {

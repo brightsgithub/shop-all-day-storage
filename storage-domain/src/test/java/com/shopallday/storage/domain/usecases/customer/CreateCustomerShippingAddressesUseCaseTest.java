@@ -4,6 +4,7 @@ import com.shopallday.storage.domain.models.CustomerShippingAddress;
 import com.shopallday.storage.domain.repository.customer.CustomerShippingAddRepository;
 import com.shopallday.storage.domain.repository.RepositoryManager;
 import com.shopallday.storage.domain.usecases.TestFactoryData;
+import com.shopallday.storage.domain.usecases.customer.shipping.CreateCustomerShippingAddressesUseCase;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -15,13 +16,13 @@ import java.util.List;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
-public class CreateCustomerShippingAddressUseCaseTest {
+public class CreateCustomerShippingAddressesUseCaseTest {
     @Mock
     private CustomerShippingAddRepository customerShippingAddRepository;
     @Mock
     private RepositoryManager repositoryManager;
     @InjectMocks
-    private CreateCustomerShippingAddressUseCase cut;
+    private CreateCustomerShippingAddressesUseCase cut;
 
     @Test
     public void testThatGetCreateCustomerShippingAddressWasCalledOnRepo() throws Exception {

@@ -27,23 +27,42 @@ public interface JpaCustomerShippingAddRepository extends JpaRepository<Customer
     }
 
     @Override
-    default void createCustomerShippingAddress(final List<CustomerShippingAddress> shippingAddresses, RepositoryManager repositoryManager) {
+    default List<CustomerShippingAddress> createCustomerShippingAddress(final List<CustomerShippingAddress> shippingAddresses, RepositoryManager repositoryManager) {
 
         final EntityManager entityManager = (EntityManager) repositoryManager.getManager();
         final List<CustomerShippingAddressEntity> shippingAddressEntities = mapper.mapToEntity(shippingAddresses);
 
         Merge.mergeCustomerShipAddressEntity(entityManager, shippingAddressEntities);
 
-        saveAll(shippingAddressEntities);
+        return mapper.mapToDomain(saveAll(shippingAddressEntities));
     }
 
     @Override
-    default void updateCustomerShippingAddress(final CustomerShippingAddress shippingAddress, RepositoryManager repositoryManager) {
-        createCustomerShippingAddress(List.of(shippingAddress), repositoryManager);
+    default CustomerShippingAddress createCustomerShippingAddress(final CustomerShippingAddress shippingAddresses, RepositoryManager repositoryManager) {
+
+        final EntityManager entityManager = (EntityManager) repositoryManager.getManager();
+        final CustomerShippingAddressEntity shippingAddressEntities = mapper.mapToEntity(shippingAddresses);
+
+        Merge.mergeCustomerShipAddressEntity(entityManager, shippingAddressEntities);
+
+        return mapper.mapToDomain(save(shippingAddressEntities));
+    }
+    @Override
+    default CustomerShippingAddress updateCustomerShippingAddress(final CustomerShippingAddress shippingAddress, RepositoryManager repositoryManager) {
+        return createCustomerShippingAddress(shippingAddress, repositoryManager);
+    }
+    @Override
+    default void deleteCustomerShippingAddress(final Long id) {
+        deleteById(id);
     }
 
     @Override
-    default void deleteCustomerShippingAddress(final CustomerShippingAddress shippingAddress) {
-        delete(mapper.mapToEntity(shippingAddress));
+    default void deleteAddressById(final Long id) {
+        deleteById(id);
+    }
+
+    @Override
+    default boolean isExists(Long id) {
+        return existsById(id);
     }
 }
