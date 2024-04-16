@@ -85,7 +85,7 @@ public class TestFactoryData {
         return expectedProductStocks;
     }
 
-    static List<OrderStatusType> createMockOrderStatusType(int count) {
+    public static List<OrderStatusType> createMockOrderStatusType(int count) {
         List<OrderStatusType> expectedOrderStatusTypes = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             expectedOrderStatusTypes.add(new OrderStatusType(null, "Test_Status_"+i));
@@ -93,7 +93,7 @@ public class TestFactoryData {
         return expectedOrderStatusTypes;
     }
 
-    static List<Order> createMockOrders(int count) {
+    public static List<Order> createMockOrders(int count) {
         List<Order> expectedOrders = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             expectedOrders.add(
@@ -108,7 +108,7 @@ public class TestFactoryData {
         return expectedOrders;
     }
 
-    static List<OrderLine> createMockOrderLines(int count) {
+    public static List<OrderLine> createMockOrderLines(int count) {
         List<OrderLine> expectedOrderLines = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             expectedOrderLines.add(
