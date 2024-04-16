@@ -30,11 +30,9 @@ public class UpdateCustomerShippingAddressUseCase implements UseCase<CustomerShi
 
             return repository.updateCustomerShippingAddress(shippingAddress, repositoryManager);
         } catch (ReadException e) {
-            e.printStackTrace();
             throw e;
         }
         catch (Exception e) {
-            e.printStackTrace();
             throw new UpdateException("ShippingAddress with id "+shippingAddress.getShippingAddressId()+" could not be updated",
                     ORDER_COULD_NOT_BE_UPDATED);
         }

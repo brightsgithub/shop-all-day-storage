@@ -89,7 +89,6 @@ public class CustomerShippingAddressController extends BaseController {
         } catch (ReadException | UpdateException e) {
             return getErrorResponse(e, HttpStatus.NOT_FOUND);
         } catch (Exception exception) {
-            exception.printStackTrace();
             return ResponseEntity.internalServerError().build();
         }
     }

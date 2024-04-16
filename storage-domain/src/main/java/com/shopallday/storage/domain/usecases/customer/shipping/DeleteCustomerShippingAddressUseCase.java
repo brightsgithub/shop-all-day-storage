@@ -21,7 +21,6 @@ public class DeleteCustomerShippingAddressUseCase implements UseCaseNoReturnVal<
         try {
             repository.deleteCustomerShippingAddress(id);
         } catch (Exception exception) {
-            exception.printStackTrace();
             throw new DeleteException("Customer shipping address with id "+ id +" could not be deleted",
                     BusinessErrorCodes.CUSTOMER_SHIPPING_COULD_NOT_BE_DELETED);
         }
