@@ -20,4 +20,5 @@ public interface ProductTypeRepository {
     void deleteProductTypeById(Long id);
 
     boolean isExists(Long id);
+    void deleteAll();
 }

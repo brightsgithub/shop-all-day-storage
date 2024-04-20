@@ -17,4 +17,5 @@ public interface CategoryRepository {
     boolean isExists(Long id);
 
     void deleteCategoryById(Long id);
+    void deleteAll();
 }

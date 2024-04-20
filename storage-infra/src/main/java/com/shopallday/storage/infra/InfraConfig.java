@@ -4,6 +4,7 @@ import com.shopallday.storage.domain.initializers.StorageInitializer;
 import com.shopallday.storage.domain.repository.RepositoryManager;
 import com.shopallday.storage.domain.repository.customer.CustomerRepository;
 import com.shopallday.storage.domain.repository.customer.CustomerShippingAddRepository;
+import com.shopallday.storage.domain.repository.delete.DeleteAllRepository;
 import com.shopallday.storage.domain.repository.orders.CustomerOrderDetailRepository;
 import com.shopallday.storage.domain.repository.orders.OrderLinesRepository;
 import com.shopallday.storage.domain.repository.orders.OrderStatusTypeRepository;
@@ -11,6 +12,7 @@ import com.shopallday.storage.domain.repository.orders.OrdersRepository;
 import com.shopallday.storage.domain.repository.products.*;
 import com.shopallday.storage.infra.initializers.cache.CacheInitializer;
 import com.shopallday.storage.infra.initializers.data.*;
+import com.shopallday.storage.infra.repository.DeleteAllRepositoryImpl;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -125,6 +127,35 @@ public class InfraConfig {
                 productsRepository,
                 ordersRepository,
                 orderLinesRepository);
+    }
+
+    @Bean(name = "deleteAllRepository")
+    public DeleteAllRepository getDeleteAllRepository(
+            CustomerRepository customerRepository,
+            CustomerShippingAddRepository customerShippingAddRepository,
+            CustomerOrderDetailRepository customerOrderDetailRepository,
+            OrderLinesRepository orderLinesRepository,
+            OrdersRepository ordersRepository,
+            OrderStatusTypeRepository orderStatusTypeRepository,
+            BrandRepository brandRepository,
+            CategoryRepository categoryRepository,
+            ProductsRepository productsRepository,
+            ProductStockRepository productStockRepository,
+            ProductTypeRepository productTypeRepository
+    ) {
+        return new DeleteAllRepositoryImpl(
+                customerRepository,
+                customerShippingAddRepository,
+                customerOrderDetailRepository,
+                orderLinesRepository,
+                ordersRepository,
+                orderStatusTypeRepository,
+                brandRepository,
+                categoryRepository,
+                productsRepository,
+                productStockRepository,
+                productTypeRepository
+        );
     }
 
     @Bean(name = "getDummyClass")

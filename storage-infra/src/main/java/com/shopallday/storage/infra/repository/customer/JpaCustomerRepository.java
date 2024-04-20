@@ -95,4 +95,7 @@ public interface JpaCustomerRepository extends JpaRepository<CustomerEntity, Lon
     default boolean isExists(Long id) {
         return existsById(id);
     }
+
+    @Override
+    void deleteAll();
 }

@@ -28,4 +28,5 @@ public interface CustomerRepository {
 
     boolean doesCustomerExist(String username, String email);
     boolean isExists(Long id);
+    void deleteAll();
 }

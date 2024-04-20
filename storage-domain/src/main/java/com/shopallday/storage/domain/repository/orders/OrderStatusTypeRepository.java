@@ -19,4 +19,6 @@ public interface OrderStatusTypeRepository {
     void deleteOrderStatusType(final Long id);
 
     boolean isExists(Long id);
+
+    void deleteAll();
 }

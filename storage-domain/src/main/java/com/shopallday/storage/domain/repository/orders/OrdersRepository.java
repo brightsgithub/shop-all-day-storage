@@ -20,4 +20,6 @@ public interface OrdersRepository {
     void deleteOrder(final Long id);
 
     boolean isExists(Long id);
+
+    void deleteAll();
 }

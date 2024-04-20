@@ -7,4 +7,5 @@ import java.util.List;
 public interface CustomerOrderDetailRepository {
 
     List<CustomerOrderDetail> getOrdersByCustomerId(Long customerId);
+    void deleteAll();
 }

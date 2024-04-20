@@ -21,4 +21,5 @@ public interface CustomerShippingAddRepository {
     void deleteAddressById(Long id);
 
     boolean isExists(Long id);
+    void deleteAll();
 }

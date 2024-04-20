@@ -18,4 +18,6 @@ public interface ProductStockRepository {
 
     void deleteProductStock(Long id);
     boolean isExists(Long id);
+
+    void deleteAll();
 }

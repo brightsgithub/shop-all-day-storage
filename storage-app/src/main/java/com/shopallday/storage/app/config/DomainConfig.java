@@ -3,11 +3,13 @@ package com.shopallday.storage.app.config;
 import com.shopallday.storage.domain.repository.RepositoryManager;
 import com.shopallday.storage.domain.repository.customer.CustomerRepository;
 import com.shopallday.storage.domain.repository.customer.CustomerShippingAddRepository;
+import com.shopallday.storage.domain.repository.delete.DeleteAllRepository;
 import com.shopallday.storage.domain.repository.orders.CustomerOrderDetailRepository;
 import com.shopallday.storage.domain.repository.orders.OrderLinesRepository;
 import com.shopallday.storage.domain.repository.orders.OrderStatusTypeRepository;
 import com.shopallday.storage.domain.repository.orders.OrdersRepository;
 import com.shopallday.storage.domain.repository.products.*;
+import com.shopallday.storage.domain.usecases.DeleteAllUseCase;
 import com.shopallday.storage.domain.usecases.brand.*;
 import com.shopallday.storage.domain.usecases.category.*;
 import com.shopallday.storage.domain.usecases.customer.*;
@@ -379,5 +381,11 @@ public class DomainConfig {
             ProductsRepository productsRepository
     ) {
         return new GetProductByIdUseCase(productsRepository);
+    }
+    @Bean
+    public DeleteAllUseCase getDeleteAllUseCase(
+            DeleteAllRepository deleteAllRepository
+    ) {
+        return new DeleteAllUseCase(deleteAllRepository);
     }
 }

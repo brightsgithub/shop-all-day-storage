@@ -18,4 +18,6 @@ public interface BrandRepository {
     void deleteBrandById(Long id);
 
     boolean isExists(Long id);
+
+    void deleteAll();
 }

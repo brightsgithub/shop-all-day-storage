@@ -20,4 +20,6 @@ public interface ProductsRepository {
     void deleteProductById(Long id);
 
     boolean isExists(Long id);
+
+    void deleteAll();
 }

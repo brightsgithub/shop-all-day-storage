@@ -20,4 +20,6 @@ public interface OrderLinesRepository {
     void deleteOrderLine(Long id);
 
     boolean isExists(Long id);
+
+    void deleteAll();
 }
