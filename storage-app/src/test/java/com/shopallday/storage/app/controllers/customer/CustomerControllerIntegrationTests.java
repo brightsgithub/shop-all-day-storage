@@ -1,4 +1,4 @@
-package com.shopallday.storage.app.controllers;
+package com.shopallday.storage.app.controllers.customer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shopallday.storage.app.BaseControllerIntegrationTests;
