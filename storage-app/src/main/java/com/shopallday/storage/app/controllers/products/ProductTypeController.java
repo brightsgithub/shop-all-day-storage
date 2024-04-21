@@ -7,6 +7,8 @@ import com.shopallday.storage.domain.exceptions.crud.CreateException;
 import com.shopallday.storage.domain.exceptions.crud.DeleteException;
 import com.shopallday.storage.domain.exceptions.crud.ReadException;
 import com.shopallday.storage.domain.exceptions.crud.UpdateException;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +18,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping(path = "storage/v1/product-type")
+@Tag(name = "Product Type", description = "Endpoints for managing product types")
 public class ProductTypeController extends BaseController {
 
     private final ProductTypeService service;
@@ -24,11 +27,13 @@ public class ProductTypeController extends BaseController {
         this.service = service;
     }
 
+    @Operation(summary = "Get all product types")
     @GetMapping
     public List<ProductTypeDto> get() {
         return service.getProductTypes();
     }
 
+    @Operation(summary = "Get a product type by ID")
     @GetMapping(path = "{id}")
     public ResponseEntity getById(@PathVariable("id") Long id) {
         try {
@@ -40,6 +45,7 @@ public class ProductTypeController extends BaseController {
         }
     }
 
+    @Operation(summary = "Delete a product type by ID")
     @DeleteMapping(path = "{id}")
     public ResponseEntity deleteById(@PathVariable("id") Long id) {
         try {
@@ -53,6 +59,7 @@ public class ProductTypeController extends BaseController {
         }
     }
 
+    @Operation(summary = "Create a new product type")
     @PostMapping
     public ResponseEntity create(@RequestBody final ProductTypeDto productTypeDto) {
         try {
@@ -64,6 +71,7 @@ public class ProductTypeController extends BaseController {
         }
     }
 
+    @Operation(summary = "Update a product type by ID")
     @PutMapping(path = "{id}")
     public ResponseEntity update(
             @PathVariable("id") Long id,
@@ -79,6 +87,7 @@ public class ProductTypeController extends BaseController {
         }
     }
 
+    @Operation(summary = "Partially update a product type by ID")
     @PatchMapping(path = "{id}")
     public ResponseEntity partiallyUpdate(
             @PathVariable("id") Long id,

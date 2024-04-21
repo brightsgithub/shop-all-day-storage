@@ -10,6 +10,8 @@ import com.shopallday.storage.domain.exceptions.customer.DeleteCustomerException
 import com.shopallday.storage.domain.exceptions.customer.ReadCustomerException;
 import com.shopallday.storage.domain.exceptions.customer.UpdateCustomerException;
 import com.shopallday.storage.domain.models.Customer;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping(path = "storage/v1/customers")
+@Tag(name = "Customer", description = "Endpoints for managing customers")
 public class CustomerController extends BaseController {
 
     private final CustomerService customerService;
@@ -32,6 +35,7 @@ public class CustomerController extends BaseController {
         this.customerMapper = customerMapper;
     }
 
+    @Operation(summary = "Create a new customer", description = "Creates a new customer.")
     @PostMapping
     public ResponseEntity createCustomer(@RequestBody final CustomerDto customerDto) {
         final Customer customer = customerMapper.mapFromDtoToDomain(customerDto);
@@ -43,11 +47,13 @@ public class CustomerController extends BaseController {
         }
     }
 
+    @Operation(summary = "Get all customers", description = "Retrieve a list of all customers.")
     @GetMapping
     public List<CustomerDto> getAllCustomers() {
         return customerService.getAllCustomers();
     }
 
+    @Operation(summary = "Get customer by ID", description = "Retrieve a customer by its ID.")
     @GetMapping(path = "{id}")
     public ResponseEntity getCustomerById(@PathVariable("id") Long id) {
         try {
@@ -61,6 +67,7 @@ public class CustomerController extends BaseController {
         }
     }
 
+    @Operation(summary = "Update customer", description = "Update an existing customer.")
     @PutMapping(path = "{id}")
     public ResponseEntity updateCustomer(
             @PathVariable("id") Long id,
@@ -77,6 +84,7 @@ public class CustomerController extends BaseController {
         }
     }
 
+    @Operation(summary = "Partially update customer", description = "Partially update an existing customer.")
     @PatchMapping(path = "{id}")
     public ResponseEntity partiallyUpdateCustomer(
             @PathVariable("id") Long id,
@@ -90,7 +98,7 @@ public class CustomerController extends BaseController {
             return ResponseEntity.internalServerError().build();
         }
     }
-
+    @Operation(summary = "Delete customer by ID", description = "Delete a customer by its ID.")
     @DeleteMapping(path = "{id}")
     public ResponseEntity deleteCustomerById(@PathVariable("id") Long id) {
         try {

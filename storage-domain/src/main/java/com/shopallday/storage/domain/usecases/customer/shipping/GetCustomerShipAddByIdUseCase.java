@@ -22,6 +22,10 @@ public class GetCustomerShipAddByIdUseCase implements UseCase<List<CustomerShipp
         if (id == null) {
             throw new ReadException("CustomerShippingAddress id cannot be null", BusinessErrorCodes.CUSTOMER_SHIPPING_NOT_FOUND);
         }
-        return customerShippingAddRepository.findCustomerShippingAddressesById(id);
+        List<CustomerShippingAddress> addresses = customerShippingAddRepository.findCustomerShippingAddressesById(id);
+        if (addresses.isEmpty()) {
+            throw new ReadException("CustomerShippingAddress id does not exist", BusinessErrorCodes.CUSTOMER_SHIPPING_NOT_FOUND);
+        }
+        return addresses;
     }
 }

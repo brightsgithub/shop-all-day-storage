@@ -7,6 +7,8 @@ import com.shopallday.storage.domain.exceptions.crud.CreateException;
 import com.shopallday.storage.domain.exceptions.crud.DeleteException;
 import com.shopallday.storage.domain.exceptions.crud.ReadException;
 import com.shopallday.storage.domain.exceptions.crud.UpdateException;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
+@Tag(name = "Orders", description = "Endpoints for managing orders")
 @RestController
 @RequestMapping(path = "storage/v1/orders")
 public class OrdersController extends BaseController {
@@ -24,11 +27,13 @@ public class OrdersController extends BaseController {
         this.service = service;
     }
 
+    @Operation(summary = "Get all orders", description = "Retrieve a list of all orders.")
     @GetMapping
     public List<OrderDto> get() {
         return service.getOrders();
     }
 
+    @Operation(summary = "Get customer order details", description = "Retrieve details of orders belonging to a specific customer.")
     @GetMapping(path = "customer-orders/{id}")
     public ResponseEntity getCustomerOrderDetails(@PathVariable("id") Long id) {
         try {
@@ -40,6 +45,7 @@ public class OrdersController extends BaseController {
         }
     }
 
+    @Operation(summary = "Get order by ID", description = "Retrieve an order by its ID.")
     @GetMapping(path = "{id}")
     public ResponseEntity getById(@PathVariable("id") Long id) {
         try {
@@ -51,6 +57,7 @@ public class OrdersController extends BaseController {
         }
     }
 
+    @Operation(summary = "Delete order by ID", description = "Delete an order by its ID.")
     @DeleteMapping(path = "{id}")
     public ResponseEntity deleteById(@PathVariable("id") Long id) {
         try {
@@ -64,6 +71,7 @@ public class OrdersController extends BaseController {
         }
     }
 
+    @Operation(summary = "Create order", description = "Create a new order.")
     @PostMapping
     public ResponseEntity create(@RequestBody final OrderDto orderDto) {
         try {
@@ -75,6 +83,7 @@ public class OrdersController extends BaseController {
         }
     }
 
+    @Operation(summary = "Update order", description = "Update an existing order.")
     @PutMapping(path = "{id}")
     public ResponseEntity update(
             @PathVariable("id") Long id,
@@ -90,6 +99,7 @@ public class OrdersController extends BaseController {
         }
     }
 
+    @Operation(summary = "Partially update order", description = "Partially update an existing order.")
     @PatchMapping(path = "{id}")
     public ResponseEntity partiallyUpdate(
             @PathVariable("id") Long id,

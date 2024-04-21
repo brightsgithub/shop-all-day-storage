@@ -7,6 +7,8 @@ import com.shopallday.storage.domain.exceptions.crud.CreateException;
 import com.shopallday.storage.domain.exceptions.crud.DeleteException;
 import com.shopallday.storage.domain.exceptions.crud.ReadException;
 import com.shopallday.storage.domain.exceptions.crud.UpdateException;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +18,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping(path = "storage/v1/order-lines")
+@Tag(name = "Order lines", description = "Endpoints for managing customers order lines")
 public class OrderLinesController extends BaseController {
 
     private final OrderLinesService service;
@@ -25,11 +28,13 @@ public class OrderLinesController extends BaseController {
     }
 
     @GetMapping
+    @Operation(summary = "Get all order lines", description = "Retrieve a list of all order lines.")
     public List<OrderLineDto> get() {
         return service.getOrderLines();
     }
 
     @GetMapping(path = "{id}")
+    @Operation(summary = "Get order line by ID", description = "Retrieve an order line by its ID.")
     public ResponseEntity getById(@PathVariable("id") Long id) {
         try {
             return new ResponseEntity<>(service.getOrderLineById(id), HttpStatus.OK);
@@ -41,6 +46,7 @@ public class OrderLinesController extends BaseController {
     }
 
     @DeleteMapping(path = "{id}")
+    @Operation(summary = "Delete order line by ID", description = "Delete an order line by its ID.")
     public ResponseEntity deleteById(@PathVariable("id") Long id) {
         try {
             service.deleteOrderLineById(id);
@@ -54,6 +60,7 @@ public class OrderLinesController extends BaseController {
     }
 
     @PostMapping
+    @Operation(summary = "Create order line", description = "Create a new order line.")
     public ResponseEntity create(@RequestBody final OrderLineDto orderLineDto) {
         try {
             return new ResponseEntity(service.createOrderLine(orderLineDto), HttpStatus.CREATED);
@@ -65,6 +72,7 @@ public class OrderLinesController extends BaseController {
     }
 
     @PutMapping(path = "{id}")
+    @Operation(summary = "Update order line", description = "Update an existing order line.")
     public ResponseEntity update(
             @PathVariable("id") Long id,
             @RequestBody final OrderLineDto orderLineDto
@@ -80,6 +88,7 @@ public class OrderLinesController extends BaseController {
     }
 
     @PatchMapping(path = "{id}")
+    @Operation(summary = "Partially update order line", description = "Partially update an existing order line.")
     public ResponseEntity partiallyUpdate(
             @PathVariable("id") Long id,
             @RequestBody final Map<String, Object> fields

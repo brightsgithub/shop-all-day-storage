@@ -9,14 +9,18 @@ import com.shopallday.storage.domain.exceptions.crud.DeleteException;
 import com.shopallday.storage.domain.exceptions.crud.ReadException;
 import com.shopallday.storage.domain.exceptions.crud.UpdateException;
 import com.shopallday.storage.domain.models.Brand;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+
 @RestController
 @RequestMapping(path = "storage/v1/brands")
+@Tag(name = "Brands", description = "Endpoints for managing brands")
 public class BrandsController extends BaseController {
 
     private final BrandsService brandsService;
@@ -27,11 +31,13 @@ public class BrandsController extends BaseController {
         this.mapper = mapper;
     }
 
+    @Operation(summary = "Get all brands")
     @GetMapping
     public List<BrandDto> getBrands() {
         return brandsService.getBrands();
     }
 
+    @Operation(summary = "Get a brand by ID")
     @GetMapping(path = "{id}")
     public ResponseEntity getBrandById(@PathVariable("id") Long id) {
         try {
@@ -43,6 +49,7 @@ public class BrandsController extends BaseController {
         }
     }
 
+    @Operation(summary = "Delete a brand by ID")
     @DeleteMapping(path = "{id}")
     public ResponseEntity deleteBrandById(@PathVariable("id") Long id) {
         try {
@@ -56,6 +63,7 @@ public class BrandsController extends BaseController {
         }
     }
 
+    @Operation(summary = "Create a new brand")
     @PostMapping
     public ResponseEntity createBrand(@RequestBody final BrandDto brandDto) {
         try {
@@ -67,6 +75,7 @@ public class BrandsController extends BaseController {
         }
     }
 
+    @Operation(summary = "Update a brand by ID")
     @PutMapping(path = "{id}")
     public ResponseEntity updateBrand(
             @PathVariable("id") Long id,
@@ -82,6 +91,7 @@ public class BrandsController extends BaseController {
         }
     }
 
+    @Operation(summary = "Partially update a brand by ID")
     @PatchMapping(path = "{id}")
     public ResponseEntity partiallyUpdateBrand(
             @PathVariable("id") Long id,

@@ -9,6 +9,8 @@ import com.shopallday.storage.domain.exceptions.crud.DeleteException;
 import com.shopallday.storage.domain.exceptions.crud.ReadException;
 import com.shopallday.storage.domain.exceptions.crud.UpdateException;
 import com.shopallday.storage.domain.models.Category;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +20,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping(path = "storage/v1/category")
+@Tag(name = "Category", description = "Endpoints for managing categories")
 public class CategoryController extends BaseController {
 
     private final CategoryService categoryService;
@@ -28,11 +31,13 @@ public class CategoryController extends BaseController {
         this.mapper = mapper;
     }
 
+    @Operation(summary = "Get all categories")
     @GetMapping
     public List<CategoryDto> getCategories() {
         return categoryService.getCategories();
     }
 
+    @Operation(summary = "Get a category by ID")
     @GetMapping(path = "{id}")
     public ResponseEntity getCategoryById(@PathVariable("id") Long id) {
         try {
@@ -44,6 +49,7 @@ public class CategoryController extends BaseController {
         }
     }
 
+    @Operation(summary = "Delete a category by ID")
     @DeleteMapping(path = "{id}")
     public ResponseEntity deleteCategoryById(@PathVariable("id") Long id) {
         try {
@@ -57,6 +63,7 @@ public class CategoryController extends BaseController {
         }
     }
 
+    @Operation(summary = "Create a new category")
     @PostMapping
     public ResponseEntity createCategory(@RequestBody final CategoryDto categoryDto) {
         try {
@@ -68,6 +75,7 @@ public class CategoryController extends BaseController {
         }
     }
 
+    @Operation(summary = "Update a category by ID")
     @PutMapping(path = "{id}")
     public ResponseEntity updateCategory(
             @PathVariable("id") Long id,
@@ -83,6 +91,7 @@ public class CategoryController extends BaseController {
         }
     }
 
+    @Operation(summary = "Partially update a category by ID")
     @PatchMapping(path = "{id}")
     public ResponseEntity partiallyUpdateCategory(
             @PathVariable("id") Long id,
