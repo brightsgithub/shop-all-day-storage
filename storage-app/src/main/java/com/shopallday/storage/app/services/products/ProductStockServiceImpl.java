@@ -7,7 +7,6 @@ import com.shopallday.storage.domain.exceptions.crud.CreateException;
 import com.shopallday.storage.domain.exceptions.crud.DeleteException;
 import com.shopallday.storage.domain.exceptions.crud.ReadException;
 import com.shopallday.storage.domain.exceptions.crud.UpdateException;
-import com.shopallday.storage.domain.models.Brand;
 import com.shopallday.storage.domain.models.ProductStock;
 import com.shopallday.storage.domain.usecases.productstock.*;
 import jakarta.transaction.Transactional;
@@ -82,7 +81,7 @@ public class ProductStockServiceImpl extends BaseService implements ProductStock
     public ProductStockDto partiallyUpdateProductStock(Long id, Map<String, Object> fields)
             throws ReadException, UpdateException {
         ProductStock existingProductStock = getProductStockByIdUseCase.execute(id);
-        updateFieldsOnObject(fields, existingProductStock, Brand.class);
+        updateFieldsOnObject(fields, existingProductStock, ProductStock.class);
         return updateProductStock(mapper.mapFromDomainToDto(existingProductStock));
     }
 }
