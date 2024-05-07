@@ -104,34 +104,36 @@ values(nextval('brand_seq'), 'LANEBERG');
 commit;
 
 -- Products
-insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description)
+insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description, image_url)
 values (nextval('product_seq'), 99, 600, 'Q60C QLED 4K HDR', '2023 Q60C QLED 4K HDR Smart TV',
         'Powered by Quantum Dot for a naturally bright and colourful picture',
         'Powered by Quantum Dot for a naturally bright and colourful picture Open up previously hidden depth and ' ||
         'detail Warm and cool LEDs create a bright picture with bold contrast Sound that tracks the action on-screen ' ||
-        'Upgrade the picture and sound quality with a powerful 4K processor');
+        'Upgrade the picture and sound quality with a powerful 4K processor', null);
 
-insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description)
+insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description, image_url)
 values (nextval('product_seq'), 99, 600, 'N85C Neo QLED 4K HDR', '2023 QN85C Neo QLED 4K HDR Smart TV',
         'Powered by Quantum Dot for a naturally bright and colourful picture.',
         'Precisely controlled Mini LEDs create an incredibly sharp picture.' ||
         'Brightness, colour and detail boosted by our most intelligent AI-powered 4K processor.' ||
         'Cinematic sound reimagined with Dolby Atmos and 6 TV speakers.' ||
-        'See the true beauty of every scene unveiled in exceptional detail, with bright colour and bold contrast.'
+        'See the true beauty of every scene unveiled in exceptional detail, with bright colour and bold contrast.',
+        null
        );
 
-insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description)
+insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description, image_url)
 values (nextval('product_seq'), 99, 600, '2023 QN90C Neo QLED 4K HDR Smart TV',
         '0% Finance available, view options.',
         'Powered by Quantum Dot for a naturally bright and colourful picture.',
         'Precisely controlled Mini LEDs create an incredibly sharp picture.' ||
         'Experience the brilliant picture from every angle, with minimised distracting glare.' ||
-        'Brightness, colour and detail boosted by our most intelligent AI-powered 4K processor.'
+        'Brightness, colour and detail boosted by our most intelligent AI-powered 4K processor.',
+        null
        );
 
 
 --Desktop PC
-insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description)
+insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description, image_url)
 values (nextval('product_seq'),
         100,
         601,
@@ -146,10 +148,11 @@ Good to know
 - The built-in disc drive means no more rummaging for that external one when you need to install something
 - Into video editing or gaming? You''ve got a PCIe x16 slot ready and waiting for a top-notch graphics card
 - Bluetooth lets you connect all your favourite wireless devices
-- It comes with a keyboard and mouse to get you up and running right away'
+- It comes with a keyboard and mouse to get you up and running right away',
+        null
         );
 
-insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description)
+insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description, image_url)
 values (nextval('product_seq'),
         100,
         601,
@@ -164,10 +167,11 @@ Good to know
 - The built-in disc drive means no more rummaging for that external one when you need to install something
 - Into video editing or gaming? You''ve got a PCIe x16 slot ready and waiting for a top-notch graphics card
 - Bluetooth lets you connect all your favourite wireless devices
-- It comes with a keyboard and mouse to get you up and running right away'
+- It comes with a keyboard and mouse to get you up and running right away',
+        null
        );
 
-insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description)
+insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description, image_url)
 values (nextval('product_seq'),
         100,
         603,
@@ -182,11 +186,12 @@ Good to know
 - With WiFi 6, you can get a solid internet connection, with less lag and drop out
 - Bluetooth 5 lets you roam free without worrying about your headset disconnecting
 - It comes with a wireless mouse and keyboard to get you up and running right away
-'
+',
+        null
        );
 
 -- Laptops
-insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description)
+insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description, image_url)
 values (nextval('product_seq'),
         101,
         604,
@@ -199,11 +204,12 @@ Good to know
 
 - Your photos, music, and apps will load up quickly on the 128 GB SSD
 - With an HDMI, two USBs, and a Type-C port, you can hook up an external monitor and all your accessories
-- The webcam privacy shutter lets you decide when you want to be seen on camera'
+- The webcam privacy shutter lets you decide when you want to be seen on camera',
+        null
        );
 
 
-insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description)
+insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description, image_url)
 values (nextval('product_seq'),
         101,
         602,
@@ -219,11 +225,12 @@ Good to know
 - True Tone automatically adjusts the display''s colours, so they stay true no matter your room''s lighting
 - Apple''s System on a Chip design means the SSD storage, processor and RAM all work as one for superfast loading
 - The image signal processor and Neural Engine willmake your friends'' skin tones much more natural-looking on FaceTime calls
-- You''ve got Touch ID to quickly unlock your MacBook, sign in to apps, and make secure payments with Apple Pay'
+- You''ve got Touch ID to quickly unlock your MacBook, sign in to apps, and make secure payments with Apple Pay',
+        null
        );
 
 
-insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description)
+insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description, image_url)
 values (nextval('product_seq'),
         101,
         601,
@@ -241,11 +248,12 @@ Good to know
 - Load up websites and videos in no time thanks to WiFi 6
 - Google''s H1 security chip is just one of the reasons why Chromebooks are so resistant to viruses
 - Look your best in online meetings with the True Vision Full HD webcam
-- Set up your home office anywhere – the anti-glare display can handle a bit of sunlight'
+- Set up your home office anywhere – the anti-glare display can handle a bit of sunlight',
+        null
        );
 
 --Mobile
-insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description)
+insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description, image_url)
 values (nextval('product_seq'),
         102,
         600,
@@ -269,10 +277,11 @@ Good to know
 - 5G connectivity lets you stream films and shows on-the-go – even when you''re on the bus to work
 - With 45 W Super Fast Charging and wireless charging, you''ve got plenty of ways to top up the battery
 - You can wirelessly charge your gadgets from the phone with Wireless PowerShare
-- Splashes or rain showers don''t need to worry you – the S24 Ultra has an IP68 rating'
+- Splashes or rain showers don''t need to worry you – the S24 Ultra has an IP68 rating',
+        null
        );
 
-insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description)
+insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description, image_url)
 values(
        nextval('product_seq'),
        102,
@@ -293,10 +302,11 @@ Good to know
 - Face ID is convenient and secure, no hints needed
 - Dance in the rain or swim in the ocean – the IP68 water resistance will keep your iPhone safe
 - If you''re in a car accident, Crash Detection can automatically notify emergency services
-- With 5G connection you''ll be surfing faster than ever before'
+- With 5G connection you''ll be surfing faster than ever before',
+       null
        );
 
-insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description)
+insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description, image_url)
 values(
           nextval('product_seq'),
           102,
@@ -317,11 +327,12 @@ values(
    - Face ID is convenient and secure, no hints needed
    - Dance in the rain or swim in the ocean – the IP68 water resistance will keep your iPhone safe
    - If you''re in a car accident, Crash Detection can automatically notify emergency services
-   - With 5G connection you''ll be surfing faster than ever before'
+   - With 5G connection you''ll be surfing faster than ever before',
+          null
       );
 
 -- Appliances
-insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description)
+insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description, image_url)
 values(
           nextval('product_seq'),
           105,
@@ -336,10 +347,11 @@ Good to know
 - The Anti-vibration sidewalls stops your washing machine from unnecessarily vibrating so it''s super quiet
 - The VarioDrum system is gentle enough to avoid snagging your tights but powerful enough to clean even the grimiest garment
 - Get rid of any detergent residue with the Extra Rinse setting – perfect for those with sensitive skin
-- If you miss a sock or t-shirt while you''re sorting the load, just use the Reload function to add it in to the wash'
+- If you miss a sock or t-shirt while you''re sorting the load, just use the Reload function to add it in to the wash',
+          null
       );
 
-insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description)
+insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description, image_url)
 values(
           nextval('product_seq'),
           105,
@@ -379,10 +391,11 @@ Cooking is effortless with the NN-CT56JBBPQ as you can use the large touch contr
 
 Accessories
 
-Liven up your microwave cooking with our range of microwave-safe accessories. Whether you need to warm up your soup for lunch or steam rice and vegetables for dinner, you''ll find something to help you create exciting meals in your microwave.'
+Liven up your microwave cooking with our range of microwave-safe accessories. Whether you need to warm up your soup for lunch or steam rice and vegetables for dinner, you''ll find something to help you create exciting meals in your microwave.',
+          null
       );
 
-insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description)
+insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description, image_url)
 values(
           nextval('product_seq'),
           104,
@@ -402,10 +415,11 @@ This appliance is perfect for families with young kids, as it includes a child-p
 
 Save on utilities
 
-Save money on utilities thanks to the efficient energy rating of the HHF113BR0B. With an energy rating of A, this oven lets you keep extra cash in your wallet when utilities come, and is friendly to the environment too.'
+Save money on utilities thanks to the efficient energy rating of the HHF113BR0B. With an energy rating of A, this oven lets you keep extra cash in your wallet when utilities come, and is friendly to the environment too.',
+          null
       );
 
-insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description)
+insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description, image_url)
 values(
           nextval('product_seq'),
           106,
@@ -431,12 +445,13 @@ With the ExtraDry function you can say goodbye to finishing the job with a tea t
 
 InfoLight
 
-You''ll always know when your dishes are done, thanks to the handy InfoLight feature. It projects a red light onto the floor when the dishwasher is running, so you won''t accidentally open the door halfway through the cycle.'
+You''ll always know when your dishes are done, thanks to the handy InfoLight feature. It projects a red light onto the floor when the dishwasher is running, so you won''t accidentally open the door halfway through the cycle.',
+          null
       );
 
 
 -- Furniture
-insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description)
+insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description, image_url)
 values(
           nextval('product_seq'),
           108,
@@ -444,10 +459,11 @@ values(
           'BOASTAD TV bench, black/oak veneer',
           'BOASTAD TV bench, black/oak veneer, 121x42x45 cm',
           'A modern TV bench with thin lines, creating a stylish look in your home.',
-          'A modern TV bench with thin lines, creating a stylish look in your home. The glass doors allow remote control signals to pass through – and unruly cables are taken care of by the practical mesh hammock.'
+          'A modern TV bench with thin lines, creating a stylish look in your home. The glass doors allow remote control signals to pass through – and unruly cables are taken care of by the practical mesh hammock.',
+          null
       );
 
-insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description)
+insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description, image_url)
 values(
           nextval('product_seq'),
           108,
@@ -455,10 +471,11 @@ values(
           'HEMNES TV bench, black-brown/light brown',
           'TV bench, black-brown/light brown, 148x47x57 cm',
           'Sustainable beauty from sustainably-sourced solid pine, a natural and renewable material that gets more beautiful with each passing year.',
-          'Wood is the material most commonly associated with IKEA furniture, and for good reasons. It’s renewable, recyclable, durable, ages beautifully and it is an important part of our Scandinavian design heritage.'
+          'Wood is the material most commonly associated with IKEA furniture, and for good reasons. It’s renewable, recyclable, durable, ages beautifully and it is an important part of our Scandinavian design heritage.',
+          null
       );
 
-insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description)
+insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description, image_url)
 values(
           nextval('product_seq'),
           107,
@@ -466,10 +483,11 @@ values(
           'LANEBERG Extendable table',
           'LANEBERG Extendable table, white, 130/190x80 cm',
           'The simple design of this dining table will blend seamlessly into your dining area.',
-          'The simple design of this dining table will blend seamlessly into your dining area. And the smooth and simple extension lets you extend your dinner invitation without worrying about fitting everyone in.'
+          'The simple design of this dining table will blend seamlessly into your dining area. And the smooth and simple extension lets you extend your dinner invitation without worrying about fitting everyone in.',
+          null
       );
 
-insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description)
+insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description, image_url)
 values(
           nextval('product_seq'),
           107,
@@ -477,11 +495,12 @@ values(
           'LANEBERG Extendable table new',
           'LANEBERG Extendable table new, white, 130/190x80 cm',
           'The simple design of this dining table will blend seamlessly into your dining area.',
-          'The simple design of this dining table will blend seamlessly into your dining area. And the smooth and simple extension lets you extend your dinner invitation without worrying about fitting everyone in.'
+          'The simple design of this dining table will blend seamlessly into your dining area. And the smooth and simple extension lets you extend your dinner invitation without worrying about fitting everyone in.',
+          null
       );
 
 -- Bathroom
-insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description)
+insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description, image_url)
 values(
           nextval('product_seq'),
           111,
@@ -489,10 +508,11 @@ values(
           'LANEBERG Ceramic bath',
           'LANEBERG Ceramic bath, 130/190x80 cm',
           'The simple design of this bath will blend seamlessly into your bathroom area.',
-          'The simple design of this bath will blend seamlessly into your bathroom area. And the smooth and simple extension lets you extend your dinner invitation without worrying about fitting everyone in.'
+          'The simple design of this bath will blend seamlessly into your bathroom area. And the smooth and simple extension lets you extend your dinner invitation without worrying about fitting everyone in.',
+          null
       );
 
-insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description)
+insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description, image_url)
 values(
           nextval('product_seq'),
           111,
@@ -500,10 +520,11 @@ values(
           'LANEBERG Ceramic bath NEW',
           'LANEBERG Ceramic bath NEW, 130/190x80 cm',
           'The simple design of this bath will blend seamlessly into your bathroom area.',
-          'The simple design of this bath will blend seamlessly into your bathroom area. And the smooth and simple extension lets you extend your dinner invitation without worrying about fitting everyone in.'
+          'The simple design of this bath will blend seamlessly into your bathroom area. And the smooth and simple extension lets you extend your dinner invitation without worrying about fitting everyone in.',
+          null
       );
 
-insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description)
+insert into products(product_id, product_type_id, brand_id, short_title, long_title, short_description, long_description, image_url)
 values(
           nextval('product_seq'),
           110,
@@ -511,7 +532,8 @@ values(
           'LANEBERG Inset sink, 1 bowl',
           'LANEBERG Inset sink, 1 bowl, white, 53x47 cm',
           'Ceramic is a heat-resistant and durable material that has been used by humans to make practical objects for thousands of years.',
-          'Ceramic is a heat-resistant and durable material that has been used by humans to make practical objects for thousands of years. The base material is different types of clay that are oven-burned and become things like terracotta, stoneware, pottery and porcelain. At IKEA we mainly use ceramic for plant pots, porcelain, washbasins and kitchen sinks. Since it can be shaped and even glazed to the desired colour and shine, the possibilities of styles and looks are endless.'
+          'Ceramic is a heat-resistant and durable material that has been used by humans to make practical objects for thousands of years. The base material is different types of clay that are oven-burned and become things like terracotta, stoneware, pottery and porcelain. At IKEA we mainly use ceramic for plant pots, porcelain, washbasins and kitchen sinks. Since it can be shaped and even glazed to the desired colour and shine, the possibilities of styles and looks are endless.',
+       null
       );
 
 -- product_stock Q60C QLED 4K HDR

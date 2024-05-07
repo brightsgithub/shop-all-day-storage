@@ -116,7 +116,8 @@ create table products
     short_title          text  NOT NULL,
     long_title           text,
     short_description    text  NOT NULL,
-    long_description text ,
+    long_description     text,
+    image_url            text,
     CONSTRAINT PRODUCTS_SHORT_TITLE_UNIQUE UNIQUE(short_title)
 );
 

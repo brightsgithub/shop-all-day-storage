@@ -13,4 +13,5 @@ public class ProductDto {
     private String longTitle;
     private String shortDescription;
     private String longDescription;
+    private String imageUrl;
 }

@@ -97,11 +97,11 @@ public class OrdersData implements DataHelper {
     public List<Product> createMockProducts(List<ProductType> productTypes, List<Brand> brands) {
         List<Product> products = new ArrayList<>();
 
-        products.add(new Product(null, productTypes.get(0), brands.get(0), "Q60C QLED 4K HDR", "Q60C QLED 4K HDR Long Description", "Short Description", "Long Description"));
-        products.add(new Product(null, productTypes.get(1), brands.get(0), "N85C Neo QLED 4K HDR", "N85C Neo QLED 4K HDR Long Description", "Short Description", "Long Description"));
-        products.add(new Product(null, productTypes.get(2), brands.get(1), "BOASTAD TV bench, black/oak veneer", "BOASTAD TV bench, black/oak veneer Long Description", "Short Description", "Long Description"));
-        products.add(new Product(null, productTypes.get(2), brands.get(2), "APPLE iPhone 15", "APPLE iPhone 15 Long Description", "Short Description", "Long Description"));
-        products.add(new Product(null, productTypes.get(2), brands.get(2), "GOOGLE Pixel 7a", "GOOGLE Pixel 7a Long Description", "Short Description", "Long Description"));
+        products.add(new Product(null, productTypes.get(0), brands.get(0), "Q60C QLED 4K HDR", "Q60C QLED 4K HDR Long Description", "Short Description", "Long Description", null));
+        products.add(new Product(null, productTypes.get(1), brands.get(0), "N85C Neo QLED 4K HDR", "N85C Neo QLED 4K HDR Long Description", "Short Description", "Long Description",null));
+        products.add(new Product(null, productTypes.get(2), brands.get(1), "BOASTAD TV bench, black/oak veneer", "BOASTAD TV bench, black/oak veneer Long Description", "Short Description", "Long Description",null));
+        products.add(new Product(null, productTypes.get(2), brands.get(2), "APPLE iPhone 15", "APPLE iPhone 15 Long Description", "Short Description", "Long Description",null));
+        products.add(new Product(null, productTypes.get(2), brands.get(2), "GOOGLE Pixel 7a", "GOOGLE Pixel 7a Long Description", "Short Description", "Long Description",null));
 
         return products;
     }

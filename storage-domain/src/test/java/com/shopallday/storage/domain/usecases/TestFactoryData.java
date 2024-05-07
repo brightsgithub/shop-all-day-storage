@@ -70,7 +70,7 @@ public class TestFactoryData {
         List<Brand> expectedBrands = createMockBrands(count);
         for (int i = 0; i < count; i++) {
             expectedProducts.add(
-                    new Product(null, expectedProductTypes.get(i), expectedBrands.get(i), "ShortTitle1_" + i, "LongTitle1_" + i, "ShortDescription1_" + i, "LongDescription1_" + i));
+                    new Product(null, expectedProductTypes.get(i), expectedBrands.get(i), "ShortTitle1_" + i, "LongTitle1_" + i, "ShortDescription1_" + i, "LongDescription1_" + i, null));
         }
         return expectedProducts;
     }

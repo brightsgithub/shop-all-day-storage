@@ -41,4 +41,7 @@ public class ProductEntity {
     @Column(name = "long_description")
     @Lob // When using schema.sql comment out @Lob. Leave when using Hibernate. Since the create table statements differ
     private String longDescription;
+
+    @Column(name = "image_url")
+    private String imageUrl;
 }
