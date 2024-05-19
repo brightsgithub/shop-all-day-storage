@@ -18,6 +18,9 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -181,5 +184,45 @@ public class ProductTypeControllerIntegrationTests extends BaseControllerIntegra
 
         // Verify if the product type was deleted
         assertThrows(ReadException.class, () -> productTypeService.getProductTypeById(createdProductTypeDto.getProductTypeId()));
+    }
+
+    @Test
+    public void testGetProductTypesByCategoryIdReturns200() throws Exception {
+        // Arrange
+        final Long categoryId = 1L;
+        List<ProductType> mockProductTypes = TestFactoryData.createMockProductTypes(3);
+        List<ProductType> createdProductTypes = new ArrayList<>();
+
+        for(ProductType productType: mockProductTypes) {
+            final ProductTypeDto dto = productTypeMapper.mapFromDomainToDto(productType);
+            final ProductTypeDto createdDto = productTypeService.createProductType(dto);
+            final ProductType createdDomain = productTypeMapper.mapFromDtoToDomain(createdDto);
+            createdProductTypes.add(createdDomain);
+        }
+
+        // Act
+        ResultActions resultActions = mockMvc.perform(
+                MockMvcRequestBuilders.get("/storage/v1/product-type/category/{id}", createdProductTypes.get(0).getCategory().getCategoryId())
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+
+        // Assert
+        resultActions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.length()").value(1));
+    }
+
+    @Test
+    public void testGetProductTypesByCategoryIdNotFoundReturns200EmptyList() throws Exception {
+        // Arrange
+        final Long nonExistingCategoryId = 999L;
+        List<ProductType> mockProductTypes = TestFactoryData.createMockProductTypes(1);
+        final ProductTypeDto createdDto = productTypeService.createProductType(productTypeMapper.mapFromDomainToDto(mockProductTypes.get(0)));
+        // Act & Assert
+
+
+        ResultActions resultActions = mockMvc.perform(
+                MockMvcRequestBuilders.get("/storage/v1/product-type/category/{id}" , nonExistingCategoryId)
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(MockMvcResultMatchers.status().isOk()).andExpect(MockMvcResultMatchers.jsonPath("$.length()").value(0));
     }
 }

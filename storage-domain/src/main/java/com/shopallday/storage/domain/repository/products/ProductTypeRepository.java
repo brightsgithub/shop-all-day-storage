@@ -21,4 +21,5 @@ public interface ProductTypeRepository {
 
     boolean isExists(Long id);
     void deleteAll();
+    List<ProductType> findProductTypesByCategoryId(final Long categoryId);
 }

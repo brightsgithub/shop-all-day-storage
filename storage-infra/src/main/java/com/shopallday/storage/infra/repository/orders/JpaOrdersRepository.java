@@ -59,4 +59,6 @@ public interface JpaOrdersRepository extends JpaRepository<OrderEntity, Long>, O
     default boolean isExists(Long id) {
         return existsById(id);
     }
+    @Override
+    void deleteAll();
 }

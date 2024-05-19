@@ -88,4 +88,6 @@ public interface JpaCategoryRepository extends JpaRepository<CategoryEntity, Lon
     default void deleteCategory(Category category) {
         delete(categoryMapper.mapToEntity(category));
     }
+    @Override
+    void deleteAll();
 }

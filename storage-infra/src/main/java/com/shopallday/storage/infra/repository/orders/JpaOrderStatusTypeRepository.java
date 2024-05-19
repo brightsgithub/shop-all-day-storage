@@ -77,4 +77,6 @@ public interface JpaOrderStatusTypeRepository extends JpaRepository<OrderStatusT
     default boolean isExists(Long id) {
         return existsById(id);
     }
+    @Override
+    void deleteAll();
 }

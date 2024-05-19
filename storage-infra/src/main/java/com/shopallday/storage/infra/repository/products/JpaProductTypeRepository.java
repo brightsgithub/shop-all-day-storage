@@ -103,8 +103,19 @@ public interface JpaProductTypeRepository extends JpaRepository<ProductTypeEntit
     @Query("DELETE FROM ProductEntity p WHERE p.productId in :productIds")
     void deleteProductsByIds(@Param("productIds") List<Long> productIds);
 
+    // Custom query method to find ProductTypes by category ID
+
+    default List<ProductType> findProductTypesByCategoryId(final Long categoryId) {
+        List<ProductTypeEntity> entities = findProductTypesByCategoryId_(categoryId);
+        return productTypeMapper.mapToDomain(entities);
+    }
+    @Query("SELECT pt FROM ProductTypeEntity pt WHERE pt.categoryEntity.categoryId = :categoryId")
+    List<ProductTypeEntity> findProductTypesByCategoryId_(@Param("categoryId") Long categoryId);
+
     @Override
     default boolean isExists(Long id) {
         return existsById(id);
     }
+    @Override
+    void deleteAll();
 }

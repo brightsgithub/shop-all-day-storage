@@ -25,6 +25,7 @@ public class ProductTypeServiceImpl extends BaseService implements ProductTypeSe
     private final GetProductTypeByIdUseCase getProductTypeByIdUseCase;
     private final UpdateProductTypeUseCase updateProductTypeUseCase;
     private final GetAllProductTypesUseCase getAllProductTypesUseCase;
+    private final GetProductTypesByCategoryIdUseCase getProductTypesByCategoryIdUseCase;
 
     @Qualifier("productTypeMapper")
     private Mapper<ProductType, ProductTypeDto> mapper;
@@ -35,13 +36,15 @@ public class ProductTypeServiceImpl extends BaseService implements ProductTypeSe
                                   GetProductTypeByIdUseCase getProductTypeByIdUseCase,
                                   UpdateProductTypeUseCase updateProductTypeUseCase,
                                   GetAllProductTypesUseCase getAllProductTypesUseCase,
-                                  @Qualifier("productTypeMapper") Mapper<ProductType, ProductTypeDto> mapper) {
+                                  @Qualifier("productTypeMapper") Mapper<ProductType, ProductTypeDto> mapper,
+                                  GetProductTypesByCategoryIdUseCase getProductTypesByCategoryIdUseCase) {
         this.createProductTypeUseCase = createProductTypeUseCase;
         this.createSingleProductTypeUseCase = createSingleProductTypeUseCase;
         this.deleteProductTypeUseCase = deleteProductTypeUseCase;
         this.getProductTypeByIdUseCase = getProductTypeByIdUseCase;
         this.updateProductTypeUseCase = updateProductTypeUseCase;
         this.getAllProductTypesUseCase = getAllProductTypesUseCase;
+        this.getProductTypesByCategoryIdUseCase = getProductTypesByCategoryIdUseCase;
         this.mapper = mapper;
     }
 
@@ -78,6 +81,11 @@ public class ProductTypeServiceImpl extends BaseService implements ProductTypeSe
     @Transactional
     public void deleteProductTypeById(Long id) throws DeleteException {
         deleteProductTypeUseCase.execute(id);
+    }
+    @Override
+    @Transactional
+    public List<ProductTypeDto> getProductTypesByCategoryId(Long id) throws ReadException {
+        return mapper.mapFromDomainToDto(getProductTypesByCategoryIdUseCase.execute(id));
     }
 
     @Override

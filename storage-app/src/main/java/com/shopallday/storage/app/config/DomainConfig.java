@@ -388,4 +388,10 @@ public class DomainConfig {
     ) {
         return new DeleteAllUseCase(deleteAllRepository);
     }
+    @Bean
+    public GetProductTypesByCategoryIdUseCase getProductTypesByCategoryIdUseCase(
+            ProductTypeRepository productTypeRepository
+    ) {
+        return new GetProductTypesByCategoryIdUseCase(productTypeRepository);
+    }
 }

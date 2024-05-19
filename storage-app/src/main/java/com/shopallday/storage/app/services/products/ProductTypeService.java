@@ -17,4 +17,5 @@ public interface ProductTypeService {
     void deleteProductTypeById(Long id) throws DeleteException;
     ProductTypeDto partiallyUpdateProductType(Long id, Map<String, Object> fields)
             throws ReadException, UpdateException;
+    List<ProductTypeDto> getProductTypesByCategoryId(Long id) throws ReadException;
 }

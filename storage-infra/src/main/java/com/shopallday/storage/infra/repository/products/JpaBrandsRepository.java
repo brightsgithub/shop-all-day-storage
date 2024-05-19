@@ -77,4 +77,6 @@ public interface JpaBrandsRepository extends JpaRepository<BrandEntity, Long>, B
     default boolean isExists(Long id) {
         return existsById(id);
     }
+    @Override
+    void deleteAll();
 }

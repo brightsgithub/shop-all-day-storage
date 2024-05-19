@@ -71,4 +71,6 @@ public interface JpaProductsRepository extends JpaRepository<ProductEntity, Long
     default boolean isExists(Long id) {
         return existsById(id);
     }
+    @Override
+    void deleteAll();
 }

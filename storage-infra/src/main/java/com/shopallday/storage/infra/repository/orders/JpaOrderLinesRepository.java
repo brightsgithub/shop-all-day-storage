@@ -53,4 +53,6 @@ public interface JpaOrderLinesRepository extends JpaRepository<OrderLineEntity, 
     default boolean isExists(Long id) {
         return existsById(id);
     }
+    @Override
+    void deleteAll();
 }

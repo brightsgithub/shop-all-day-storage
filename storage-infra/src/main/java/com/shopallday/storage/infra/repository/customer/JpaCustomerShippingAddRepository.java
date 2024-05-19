@@ -65,4 +65,7 @@ public interface JpaCustomerShippingAddRepository extends JpaRepository<Customer
     default boolean isExists(Long id) {
         return existsById(id);
     }
+
+    @Override
+    void deleteAll();
 }
