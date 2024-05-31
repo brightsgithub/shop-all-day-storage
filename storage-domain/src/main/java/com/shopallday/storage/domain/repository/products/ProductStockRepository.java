@@ -16,6 +16,8 @@ public interface ProductStockRepository {
 
     ProductStock updateProductStock(ProductStock productStock, RepositoryManager repositoryManager);
 
+    List<ProductStock> findProductStockByCategoryId(final Long categoryId);
+
     void deleteProductStock(Long id);
     boolean isExists(Long id);
 

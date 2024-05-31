@@ -394,4 +394,10 @@ public class DomainConfig {
     ) {
         return new GetProductTypesByCategoryIdUseCase(productTypeRepository);
     }
+    @Bean
+    public GetProductStockByCategoryIdUseCase getProductStockByCategoryIdUseCase(
+            ProductStockRepository productStockRepository
+    ) {
+        return new GetProductStockByCategoryIdUseCase(productStockRepository);
+    }
 }

@@ -106,11 +106,11 @@ public interface JpaProductTypeRepository extends JpaRepository<ProductTypeEntit
     // Custom query method to find ProductTypes by category ID
 
     default List<ProductType> findProductTypesByCategoryId(final Long categoryId) {
-        List<ProductTypeEntity> entities = findProductTypesByCategoryId_(categoryId);
+        List<ProductTypeEntity> entities = findProductTypesByCategoryIdInternal(categoryId);
         return productTypeMapper.mapToDomain(entities);
     }
     @Query("SELECT pt FROM ProductTypeEntity pt WHERE pt.categoryEntity.categoryId = :categoryId")
-    List<ProductTypeEntity> findProductTypesByCategoryId_(@Param("categoryId") Long categoryId);
+    List<ProductTypeEntity> findProductTypesByCategoryIdInternal(@Param("categoryId") Long categoryId);
 
     @Override
     default boolean isExists(Long id) {

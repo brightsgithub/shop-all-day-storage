@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -182,5 +183,46 @@ public class ProductStockControllerIntegrationTests extends BaseControllerIntegr
 
         // Assert
         resultActions.andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    @Test
+    public void testGetProductStocksByCategoryId() throws Exception {
+        final Long categoryId = 1L;
+        List<ProductStock> mockProductStocks = TestFactoryData.createMockProductStock(3);
+        List<ProductStock> createdProductStocks = new ArrayList<>(3);
+
+        // Add some product stock to the db
+        for(ProductStock productStock: mockProductStocks){
+            final ProductStockDto dto = mapper.mapFromDomainToDto(productStock);
+            final ProductStockDto createdDto = productStockService.createProductStock(dto);
+            final ProductStock createdDomain = mapper.mapFromDtoToDomain(createdDto);
+            createdProductStocks.add(createdDomain);
+        }
+
+        // execute request
+        ResultActions resultActions = mockMvc.perform(
+                MockMvcRequestBuilders.get("/storage/v1/product-stock/category/{id}",
+                                createdProductStocks.get(0).getProduct().getProductType().getCategory().getCategoryId())
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+
+        // Assert
+        resultActions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.length()").value(1));
+    }
+
+    @Test
+    public void testGetProductStocksByCategoryIdNotFoundReturns200EmptyList() throws Exception {
+        // Arrange
+        final Long nonExistingCategoryId = 999L;
+        List<ProductStock> mockProductStocks = TestFactoryData.createMockProductStock(1);
+        final ProductStockDto createdDto = productStockService.createProductStock(mapper.mapFromDomainToDto(mockProductStocks.get(0)));
+        // Act & Assert
+
+
+        ResultActions resultActions = mockMvc.perform(
+                MockMvcRequestBuilders.get("/storage/v1/product-stock/category/{id}" , nonExistingCategoryId)
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(MockMvcResultMatchers.status().isOk()).andExpect(MockMvcResultMatchers.jsonPath("$.length()").value(0));
     }
 }

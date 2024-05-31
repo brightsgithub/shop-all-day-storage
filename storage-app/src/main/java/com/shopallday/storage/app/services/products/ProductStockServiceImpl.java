@@ -23,6 +23,7 @@ public class ProductStockServiceImpl extends BaseService implements ProductStock
     private final GetProductStockByIdUseCase getProductStockByIdUseCase;
     private final UpdateProductStockUseCase updateProductStockUseCase;
     private final DeleteProductStockUseCase deleteProductStockUseCase;
+    private final GetProductStockByCategoryIdUseCase getProductStockByCategoryIdUseCase;
     @Qualifier("productStockMapper")
     private final Mapper<ProductStock, ProductStockDto> mapper;
 
@@ -31,12 +32,13 @@ public class ProductStockServiceImpl extends BaseService implements ProductStock
                                    GetProductStockByIdUseCase getProductStockByIdUseCase,
                                    UpdateProductStockUseCase updateProductStockUseCase,
                                    DeleteProductStockUseCase deleteProductStockUseCase,
-                                   @Qualifier("productStockMapper") Mapper<ProductStock, ProductStockDto> mapper) {
+                                   GetProductStockByCategoryIdUseCase getProductStockByCategoryIdUseCase, @Qualifier("productStockMapper") Mapper<ProductStock, ProductStockDto> mapper) {
         this.getAllProductStockUseCase = getAllProductStockUseCase;
         this.createSingleProductStockUseCase = createSingleProductStockUseCase;
         this.getProductStockByIdUseCase = getProductStockByIdUseCase;
         this.updateProductStockUseCase = updateProductStockUseCase;
         this.deleteProductStockUseCase = deleteProductStockUseCase;
+        this.getProductStockByCategoryIdUseCase = getProductStockByCategoryIdUseCase;
         this.mapper = mapper;
     }
 
@@ -75,7 +77,11 @@ public class ProductStockServiceImpl extends BaseService implements ProductStock
     public void deleteProductStockById(Long id) throws DeleteException {
         deleteProductStockUseCase.execute(id);
     }
-
+    @Override
+    @Transactional
+    public List<ProductStockDto> getProductStocksByCategoryId(Long id) throws ReadException {
+        return mapper.mapFromDomainToDto(getProductStockByCategoryIdUseCase.execute(id));
+    }
     @Override
     @Transactional
     public ProductStockDto partiallyUpdateProductStock(Long id, Map<String, Object> fields)

@@ -1,13 +1,15 @@
 package com.shopallday.storage.infra.repository.products;
 
 import com.shopallday.storage.domain.models.ProductStock;
-import com.shopallday.storage.domain.repository.products.ProductStockRepository;
 import com.shopallday.storage.domain.repository.RepositoryManager;
-import com.shopallday.storage.infra.entities.*;
+import com.shopallday.storage.domain.repository.products.ProductStockRepository;
+import com.shopallday.storage.infra.entities.ProductStockEntity;
 import com.shopallday.storage.infra.mappers.ProductStockMapper;
 import com.shopallday.storage.infra.repository.Merge;
 import jakarta.persistence.EntityManager;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -50,6 +52,13 @@ public interface JPAProductStockRepository extends JpaRepository<ProductStockEnt
     default ProductStock updateProductStock(ProductStock productStock, RepositoryManager repositoryManager) {
         return createProductStock(productStock, repositoryManager);
     }
+
+    default List<ProductStock> findProductStockByCategoryId(final Long categoryId) {
+        List<ProductStockEntity> entities = findProductStockByCategoryIdInternal(categoryId);
+        return mapper.mapToDomain(entities);
+    }
+    @Query("SELECT ps FROM ProductStockEntity ps WHERE ps.productEntity.productTypeEntity.categoryEntity.categoryId = :categoryId")
+    List<ProductStockEntity> findProductStockByCategoryIdInternal(@Param("categoryId") Long categoryId);
 
     @Override
     default void deleteProductStock(Long id) {

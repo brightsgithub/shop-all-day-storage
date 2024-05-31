@@ -1,20 +1,20 @@
 package com.shopallday.storage.app.controllers.products;
 
-        import com.shopallday.storage.app.controllers.BaseController;
-        import com.shopallday.storage.app.models.ProductTypeDto;
-        import com.shopallday.storage.app.services.products.ProductTypeService;
-        import com.shopallday.storage.domain.exceptions.crud.CreateException;
-        import com.shopallday.storage.domain.exceptions.crud.DeleteException;
-        import com.shopallday.storage.domain.exceptions.crud.ReadException;
-        import com.shopallday.storage.domain.exceptions.crud.UpdateException;
-        import io.swagger.v3.oas.annotations.Operation;
-        import io.swagger.v3.oas.annotations.tags.Tag;
-        import org.springframework.http.HttpStatus;
-        import org.springframework.http.ResponseEntity;
-        import org.springframework.web.bind.annotation.*;
+import com.shopallday.storage.app.controllers.BaseController;
+import com.shopallday.storage.app.models.ProductTypeDto;
+import com.shopallday.storage.app.services.products.ProductTypeService;
+import com.shopallday.storage.domain.exceptions.crud.CreateException;
+import com.shopallday.storage.domain.exceptions.crud.DeleteException;
+import com.shopallday.storage.domain.exceptions.crud.ReadException;
+import com.shopallday.storage.domain.exceptions.crud.UpdateException;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-        import java.util.List;
-        import java.util.Map;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(path = "storage/v1/product-type")

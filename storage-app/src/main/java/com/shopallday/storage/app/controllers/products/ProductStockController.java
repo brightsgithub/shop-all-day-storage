@@ -101,4 +101,15 @@ public class ProductStockController extends BaseController {
             return ResponseEntity.internalServerError().build();
         }
     }
+    @Operation(summary = "Get all product stocks by Category id")
+    @GetMapping(path = "category/{id}")
+    public ResponseEntity<List<ProductStockDto>> getProductStocksByCategoryId(@PathVariable("id") Long id) {
+        try {
+            return new ResponseEntity<>(service.getProductStocksByCategoryId(id), HttpStatus.OK);
+        } catch (ReadException e) {
+            return getErrorResponse(e, HttpStatus.NOT_FOUND);
+        } catch (Exception exception) {
+            return ResponseEntity.internalServerError().build();
+        }
+    }
 }

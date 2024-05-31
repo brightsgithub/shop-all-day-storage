@@ -15,6 +15,7 @@ public interface ProductStockService {
     ProductStockDto getProductStockById(Long id) throws ReadException;
     ProductStockDto updateProductStock(ProductStockDto productStockDto) throws ReadException, UpdateException;
     void deleteProductStockById(Long id) throws DeleteException;
+    List<ProductStockDto> getProductStocksByCategoryId(Long id) throws ReadException;
     ProductStockDto partiallyUpdateProductStock(Long id, Map<String, Object> fields)
             throws ReadException, UpdateException;
 }
