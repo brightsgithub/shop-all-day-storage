@@ -20,7 +20,7 @@ public class CorsConfig implements WebMvcConfigurer {
                 // using * However, be cautious with this approach as it can potentially open up your server to security
                 // vulnerabilities if not configured properly.
                 //.allowedOrigins("*") // Replace this with your React app URL
-                .allowedOrigins("http://localhost", "http://localhost:5173") // React app URL
+                .allowedOrigins("http://localhost", "http://localhost:5173", "http://13.40.6.197:8080", "http://13.40.6.197", "http://ec2-13-40-6-197.eu-west-2.compute.amazonaws.com", "http://ec2-13-40-6-197.eu-west-2.compute.amazonaws.com:8080") // React app URL
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowedHeaders("*");
     }
