@@ -67,6 +67,11 @@ copy project over
 ==============================
 scp -i shopallday-storage-aws.pem -r SHOP_ALL_DAY_PROJECT ec2-user@13.40.33.68:/data
 
+scp -i shopallday-storage-aws.pem -r SHOP_ALL_DAY_PROJECT/storage/storage-app.tar ec2-user@13.40.6.197:/data
+scp -i shopallday-storage-aws.pem -r SHOP_ALL_DAY_PROJECT/storage/postgres.tar ec2-user@13.40.6.197:/data
+
+docker load -i /data/ec2-user@13.40.33.68/postgres.tar
+
 start stop commands
 
 List all containers (including stopped ones):
@@ -87,12 +92,117 @@ sudo docker rm <container id>
 
 List docker images
 ------------------------------------------
-sudo docker images -q
+sudo docker images
 
 
 Remove docker images
 ------------------------------------------
 docker rmi <image_id_or_name> <image_id_or_name>
+
+===========================================================================
+Better deployment process
+Best Practices for Building and Deploying Docker Images
+
+Build Locally and Push to a Registry: (not yet pushing to a registry but Im building the image locally)
+either way, This approach keeps your EC2 instance lightweight and focused on running containers rather than building
+them.
+
+The process is simple
+
+1. build the image directly:
+docker build -t storage-app:latest -f storage-app/Dockerfile storage-app
+
+2. Save the Docker Images to a File:
+docker save -o storage-app.tar storage-app:latest
+docker save -o postgres.tar postgres
+
+3. Transfer the Docker Images to the EC2 Instance
+
+4. once on the EC2 instance, Load the Docker Images
+docker load -i /home/ec2-user/storage-app.tar
+docker load -i /home/ec2-user/postgres.tar
+
+5. Edit the docker-compose.yml file to NOT build but instead use an image
+
+6. docker-compose up -d to start the container
+
+HOWEVER! when I do the above, I get the following error:
+----------------------------------
+Start...                       0.9s
+ ! db The requested image's platform (linux/arm64) does not match the detected host platform (linux/amd64/v3)
+ and no specific platform was requested                                            0.0s
+ ✔ Container data-storage_app-1                                                                                                                                  Started                        1.4s
+ ! storage_app The requested image's platform (linux/arm64/v8) does not match the detected host platform (linux/amd64/v3)
+  and no specific platform was requested                                0.0s
+----------------------------------
+Explanation
+----------------------------------
+this is due to a mismatch between the architecture of the Docker images you have built (linux/arm64) and the
+architecture of your EC2 instance (linux/amd64). This usually happens if you are developing on an ARM-based machine
+(like an Apple M1/M2 Mac) and deploying to an x86-based EC2 instance.
+
+Solution
+----------------------------------
+To resolve this, you need to ensure that the Docker images you build are compatible with the target architecture (amd64).
+You can do this by using Docker's buildx tool to create multi-architecture images. Here’s how you can do it:
+
+1. Install buildx (if not already installed)
+Docker buildx is usually included with Docker Desktop, but you might need to enable it:
+
+    docker buildx create --use
+    docker buildx inspect --bootstrap
+
+2. Build the Images for amd64 Architecture:
+
+    # Build the storage_app image for amd64
+    docker buildx build --platform linux/amd64 -t storage-app:latest -f Dockerfile --load .
+
+    # Save the storage_app image to a tar file
+    docker save -o storage_app_amd64.tar storage-app:latest
+
+    # Build the postgres image for amd64
+    docker buildx build --platform linux/amd64 -t postgres:latest --load .
+
+    # Save the postgres image to a tar file
+    docker save -o postgres_amd64.tar postgres:latest
+
+    note, The --load flag ensures the image is loaded into the local Docker daemon after the build, which allows you to
+    use docker save to create the tar files.
+
+3. Transfer the Tar Files to the EC2 Instance:
+    scp -i shopallday-storage-aws.pem -r SHOP_ALL_DAY_PROJECT/storage/storage-app/storage_app_amd64.tar ec2-user@13.40.6.197:/data
+    scp -i shopallday-storage-aws.pem -r SHOP_ALL_DAY_PROJECT/storage/storage-app/postgres_amd64.tar ec2-user@13.40.6.197:/data
+
+4. Load the Images on the EC2 Instance:
+
+    First: sudo docker-compose down
+    List all images: sudo docker images
+    Remove old images: sudo docker rmi  <image_id_or_name> <image_id_or_name>
+
+    Perform the below from the directory where the images have been copied to. In my case the /data folder
+
+    # Load the storage_app image
+    sudo docker load -i storage_app_amd64.tar
+
+    # Load the postgres image
+    sudo docker load -i postgres_amd64.tar
+
+5. Update docker-compose.yml on the EC2 Instance:
+
+    Make sure your docker-compose.yml file on the EC2 instance is configured to use the locally loaded images:
+    remove "build" step for storage_app and replace with "image: storage-app:latest"
+
+6. Run docker-compose on the EC2 Instance:
+    docker-compose up -d
+
+
+
+
+
+
+
+
+
 
 
 

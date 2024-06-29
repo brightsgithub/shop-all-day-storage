@@ -13,6 +13,8 @@ services:
       - db-network
 
   storage_app:
+#    If we want to use a pre-built image, uncomment and comment out the below build
+#    image: storage-app:latest
     build:
       context: storage-app
       dockerfile: Dockerfile
