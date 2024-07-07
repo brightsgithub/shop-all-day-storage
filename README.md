@@ -72,3 +72,6 @@ Dependencies point inwards to the storage-domain.
 
 ### Architectural Diagram
 ![Clean Architecture Diagram](shop-all-day-webservice-img.png)
+
+### Database Entity Relationship Diagram
+![Clean Architecture Diagram](erd_diagram_2.png)
