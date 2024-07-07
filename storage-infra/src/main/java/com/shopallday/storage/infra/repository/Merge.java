@@ -5,6 +5,22 @@ import jakarta.persistence.EntityManager;
 
 import java.util.List;
 
+/**
+ * There are cases where we Create new Entities that are part of existing entities such as a one-to-many relationship.
+ * Consider Products for example, which when creating a new Product, it has a relationship with an existing
+ * ProductTypeEntity (which has relationships with other existing entities) and BrandEntity. When creating a new
+ * ProductEntity, an existing ProductType and Brand would be attached to the new Product but these will be in a detached
+ * state within the context. When attempting to save the object, you will encounter the following error:
+ *
+ * Caused by: org.hibernate.PersistentObjectException: detached entity passed to persist: com.shopallday.storage.infra.entities.BrandEntity
+ *
+ * This is because the existing objects are NOT attached to the context and need to be merged to the existing context
+ * when saving a new object that also includes existing ones. This is due to the having the CascadeType.PERSIST. When
+ * saving a new ProductEntity for example, CascadeType.PERSIST will look at any existing objects and update or create them
+ * as part of that transaction. The reason why this merging can be removed from the tests and the tests still work, is
+ * because all of the objects are created upfront in the same test method and are part of the same context session,
+ * so there is no detached state.
+ */
 public class Merge {
 
     public static void mergeProductEntity(EntityManager entityManager, List<ProductEntity> productEntities) {
