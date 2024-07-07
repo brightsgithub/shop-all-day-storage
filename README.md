@@ -10,12 +10,10 @@ The purpose of this <b>Spring Boot</b> RESTful microservice is to handle all cli
 - Orders
 - and more.
 
-This will allow the client to view all the information related to the e-commerce Shop All Day backend data and build a front-end client the user can interact with.
+This will allow the client to view all the information related to the e-commerce [Shop All Day Project](http://ec2-13-40-6-197.eu-west-2.compute.amazonaws.com/) backend data and build a front-end client the user can interact with.
 
 ### See Endpoints on Swagger
 [Interact with endpoints here](http://ec2-13-40-6-197.eu-west-2.compute.amazonaws.com:8080/swagger-ui/index.html)
-
-
 
 ## Application Architecture
 I've chosen to implement this using Clean Architecture by breaking the app into three main modules.
@@ -70,7 +68,7 @@ A client makes a request, which is picked up by a controller, then forwarded to 
 ### Dependency Rule
 Dependencies point inwards to the storage-domain.
 
-### Architectural Diagram
+### Application Architectural Diagram
 ![Clean Architecture Diagram](shop-all-day-webservice-img.png)
 
 ### Database Entity Relationship Diagram
