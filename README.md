@@ -1,7 +1,7 @@
-# Shop All Day - Spring Boot Web Service
+# Shop All Day - Spring Boot Web Service Demo
 
 ## Purpose
-The purpose of this <b>Spring Boot</b> RESTful microservice is to handle all client-related requests via various CRUD (Create, Read, Update & Delete) operations through its various endpoints. These endpoints include:
+The purpose of this demo <b>Spring Boot</b> RESTful microservice is to handle all client-related requests via various CRUD (Create, Read, Update & Delete) operations through its various endpoints. These endpoints include:
 
 - Customer
 - Products
