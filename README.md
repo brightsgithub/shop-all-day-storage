@@ -68,8 +68,8 @@ A client makes a request, which is picked up by a controller, then forwarded to 
 ### Dependency Rule
 Dependencies point inwards to the storage-domain.
 
-### Application Architectural Diagram
+### Clean Architecture Diagram
 ![Clean Architecture Diagram](shop-all-day-webservice-img.png)
 
 ### Database Entity Relationship Diagram
-![Clean Architecture Diagram](erd_diagram_2.png)
+![Database Entity Relationship Diagram](erd_diagram_2.png)
