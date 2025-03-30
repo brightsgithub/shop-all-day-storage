@@ -10,10 +10,10 @@ The purpose of this demo <b>Spring Boot</b> RESTful microservice is to handle al
 - Orders
 - and more.
 
-This will allow the client to view all the information related to the e-commerce [Shop All Day Project](http://ec2-13-40-6-197.eu-west-2.compute.amazonaws.com/) backend data and build a front-end client the user can interact with.
+This will allow the client to view all the information related to the e-commerce [Shop All Day Project](http://ec2-18-171-241-197.eu-west-2.compute.amazonaws.com/) backend data and build a front-end client the user can interact with.
 
 ### See Endpoints on Swagger
-[Interact with endpoints here](http://ec2-13-40-6-197.eu-west-2.compute.amazonaws.com:8080/swagger-ui/index.html)
+[Interact with endpoints here](http://ec2-18-171-241-197.eu-west-2.compute.amazonaws.com:8080/swagger-ui/index.html)
 
 ## Application Architecture
 I've chosen to implement this using Clean Architecture by breaking the app into three main modules.
