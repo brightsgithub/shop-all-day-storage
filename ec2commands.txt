@@ -1,3 +1,6 @@
+MVN build command:
+mvn clean package
+
 to install docker-compose on my ec2 instance i ran the commands below:
 ==========================
 sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
@@ -10,6 +13,8 @@ see this: https://www.youtube.com/watch?v=gRgdnHHuvoI
 
 When you stop the EC2 instance, the IP address will change.
 This also means you have to remount the volume so it can be seen again:
+
+(first time I need to run "sudo mkfs -t xfs /dev/xvdf" after mounting drive in amazon)
 
 List all drives  - lsblk
 
@@ -160,18 +165,20 @@ Docker buildx is usually included with Docker Desktop, but you might need to ena
     # Save the storage_app image to a tar file
     docker save -o storage_app_amd64.tar storage-app:latest
 
-    # Build the postgres image for amd64
+    ---
+    # Build the postgres image for amd64 - NO NOT NEEDED! don't use.
+    Docker Compose will automatically pull the postgres image, if it is not present locally when the above is run
     docker buildx build --platform linux/amd64 -t postgres:latest --load .
-
-    # Save the postgres image to a tar file
     docker save -o postgres_amd64.tar postgres:latest
+    ----
 
     note, The --load flag ensures the image is loaded into the local Docker daemon after the build, which allows you to
     use docker save to create the tar files.
 
 3. Transfer the Tar Files to the EC2 Instance:
-    scp -i shopallday-storage-aws.pem -r SHOP_ALL_DAY_PROJECT/storage/storage-app/storage_app_amd64.tar ec2-user@13.40.6.197:/data
-    scp -i shopallday-storage-aws.pem -r SHOP_ALL_DAY_PROJECT/storage/storage-app/postgres_amd64.tar ec2-user@13.40.6.197:/data
+    sudo scp -i shop-allday-aws.pem -r SHOP_ALL_DAY_PROJECT/storage/docker-compose.yml ec2-user@18.171.241.197:/data
+    sudo scp -i shop-allday-aws.pem -r SHOP_ALL_DAY_PROJECT/storage/storage-app/storage_app_amd64.tar ec2-user@18.171.241.197:/data
+    sudo scp -i shop-allday-aws.pem -r SHOP_ALL_DAY_PROJECT/storage/storage-app/postgres_amd64.tar ec2-user@18.171.241.197:/data - not needed!
 
 4. Load the Images on the EC2 Instance:
 
@@ -193,7 +200,13 @@ Docker buildx is usually included with Docker Desktop, but you might need to ena
     remove "build" step for storage_app and replace with "image: storage-app:latest"
 
 6. Run docker-compose on the EC2 Instance:
-    docker-compose up -d
+    sudo docker-compose up -d
+
+7. Security groups
+   I had to add an inbound rule: custom TCP so I can add the port range 8080 (0.0.0.0/0)
+   can now be accessed (via deployed app: http://ec2-18-171-241-197.eu-west-2.compute.amazonaws.com/)
+
+8. Be sure to change the CorsConfig to accept requests from the above server
 
 
 
